@@ -7,9 +7,9 @@ from typing import List, Dict, Any, Optional, Callable
 class DesktopOverlay:
     """
     Sleek, transparent cyber-HUD desktop overlay:
-    1. Precision bounding boxes around detected physics/math questions.
-    2. Interactive 'B' key Snipping Mode: Drag mouse across screen to box any question and solve it instantly.
-    3. Enlarged glassmorphic solution card with large, high-visibility typography and step-by-step derivations.
+    1. Precision red bounding boxes around detected/snipped questions.
+    2. Interactive 'B' key Snipping Mode: Drag mouse to cover question with a vibrant red box.
+    3. Fully draggable/movable DEV Kit solution card with large, high-visibility typography.
     4. Smooth mousewheel scrolling and dismiss via 'Q' key or close button.
     """
     def __init__(
@@ -28,6 +28,10 @@ class DesktopOverlay:
         self._thread: Optional[threading.Thread] = None
         self.transparent_color = "#000001"
         self._sol_frame: Optional[tk.Frame] = None
+
+        # Remember user dragged window position
+        self._sol_pos_x: Optional[int] = None
+        self._sol_pos_y: Optional[int] = None
 
         # Snip mode state
         self.is_snipping = False
@@ -93,14 +97,14 @@ class DesktopOverlay:
             self.start_snip_mode()
 
     def start_snip_mode(self):
-        """Activates mouse drag/scroll selection mode over the screen."""
+        """Activates mouse drag selection mode over the screen."""
         if not self.root or not self.canvas:
             return
         self.is_snipping = True
         self._snip_start_x = None
         self._snip_start_y = None
 
-        # Set crosshair cursor
+        # Crosshair cursor
         self.canvas.config(cursor="crosshair")
 
         # Bind mouse drag events for snipping
@@ -110,23 +114,23 @@ class DesktopOverlay:
 
         # Draw top notification banner
         screen_w = self.root.winfo_screenwidth()
-        banner_w = 640
-        banner_h = 36
+        banner_w = 660
+        banner_h = 38
         bx = (screen_w - banner_w) // 2
 
         self.canvas.delete("snip_banner")
         self.canvas.create_rectangle(
             bx, 10, bx + banner_w, 10 + banner_h,
-            fill="#0f172a", outline="#00f2fe", width=2,
+            fill="#ff1a4b", outline="#ffffff", width=2,
             tags="snip_banner"
         )
         self.canvas.create_text(
-            screen_w // 2, 28,
-            text="🎯 DEV_CHEAT SNIP MODE: Drag mouse over question to box it | Press ESC to cancel",
-            fill="#00f2fe", font=("Segoe UI", 11, "bold"),
+            screen_w // 2, 29,
+            text="🎯 DEV_CHEAT SNIP: Drag mouse to cover question in RED BOX | ESC to cancel",
+            fill="#ffffff", font=("Segoe UI", 11, "bold"),
             tags="snip_banner"
         )
-        print("[Dev_Cheat] Snipping Mode Active: Drag mouse across the screen to box a question!")
+        print("[Dev_Cheat] Snipping Mode Active: Drag mouse across the screen to cover question in RED BOX!")
 
     def cancel_snip_mode(self):
         """Cancels snip mode and restores normal cursor."""
@@ -158,16 +162,25 @@ class DesktopOverlay:
         w = x2 - x1
         h = y2 - y1
 
-        # Glowing cyan selection box with size indicator
+        # VIBRANT RED BOX COVERING THE AREA WHILE DRAGGING / SCROLLING MOUSE
         self.canvas.create_rectangle(
             x1, y1, x2, y2,
-            outline="#00f2fe", width=2, dash=(6, 3),
+            outline="#ff1a4b", width=3,
+            tags="snip_rect"
+        )
+
+        badge_w = 230
+        badge_h = 24
+        badge_y = max(4, y1 - badge_h)
+        self.canvas.create_rectangle(
+            x1, badge_y, x1 + badge_w, badge_y + badge_h,
+            fill="#ff1a4b", outline="#ffffff", width=1,
             tags="snip_rect"
         )
         self.canvas.create_text(
-            x1 + 8, max(12, y1 - 10),
-            text=f"Selection: {w} × {h}px",
-            fill="#00f2fe", font=("Consolas", 9, "bold"),
+            x1 + 8, badge_y + 12,
+            text=f"🎯 Snip Area: {w} × {h}px",
+            fill="#ffffff", font=("Segoe UI", 9, "bold"),
             anchor="w",
             tags="snip_rect"
         )
@@ -185,8 +198,31 @@ class DesktopOverlay:
 
         self.cancel_snip_mode()
 
-        if w >= 25 and h >= 25:
-            print(f"[Dev_Cheat] Box selected: ({x1}, {y1}) to ({x2}, {y2}) -> {w}x{h}px. Solving...")
+        if w >= 20 and h >= 20:
+            # Lock the red box on screen immediately while solving!
+            self.canvas.delete("snip_rect")
+            self.canvas.create_rectangle(
+                x1, y1, x2, y2,
+                outline="#ff1a4b", width=3,
+                tags=("q_box", "pending_snip")
+            )
+            badge_w = 260
+            badge_h = 24
+            badge_y = max(4, y1 - badge_h)
+            self.canvas.create_rectangle(
+                x1, badge_y, x1 + badge_w, badge_y + badge_h,
+                fill="#ff1a4b", outline="#ffffff", width=1,
+                tags=("q_badge", "pending_snip")
+            )
+            self.canvas.create_text(
+                x1 + 8, badge_y + 12,
+                text="⚡ Solving with Gemini Vision...",
+                anchor="w",
+                fill="#ffffff", font=("Segoe UI", 9, "bold"),
+                tags=("q_badge", "pending_snip")
+            )
+
+            print(f"[Dev_Cheat] Red box locked: ({x1}, {y1}) to ({x2}, {y2}) -> {w}x{h}px. Solving...")
             if self.on_snip_completed:
                 self.on_snip_completed(x1, y1, x2, y2)
 
@@ -214,6 +250,7 @@ class DesktopOverlay:
                 pass
         if self.canvas:
             self.canvas.delete("solution_tag")
+            self.canvas.delete("pending_snip")
         print("[Dev_Cheat] Solution card dismissed via 'Q' key.")
 
     def clear(self):
@@ -245,13 +282,13 @@ class DesktopOverlay:
                     continue
 
                 has_solution = bool(q.get("solution"))
-                box_color = "#00ffcc" if has_solution else "#ff1a4b"
+                box_color = "#ff1a4b"
 
-                # Outer crisp bounding box
+                # Crisp red bounding box
                 rect_id = self.canvas.create_rectangle(
                     x, y, x + w, y + h,
                     outline=box_color,
-                    width=2,
+                    width=3,
                     tags="q_box"
                 )
 
@@ -298,7 +335,10 @@ class DesktopOverlay:
             self._render_solution_widget(self.active_solution)
 
     def _render_solution_widget(self, sol: Dict[str, Any]):
-        """Renders an enlarged, highly legible, scrollable dark glassmorphic solution card."""
+        """
+        Renders a fully DRAGGABLE / MOVABLE, enlarged, highly legible,
+        scrollable dark glassmorphic solution card.
+        """
         if not self.root:
             return
 
@@ -308,8 +348,10 @@ class DesktopOverlay:
         # Enlarged dimensions for clear reading
         card_w = min(780, screen_w - 60)
         card_h = min(560, screen_h - 100)
-        pos_x = max(20, screen_w - card_w - 30)
-        pos_y = 50
+
+        # Default position or restore previous dragged position
+        pos_x = self._sol_pos_x if self._sol_pos_x is not None else max(20, screen_w - card_w - 30)
+        pos_y = self._sol_pos_y if self._sol_pos_y is not None else 50
 
         # Frame container with glowing cyan border
         frame = tk.Frame(
@@ -322,16 +364,17 @@ class DesktopOverlay:
         frame.place(x=pos_x, y=pos_y, width=card_w, height=card_h)
         self._sol_frame = frame
 
-        # Top Header Bar
-        header = tk.Frame(frame, bg="#131926", height=42)
+        # TOP HEADER BAR - FULLY DRAGGABLE
+        header = tk.Frame(frame, bg="#131926", height=42, cursor="fleur")
         header.pack(fill=tk.X, side=tk.TOP)
 
         hdr_lbl = tk.Label(
             header,
-            text="⚡ DEV_CHEAT SOLUTION",
+            text="⚡ DEV_CHEAT SOLUTION  ✥ (Drag to Move)",
             fg="#00f2fe",
             bg="#131926",
-            font=("Segoe UI", 12, "bold")
+            font=("Segoe UI", 12, "bold"),
+            cursor="fleur"
         )
         hdr_lbl.pack(side=tk.LEFT, padx=14, pady=8)
 
@@ -340,7 +383,8 @@ class DesktopOverlay:
             text="[Press 'Q' to Dismiss | 'B' to Snip]",
             fg="#94a3b8",
             bg="#131926",
-            font=("Consolas", 10)
+            font=("Consolas", 10),
+            cursor="fleur"
         )
         dismiss_hint.pack(side=tk.LEFT, padx=8, pady=8)
 
@@ -354,6 +398,29 @@ class DesktopOverlay:
         )
         close_btn.pack(side=tk.RIGHT, padx=14, pady=6)
         close_btn.bind("<Button-1>", lambda e: self.hide_responses())
+
+        # DRAG LOGIC TO MOVE THE DEV KIT WINDOW FREELY
+        def _start_drag(event):
+            frame._drag_start_x = event.x
+            frame._drag_start_y = event.y
+
+        def _do_drag(event):
+            dx = event.x - frame._drag_start_x
+            dy = event.y - frame._drag_start_y
+            cur_x = frame.winfo_x()
+            cur_y = frame.winfo_y()
+            new_x = cur_x + dx
+            new_y = cur_y + dy
+            self._sol_pos_x = new_x
+            self._sol_pos_y = new_y
+            frame.place(x=new_x, y=new_y)
+
+        header.bind("<Button-1>", _start_drag)
+        header.bind("<B1-Motion>", _do_drag)
+        hdr_lbl.bind("<Button-1>", _start_drag)
+        hdr_lbl.bind("<B1-Motion>", _do_drag)
+        dismiss_hint.bind("<Button-1>", _start_drag)
+        dismiss_hint.bind("<B1-Motion>", _do_drag)
 
         # DIRECT ANSWER HERO BOX (Large, bold, high-contrast)
         ans_box = tk.Frame(frame, bg="#111827", padx=16, pady=12)
