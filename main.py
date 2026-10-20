@@ -100,6 +100,21 @@ def main():
     if args.no_auto_solve:
         config.auto_solve_single = False
 
+    # Find available port if specified port is already bound
+    import socket
+    def is_port_in_use(port, host):
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            return s.connect_ex((host, port)) == 0
+
+    active_port = config.port
+    if is_port_in_use(active_port, config.host):
+        console.print(f"[yellow]Port {active_port} is currently busy. Finding alternative open port...[/yellow]")
+        for alt_port in range(active_port + 1, active_port + 20):
+            if not is_port_in_use(alt_port, config.host):
+                active_port = alt_port
+                break
+
+    config.port = active_port
     print_banner(config.host, config.port)
 
     # Start screen monitor background worker
