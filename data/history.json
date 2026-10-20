@@ -1,0 +1,62 @@
+[
+  {
+    "direct_answer": "B) O(n^2)",
+    "key_points": [
+      "Worst-case occurs when the pivot consistently results in highly unbalanced partitions (e.g., size 0 and n-1).",
+      "This commonly happens on already sorted or reverse-sorted input when choosing the first or last element as the pivot."
+    ],
+    "code": "",
+    "time_complexity": "O(n^2)",
+    "space_complexity": "O(n)",
+    "explanation": "QuickSort degrades to O(n^2) time complexity when unbalanced partitions require n recursive levels, each performing O(n) partitioning work. This typically occurs when the smallest or largest element is repeatedly selected as the pivot.",
+    "source": "gemini",
+    "timestamp": "2026-10-20 17:05:43",
+    "question_text": "What is the worst-case time complexity of QuickSort algorithm?\nA) O(n log n)\nB) O(n^2)\nC) O(log n)\nD) O(n)",
+    "q_type": "mcq"
+  },
+  {
+    "direct_answer": "C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local",
+    "key_points": [
+      "The breadcrumb navigation clearly displays the full directory path to the active `.env.local` file.",
+      "The path matches the provided option exactly."
+    ],
+    "code": "",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "The file path shown in the editor's breadcrumb bar is `C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local`. This directly matches the given option.",
+    "source": "gemini",
+    "timestamp": "2026-10-20 17:04:58",
+    "question_text": "A File Edit Selection View Go Run Terminal Help pdf_previews - Antigravity IDE - .env.local :tion.tsx sitemap.xml DashboardPage.tsx firebase.json rename_brand.py .env.local x MC READM E. r Al Developer Screen Solver App [Bisman-Singh-Dev/DEV_Cheat](https://github.com/Bisman-Singh- Dev/DEV_Cheat) This mv in this i he uev_cneaepy Thought for Is Edited README.md +156 -1 x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC main FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE 05 Al API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ Ran 3 commands Edited main.py Run python main .py Explored 1 task Running 3 commands v -no-browser - -no-overlay Ran python Ran python Run python -c -c -c import import import urllib. request, urllib. request, urllib. request, J son J son J son res res req urllib urllib ur Ilib ...\\DEV Cheat > python -c \"import urllib. request, jsonreq urllib . request . Request( ' http : // 127.0.0.1 : 5055/ api/ simu method: ' POST' ) re data=b' ' , urllib . request . ' SIMULATE RESULT: ' res . read() . decode()) urllib. request . urlopen( ' htt res_q p: // 127 . e. e. 1 : 5055/ api/questions ' )questions json . loads Review Changes < Alt+H .gitignore View 18 edited files requirements.txt Alt+L > Bisman Singh + Gemini 3.8 Flash High Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN Antigravity - Settings 17:04 20/10/2026",
+    "q_type": "mcq"
+  },
+  {
+    "direct_answer": "Result: 155",
+    "key_points": [
+      "Calculated 156 - 1 = 155"
+    ],
+    "code": "result = 156 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 156 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:04:49",
+    "question_text": "A File Edit Selection View Go Run Terminal Help pdf_previews - Antigravity IDE - .env.local :tion.tsx sitemap.xml DashboardPage.tsx firebase.json rename_brand.py .env.local x e MC READM E. r A Al Developer Screen Solver App [Bisman-Singh-Dev/DEV_Cheat](https://github.com/Bisman-Singh- Dev/DEV_Cheat) This is mv reno name mnke rhnanes in this and also i showy he Rh'e Thought for Is Edited README.md +156 -1 x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC main FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE 05 Al API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ Ran 3 commands Edited main.py Run python main .py Explored 1 task -no-browser - -no-overlay Ran python -c \" import urllib. request, json res urllib. req v ...\\DEV Cheat > python -c \"import urllib. request, jsonres — rllib. request . urlopen( ' http : / / 127.0.0.1: 5Ø55/api/ status ' )pr int( 'STATUS CODE: ' , 'STATUS BODY: ' res . re ad() . decode())\" STATUS CODE: 2øe STATUS BODY: {\"status \":\" idle\" \" is_paused\" : false, \"is_runnin g\" : true, \"questions_count\" : 1, \"has_active_solution\" : true, \"con fig\" : { \"gemini_model\" : \"gemini-3.8-flash\" scan interval\" : 2. e, \"auto_solve_single\" : true, \"has_api_key\" : true, \"enable_deskt op_overl ay\" : false}} Working... Review Changes < Alt+H .gitignore View 18 edited files requirements.txt Alt+L > Bisman Singh + Gemini 3.8 Flash High Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN Antigravity - Settings 17:04 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:04:37",
+    "question_text": "A File Edit Selection View Go Run Terminal Help pdf_previews - Antigravity IDE - .env.local :tion.tsx sitemap.xml firebase.json rename_brand.py DashboardPage.tsx .env.local x e MC READM E. r A Al Developer Screen Solver App [Bisman-Singh-Dev/DEV_Cheat](https://github.com/Bisman-Singh- Dev/DEV_Cheat) This is mv reno name make rhnanes in this and also i showy he Rh'e x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC main* FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE 05 Al API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ Thought for Is Edited { } style.css +960 -O Thought for Is Edited JS app.js +541 -o Thought for Is Edited main.py +127 -o Edited dev_cheat.py +10 _O Thought for Is Edited README.md +156 -1 Ran 3 commands Edited main.py Run python main.py --no-browser ...\\DEV Cheat > python main . py Working... - -no-overlay -no-browser - -no-overlay Review Changes < Alt+H .gitignore View 18 edited files requirements.txt Alt+L > Bisman Singh + Gemini 3.8 Flash High Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN Antigravity - Settings 17:04 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  }
+]

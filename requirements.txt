@@ -1,0 +1,12 @@
+# Dev_Cheat Dependencies
+fastapi>=0.115.0
+uvicorn>=0.30.0
+winocr>=0.0.15
+pillow>=10.0.0
+requests>=2.31.0
+pynput>=1.7.6
+rich>=13.0.0
+python-dotenv>=1.0.0
+mss>=9.0.0
+pywin32>=306
+websockets>=12.0

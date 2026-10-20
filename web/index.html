@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DEV_Cheat — Real-Time Screen Question Solver & HUD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Top Navigation Header -->
+    <header class="navbar">
+      <div class="logo-area">
+        <div class="logo-icon">
+          <span class="crosshair-icon">⌖</span>
+        </div>
+        <div class="logo-text">
+          <h1>DEV_Cheat</h1>
+          <span class="version-badge">v1.0 • Command Prompt Active</span>
+        </div>
+      </div>
+
+      <div class="status-strip">
+        <div class="status-indicator" id="statusPill">
+          <span class="status-dot"></span>
+          <span class="status-label" id="statusLabel">Monitoring Screen</span>
+        </div>
+        <div class="detection-pill" id="questionCountPill">
+          <span class="count-badge" id="questionCount">0</span>
+          <span>Questions Detected</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button class="btn btn-secondary" id="btnManualScan" title="Scan screen immediately (HotKey: S)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+          Scan Now <kbd>S</kbd>
+        </button>
+        <button class="btn btn-crimson" id="btnHideResponses" title="Dismiss active solution overlays (HotKey: Q)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          Hide Responses <kbd>Q</kbd>
+        </button>
+        <button class="btn btn-icon" id="btnSettings" title="Settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace Layout -->
+    <main class="main-layout">
+      <!-- Left Column: Interactive Screen Viewport -->
+      <section class="screen-panel">
+        <div class="panel-header">
+          <div class="panel-title">
+            <span class="live-dot"></span>
+            <h2>Live Screen & Red Box Overlay</h2>
+          </div>
+          <div class="view-controls">
+            <button class="chip-btn active" id="btnToggleBboxes">
+              <span class="chip-dot"></span> Red Boxes Active
+            </button>
+            <button class="chip-btn" id="btnSimulateMultiple">
+              ⚡ Test Multi-Question
+            </button>
+            <button class="chip-btn" id="btnSimulateCoding">
+              ⚡ Test LeetCode
+            </button>
+          </div>
+        </div>
+
+        <div class="viewport-wrapper" id="viewportWrapper">
+          <div class="screen-canvas-container" id="canvasContainer">
+            <img id="liveScreenshot" src="/api/screenshot" alt="Active Screen Feed" />
+            <!-- SVG overlay for rendering pixel-perfect red bounding boxes -->
+            <svg id="bboxOverlay" class="bbox-overlay"></svg>
+          </div>
+          <div class="viewport-instructions">
+            <span>💡 <strong>Click any red box</strong> above to instantly solve that question. Press <kbd>Q</kbd> to hide answers.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Live Detection & Solution Hub -->
+      <section class="solution-panel">
+        <div class="tabs-bar">
+          <button class="tab-btn active" data-tab="activeSolution">
+            ⚡ Active Solution
+          </button>
+          <button class="tab-btn" data-tab="detectedQuestions">
+            📋 Questions <span class="tab-badge" id="tabQuestionCount">0</span>
+          </button>
+          <button class="tab-btn" data-tab="historyTab">
+            🕒 Saved Responses (<span id="historyCount">0</span>)
+          </button>
+        </div>
+
+        <!-- Tab 1: Active Solution -->
+        <div class="tab-content active" id="tabActiveSolution">
+          <div class="solution-card" id="solutionCard">
+            <div class="empty-state" id="emptySolutionState">
+              <div class="empty-icon">🎯</div>
+              <h3>Waiting for Question Target</h3>
+              <p>When multiple questions appear, click any red box on the screen or viewport to solve it instantly.</p>
+              <div class="hotkey-banner">
+                <span>Press <kbd>Q</kbd> anytime to dismiss active responses</span>
+              </div>
+            </div>
+
+            <div class="solution-content hidden" id="solutionData">
+              <div class="solution-header-row">
+                <div class="q-source-info">
+                  <span class="type-pill" id="solType">CODING</span>
+                  <span class="timestamp-text" id="solTimestamp">Just now</span>
+                </div>
+                <div class="sol-actions">
+                  <button class="copy-btn" id="btnCopyAnswer">Copy Answer</button>
+                  <button class="dismiss-btn" id="btnDismissSolution" title="Dismiss (Q)">✕</button>
+                </div>
+              </div>
+
+              <!-- Direct Answer Hero -->
+              <div class="hero-answer-box">
+                <div class="answer-badge">DIRECT ANSWER</div>
+                <div class="answer-text" id="solDirectAnswer">—</div>
+              </div>
+
+              <!-- Complexity Tags -->
+              <div class="complexity-row" id="solComplexityRow">
+                <div class="complexity-pill" id="solTimeComp">Time: O(n)</div>
+                <div class="complexity-pill" id="solSpaceComp">Space: O(1)</div>
+              </div>
+
+              <!-- Code Solution -->
+              <div class="code-container" id="solCodeContainer">
+                <div class="code-header">
+                  <span>OPTIMAL SOLUTION</span>
+                  <button class="code-copy-btn" id="btnCopyCode">Copy Code</button>
+                </div>
+                <pre><code id="solCode"></code></pre>
+              </div>
+
+              <!-- Explanation -->
+              <div class="explanation-box" id="solExplanationBox">
+                <h4>Reasoning & Breakdown:</h4>
+                <p id="solExplanation"></p>
+                <ul class="key-points-list" id="solKeyPoints"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Detected Questions List -->
+        <div class="tab-content" id="tabDetectedQuestions">
+          <div class="questions-list" id="questionsList">
+            <div class="empty-state">
+              <div class="empty-icon">🔍</div>
+              <h3>No Questions Currently Highlighted</h3>
+              <p>Dev_Cheat is scanning your screen in real time.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: History & Saved Responses -->
+        <div class="tab-content" id="tabHistory">
+          <div class="history-toolbar">
+            <input type="text" id="historySearch" placeholder="Search saved responses..." />
+            <button class="btn btn-sm btn-secondary" id="btnClearHistory">Clear All</button>
+          </div>
+          <div class="history-list" id="historyList">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Bottom Command Prompt & Hotkey Bar -->
+    <footer class="footer-bar">
+      <div class="cli-info">
+        <span class="cli-terminal-prompt">&gt; DEV_CHEAT_CLI:</span>
+        <span class="cli-status-msg" id="cliMsg">Ready. Monitoring screen and waiting for input...</span>
+      </div>
+      <div class="hotkey-legend">
+        <span class="legend-item"><kbd>Q</kbd> Hide Responses</span>
+        <span class="legend-item"><kbd>S</kbd> Instant Scan</span>
+        <span class="legend-item"><kbd>C</kbd> Clear Highlights</span>
+        <span class="legend-item"><kbd>CLICK</kbd> Solve Red Box</span>
+      </div>
+    </footer>
+
+    <!-- Settings Modal -->
+    <div class="modal-backdrop hidden" id="settingsModal">
+      <div class="modal-window">
+        <div class="modal-header">
+          <h3>DEV_Cheat Settings</h3>
+          <button class="modal-close" id="btnCloseSettings">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Google Gemini API Key</label>
+            <input type="password" id="cfgApiKey" placeholder="AQ.Ab8RN6..." />
+            <small>Stored securely in your local environment.</small>
+          </div>
+          <div class="form-group">
+            <label>AI Model</label>
+            <select id="cfgModel">
+              <option value="gemini-3.8-flash">Gemini 3.8 Flash (Fastest & Recommended)</option>
+              <option value="gemini-2.5-flash">Gemini 2.5 Flash</option>
+              <option value="gemini-flash-latest">Gemini Flash Latest</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Screen Scan Interval (Seconds)</label>
+            <input type="number" id="cfgInterval" min="1.0" max="10.0" step="0.5" value="2.0" />
+          </div>
+          <div class="form-checkbox">
+            <input type="checkbox" id="cfgAutoSolveSingle" checked />
+            <label for="cfgAutoSolveSingle">Auto-solve single questions immediately</label>
+          </div>
+          <div class="form-checkbox">
+            <input type="checkbox" id="cfgDesktopOverlay" checked />
+            <label for="cfgDesktopOverlay">Enable Desktop Transparent HUD Overlay</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="btnCancelSettings">Cancel</button>
+          <button class="btn btn-primary" id="btnSaveSettings">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
