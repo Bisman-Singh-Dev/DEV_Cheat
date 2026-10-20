@@ -253,13 +253,19 @@ class DesktopOverlay:
                 tags="solution_tag"
             )
         elif explanation:
+            # Clean raw LaTeX syntax for clean, legible desktop display
+            clean_exp = explanation.replace("$", "").replace("\\implies", "=>").replace("\\cdot", "*").replace("\\frac", "").replace("\\times", "*").replace("\\approx", "~")
+            # Take clean steps
+            clean_lines = [l.strip() for l in clean_exp.split("\n") if l.strip()]
+            display_text = "\n".join(clean_lines[:8])
+
             self.canvas.create_text(
-                card_x + 16, card_y + 150,
-                text=explanation[:300],
+                card_x + 16, card_y + 145,
+                text=display_text[:400],
                 anchor="nw",
                 width=card_w - 32,
                 fill="#ccd6f6",
-                font=("Segoe UI", 10),
+                font=("Consolas", 10),
                 tags="solution_tag"
             )
 

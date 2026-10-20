@@ -60,9 +60,11 @@ class SolverEngine:
         if options:
             options_text = "\nOptions:\n" + "\n".join(options)
 
-        return f"""You are an elite competitive exam and technical interview solver.
-Solve the following question with rigorous correctness (physics, mathematics, computer science, or general multiple choice).
-Provide the precise answer, exact option if given, and clear step-by-step reasoning.
+        return f"""You are a master physics and mathematics professor and competitive exam solver (JEE Advanced / Olympiad level).
+Solve the following question with 100% mathematical and conceptual rigor:
+- Pay strict attention to sign conventions, definitions, and exact wording (e.g. if acceleration is proportional to x^-n and derived as x^-3, then n = 3).
+- State the definitive final answer or option clearly in direct_answer.
+- Provide a clean, structured, systematic derivation in explanation.
 
 [QUESTION]:
 {question_text}
@@ -70,12 +72,12 @@ Provide the precise answer, exact option if given, and clear step-by-step reason
 
 Respond in the following STRICT JSON format only:
 {{
-  "direct_answer": "Precise final answer, e.g. 'Option (B) 0.7 ms^-1' or 'n = 3'",
+  "direct_answer": "Precise final answer (e.g. 'n = 3' or 'Option (b) 0.7 ms^-1')",
   "key_points": ["Key step 1", "Key step 2"],
-  "code": "Code if programming question, else empty string",
-  "time_complexity": "e.g. O(1) or N/A",
-  "space_complexity": "e.g. O(1) or N/A",
-  "explanation": "Clear, accurate step-by-step derivation or proof"
+  "code": "",
+  "time_complexity": "N/A",
+  "space_complexity": "N/A",
+  "explanation": "Structured step-by-step derivation without LaTeX formatting issues"
 }}
 """
 

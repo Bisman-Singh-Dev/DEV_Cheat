@@ -12,7 +12,7 @@ from .solver import solver
 from .overlay import desktop_overlay
 
 try:
-    from pynput import keyboard
+    from pynput import keyboard, mouse
     HAS_PYNPUT = True
 except ImportError:
     HAS_PYNPUT = False
@@ -35,8 +35,35 @@ class ScreenMonitor:
         # Hook overlay solve request
         desktop_overlay.on_solve_request = self.solve_question
 
-        # Setup keyboard listener
+        # Setup keyboard and mouse listeners
         self._setup_hotkeys()
+        self._setup_mouse_listener()
+
+    def _setup_mouse_listener(self):
+        """Global mouse listener: detects clicks inside any question bounding box on screen."""
+        if not HAS_PYNPUT:
+            return
+
+        def on_click(x, y, button, pressed):
+            # Only trigger on click release (pressed=False) and left mouse button
+            if not pressed and button == mouse.Button.left:
+                if not self.current_questions:
+                    return
+                # Check if click landed inside any detected question bounding box
+                for q in self.current_questions:
+                    bx, by, bw, bh = q.bbox
+                    # Include a generous click target area around the badge or box
+                    if (bx - 10 <= x <= bx + bw + 10) and (by - 30 <= y <= by + bh + 10):
+                        print(f"[Dev_Cheat] Mouse clicked on {q.title[:40]} -> Solving immediately!")
+                        threading.Thread(target=self.solve_question, args=(q.to_dict(),), daemon=True).start()
+                        break
+
+        try:
+            self._mouse_listener = mouse.Listener(on_click=on_click)
+            self._mouse_listener.daemon = True
+            self._mouse_listener.start()
+        except Exception as e:
+            print(f"[Dev_Cheat] Mouse listener notice: {e}")
 
     def _setup_hotkeys(self):
         if not HAS_PYNPUT:
