@@ -8,6 +8,7 @@ from PIL import Image
 from .config import config
 from .ocr_engine import ocr_engine
 from .question_detector import question_detector, QuestionBlock
+from .gemini_vision import gemini_vision
 from .solver import solver
 from .overlay import desktop_overlay
 
@@ -40,22 +41,30 @@ class ScreenMonitor:
         self._setup_mouse_listener()
 
     def _setup_mouse_listener(self):
-        """Global mouse listener: detects clicks inside any question bounding box on screen."""
+        """Global mouse listener: detects clicks inside any question bounding box or badge."""
         if not HAS_PYNPUT:
             return
 
         def on_click(x, y, button, pressed):
-            # Only trigger on click release (pressed=False) and left mouse button
+            # Trigger on mouse click release (pressed=False) and left mouse button
             if not pressed and button == mouse.Button.left:
                 if not self.current_questions:
                     return
                 # Check if click landed inside any detected question bounding box
                 for q in self.current_questions:
                     bx, by, bw, bh = q.bbox
-                    # Include a generous click target area around the badge or box
-                    if (bx - 10 <= x <= bx + bw + 10) and (by - 30 <= y <= by + bh + 10):
-                        print(f"[Dev_Cheat] Mouse clicked on {q.title[:40]} -> Solving immediately!")
-                        threading.Thread(target=self.solve_question, args=(q.to_dict(),), daemon=True).start()
+                    # Generous click target area including badge above box
+                    if (bx - 10 <= x <= bx + bw + 10) and (by - 35 <= y <= by + bh + 10):
+                        print(f"[Dev_Cheat] Click detected on {q.title[:40]} -> Opening solution!")
+                        if q.solution:
+                            self.last_solution = q.solution
+                            desktop_overlay.show_solution(q.solution)
+                            self._emit("solved", {
+                                "question": q.to_dict(),
+                                "solution": q.solution
+                            })
+                        else:
+                            threading.Thread(target=self.solve_question, args=(q.to_dict(),), daemon=True).start()
                         break
 
         try:
@@ -92,7 +101,7 @@ class ScreenMonitor:
 
     def handle_q_key(self):
         """User pressed 'Q': Hide all active responses."""
-        print("[Dev_Cheat] 'Q' pressed -> Hiding responses and resetting overlays.")
+        print("[Dev_Cheat] 'Q' pressed -> Hiding solution card.")
         self.last_solution = None
         desktop_overlay.hide_responses()
         self._emit("hide_responses", {})
@@ -163,23 +172,33 @@ class ScreenMonitor:
         self.status = "scanning"
         self._emit("status_change", {"status": "scanning"})
 
-        # 3. Perform OCR
-        ocr_result = await ocr_engine.recognize(screen)
+        detected = []
 
-        # 4. Detect Questions
-        detected = question_detector.detect(ocr_result)
+        # 2. Primary Engine: Gemini Vision
+        if config.gemini_api_key:
+            try:
+                detected = gemini_vision.detect_and_solve(screen)
+            except Exception as e:
+                print(f"[Monitor] Gemini Vision attempt error: {e}")
+
+        # 3. Fallback Engine: Native Windows OCR
+        if not detected:
+            try:
+                ocr_result = await ocr_engine.recognize(screen)
+                detected = question_detector.detect(ocr_result)
+            except Exception as e:
+                print(f"[Monitor] Local OCR fallback error: {e}")
+
         self.current_questions = detected
-
         questions_dict = [q.to_dict() for q in detected]
-
-        # 5. Handle Single vs Multiple questions
         q_count = len(detected)
+
         self._emit("questions_detected", {
             "count": q_count,
             "questions": questions_dict
         })
 
-        # Update overlay with red bounding boxes
+        # Update overlay with precision bounding boxes
         desktop_overlay.update_questions(questions_dict)
 
         if q_count == 0:
@@ -188,22 +207,28 @@ class ScreenMonitor:
             return
 
         if q_count == 1:
-            # Single Question -> Instantly solve
+            # Single Question -> Instantly solve and display solution
             q = detected[0]
             q_hash = hashlib.md5(q.text.encode()).hexdigest()
 
-            # Prevent re-solving same question repeatedly
             if config.auto_solve_single and q_hash != self._last_solved_question_hash:
-                print(f"[Dev_Cheat] Single question detected! Solving automatically: {q.title}")
+                print(f"[Dev_Cheat] Single question recognized! Displaying solution: {q.title}")
                 self.status = "solving"
                 self._emit("status_change", {"status": "solving", "target": q.title})
-                self.solve_question(q.to_dict())
+                if q.solution:
+                    self.last_solution = q.solution
+                    desktop_overlay.show_solution(q.solution)
+                    self._emit("solved", {
+                        "question": q.to_dict(),
+                        "solution": q.solution
+                    })
+                else:
+                    self.solve_question(q.to_dict())
                 self._last_solved_question_hash = q_hash
-            else:
-                self.status = "idle"
+            self.status = "idle"
         else:
-            # Multiple Questions -> Red boxes rendered, waiting for user click!
-            print(f"[Dev_Cheat] Detected {q_count} questions on screen! Red boxes placed. Click any question or press hotkey to solve.")
+            # Multiple Questions -> Red boxes placed around each, waiting for user click!
+            print(f"[Dev_Cheat] {q_count} physics/math questions detected with Gemini Vision! Red boxes active. Click any question or badge to view its solution.")
             self.status = "idle"
 
         self._emit("status_change", {"status": "idle"})
@@ -215,12 +240,16 @@ class ScreenMonitor:
         q_type = question_data.get("type", "general")
         options = question_data.get("options", [])
 
-        print(f"[Dev_Cheat] Solving question {q_id} ({q_type}): {q_text[:80]}...")
-        self.status = "solving"
-        self._emit("status_change", {"status": "solving", "target": q_id})
+        # If question already has vision solution, reuse it
+        if question_data.get("solution"):
+            solution = question_data["solution"]
+        else:
+            print(f"[Dev_Cheat] Solving question {q_id} ({q_type}): {q_text[:80]}...")
+            self.status = "solving"
+            self._emit("status_change", {"status": "solving", "target": q_id})
+            solution = solver.solve(q_text, q_type, options)
+            solution["question_id"] = q_id
 
-        solution = solver.solve(q_text, q_type, options)
-        solution["question_id"] = q_id
         self.last_solution = solution
 
         # Update overlay with floating solution card

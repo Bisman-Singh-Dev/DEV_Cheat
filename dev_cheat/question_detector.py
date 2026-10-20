@@ -54,14 +54,15 @@ class QuestionDetector:
 
     def detect(self, ocr_data: Dict[str, Any]) -> List[QuestionBlock]:
         """
-        Scans OCR lines and extracts ONLY genuine physics and maths questions with tight bounding boxes.
+        Scans OCR lines, clusters them column-by-column, and extracts ONLY genuine
+        physics and maths questions with tight bounding boxes.
         """
         raw_lines = ocr_data.get("lines", [])
         if not raw_lines:
             return []
 
         # Filter out IDE chrome, browser chrome, and non-content noise
-        lines = []
+        clean_lines = []
         for l in raw_lines:
             txt = l["text"].strip()
             txt_lower = txt.lower()
@@ -74,43 +75,68 @@ class QuestionDetector:
                 "cmd.exe", "changes", "source control", "git commit", "dev_cheat solution"
             ]):
                 continue
-            lines.append(l)
+            clean_lines.append(l)
 
-        if not lines:
+        if not clean_lines:
             return []
 
+        # COLUMN-AWARE SEPARATION:
+        # Check if the page has a two-column or multi-column layout by examining X coordinates
+        x_centers = [l["bbox"][0] + l["bbox"][2] / 2 for l in clean_lines]
+        min_x = min(l["bbox"][0] for l in clean_lines)
+        max_r = max(l["bbox"][0] + l["bbox"][2] for l in clean_lines)
+        page_width = max_r - min_x
+
+        columns = []
+        if page_width > 500:
+            # Detect two-column split
+            midpoint = min_x + page_width / 2
+            left_col = [l for l in clean_lines if (l["bbox"][0] + l["bbox"][2] / 2) < midpoint]
+            right_col = [l for l in clean_lines if (l["bbox"][0] + l["bbox"][2] / 2) >= midpoint]
+            if left_col and right_col:
+                columns = [
+                    sorted(left_col, key=lambda l: l["bbox"][1]),
+                    sorted(right_col, key=lambda l: l["bbox"][1])
+                ]
+            else:
+                columns = [sorted(clean_lines, key=lambda l: l["bbox"][1])]
+        else:
+            columns = [sorted(clean_lines, key=lambda l: l["bbox"][1])]
+
         question_candidates = []
-        current_block_lines = []
         q_count = 1
 
-        for i, line in enumerate(lines):
-            text = line["text"].strip()
-            is_start = False
+        for col_lines in columns:
+            current_block_lines = []
+            for line in col_lines:
+                text = line["text"].strip()
+                is_start = False
 
-            # Check question start
-            for pat in self.stem_question_starts:
-                if pat.search(text):
-                    is_start = True
-                    break
+                # Check question start
+                for pat in self.stem_question_starts:
+                    if pat.search(text):
+                        is_start = True
+                        break
 
-            # Pure option lines belong to current question
-            is_pure_option = bool(re.match(r'^\s*[\(\[]?[A-Da-d1-4][\)\.\:\-]', text))
+                # Pure option lines belong to current question
+                is_pure_option = bool(re.match(r'^\s*[\(\[]?[A-Da-d1-4][\)\.\:\-]', text))
 
-            # Split into new question block when a new question start appears
-            if is_start and current_block_lines and not is_pure_option:
+                # Split into new question block when a new question start appears
+                if is_start and current_block_lines and not is_pure_option:
+                    block = self._create_stem_block(current_block_lines, q_count)
+                    if block:
+                        question_candidates.append(block)
+                        q_count += 1
+                    current_block_lines = [line]
+                else:
+                    current_block_lines.append(line)
+
+            # Flush column's final block
+            if current_block_lines:
                 block = self._create_stem_block(current_block_lines, q_count)
                 if block:
                     question_candidates.append(block)
                     q_count += 1
-                current_block_lines = [line]
-            else:
-                current_block_lines.append(line)
-
-        # Flush final block
-        if current_block_lines:
-            block = self._create_stem_block(current_block_lines, q_count)
-            if block:
-                question_candidates.append(block)
 
         return question_candidates
 
@@ -126,7 +152,6 @@ class QuestionDetector:
             return None
 
         # CRITICAL FILTER: Must contain authentic physics or math keywords!
-        # Ignores general paragraphs, instructions, UI banners, or non-STEM text
         matching_keywords = [kw for kw in self.stem_keywords if kw in full_text_lower]
         if len(matching_keywords) < 2 and not any(kw in full_text_lower for kw in ["ms-1", "ms^-1", "m/s", "acceleration", "particle", "velocity", "integral", "derivative"]):
             return None
@@ -135,7 +160,7 @@ class QuestionDetector:
         has_options = bool(self.option_pattern.search(full_text))
         q_type = "mcq" if has_options else "math"
 
-        # Calculate accurate, tightly fitted bounding box
+        # Calculate accurate, tightly fitted bounding box strictly for this column's question
         valid_boxes = [l["bbox"] for l in lines if l["bbox"][2] > 0 and l["bbox"][3] > 0]
         if not valid_boxes:
             return None
@@ -145,8 +170,8 @@ class QuestionDetector:
         max_r = max(b[0] + b[2] for b in valid_boxes)
         max_b = max(b[1] + b[3] for b in valid_boxes)
 
-        # Precise padding to cleanly frame the problem
-        padding = 6
+        # Precise 5px padding to tightly frame only this question
+        padding = 5
         bbox = [
             max(0, min_x - padding),
             max(0, min_y - padding),

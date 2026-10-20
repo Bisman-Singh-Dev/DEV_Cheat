@@ -691,9 +691,11 @@ pre {
 }
 
 .explanation-box p {
-  font-size: 0.86rem;
+  font-size: 0.88rem;
   color: var(--text-secondary);
-  line-height: 1.5;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .key-points-list {

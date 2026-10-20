@@ -62,9 +62,14 @@ class SolverEngine:
 
         return f"""You are a master physics and mathematics professor and competitive exam solver (JEE Advanced / Olympiad level).
 Solve the following question with 100% mathematical and conceptual rigor:
-- Pay strict attention to sign conventions, definitions, and exact wording (e.g. if acceleration is proportional to x^-n and derived as x^-3, then n = 3).
-- State the definitive final answer or option clearly in direct_answer.
-- Provide a clean, structured, systematic derivation in explanation.
+- Pay strict attention to sign conventions and exact question definitions.
+- State the definitive final answer or option clearly in direct_answer (e.g. 'Option (c) 48 km/h' or 'n = 3').
+- Format 'explanation' strictly as numbered, clean steps:
+  Step 1: ...
+  Step 2: ...
+  Step 3: ...
+  Final Result: ...
+- Do not output a single dense paragraph. Keep every step on a new line.
 
 [QUESTION]:
 {question_text}
@@ -72,12 +77,12 @@ Solve the following question with 100% mathematical and conceptual rigor:
 
 Respond in the following STRICT JSON format only:
 {{
-  "direct_answer": "Precise final answer (e.g. 'n = 3' or 'Option (b) 0.7 ms^-1')",
+  "direct_answer": "Precise final answer (e.g. 'Option (c) 48 km/h' or 'n = 3')",
   "key_points": ["Key step 1", "Key step 2"],
   "code": "",
   "time_complexity": "N/A",
   "space_complexity": "N/A",
-  "explanation": "Structured step-by-step derivation without LaTeX formatting issues"
+  "explanation": "Step 1: Identify given quantities...\\nStep 2: Apply formula...\\nStep 3: Calculate...\\nFinal Answer: ..."
 }}
 """
 

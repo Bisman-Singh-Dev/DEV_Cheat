@@ -330,8 +330,18 @@
       solCodeContainer.style.display = "none";
     }
 
-    // Explanation & Key Points
-    solExplanation.textContent = sol.explanation || "";
+    // Explanation & Key Points with clean step formatting
+    const rawExp = sol.explanation || "";
+    const cleanExp = rawExp
+      .replace(/\$/g, "")
+      .replace(/\\implies/g, "=>")
+      .replace(/\\cdot/g, "*")
+      .replace(/\\times/g, "*")
+      .replace(/\\approx/g, "~")
+      .replace(/\\frac/g, "")
+      .replace(/\\propto/g, "proportional to");
+
+    solExplanation.textContent = cleanExp;
     if (sol.key_points && sol.key_points.length > 0) {
       solKeyPoints.innerHTML = sol.key_points.map(pt => `<li>${escapeHtml(pt)}</li>`).join("");
       solKeyPoints.style.display = "block";

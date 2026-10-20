@@ -1,12 +1,16 @@
 import sys
 import threading
 import tkinter as tk
+from tkinter import ttk
 from typing import List, Dict, Any, Optional, Callable
 
 class DesktopOverlay:
     """
-    Transparent, borderless overlay window that draws red boxes around detected questions
-    and displays floating solution cards on the user's screen.
+    Sleek, transparent cyber-HUD desktop overlay:
+    1. Precision bounding boxes around detected physics/math questions.
+    2. Interactive click-to-solve badges and box triggers.
+    3. Glassmorphic, scrollable solution card with step-by-step numbered derivations.
+    4. Dismiss via 'Q' key or close button.
     """
     def __init__(self, on_solve_request: Optional[Callable[[Dict[str, Any]], None]] = None):
         self.root: Optional[tk.Tk] = None
@@ -17,6 +21,7 @@ class DesktopOverlay:
         self.is_running = False
         self._thread: Optional[threading.Thread] = None
         self.transparent_color = "#000001"
+        self._sol_frame: Optional[tk.Frame] = None
 
     def start(self):
         if self._thread and self._thread.is_alive():
@@ -32,17 +37,16 @@ class DesktopOverlay:
             self.root.overrideredirect(True)
             self.root.attributes("-topmost", True)
 
-            # Screen geometry
+            # Full screen geometry
             screen_width = self.root.winfo_screenwidth()
             screen_height = self.root.winfo_screenheight()
             self.root.geometry(f"{screen_width}x{screen_height}+0+0")
 
-            # Setup transparency
             if sys.platform == "win32":
                 self.root.config(bg=self.transparent_color)
                 self.root.attributes("-transparentcolor", self.transparent_color)
             else:
-                self.root.attributes("-alpha", 0.85)
+                self.root.attributes("-alpha", 0.90)
 
             self.canvas = tk.Canvas(
                 self.root,
@@ -53,7 +57,7 @@ class DesktopOverlay:
             )
             self.canvas.pack(fill=tk.BOTH, expand=True)
 
-            # Keybindings: Pressing 'Q' hides the solution overlays
+            # Hotkeys inside Tkinter
             self.root.bind("<Key-q>", lambda e: self.hide_responses())
             self.root.bind("<Key-Q>", lambda e: self.hide_responses())
             self.root.bind("<Escape>", lambda e: self.hide_responses())
@@ -67,24 +71,43 @@ class DesktopOverlay:
         if not self.is_running or not self.root:
             return
         self._redraw()
-        self.root.after(200, self._poll_updates)
+        self.root.after(150, self._poll_updates)
 
     def update_questions(self, questions: List[Dict[str, Any]]):
         self.questions = questions
 
     def show_solution(self, solution: Dict[str, Any]):
         self.active_solution = solution
+        # Force re-render of solution widget on next poll
+        if self._sol_frame:
+            try:
+                self._sol_frame.destroy()
+                self._sol_frame = None
+            except Exception:
+                pass
 
     def hide_responses(self):
         """User pressed 'Q': Hide all open response boxes/solutions."""
         self.active_solution = None
+        if self._sol_frame:
+            try:
+                self._sol_frame.destroy()
+                self._sol_frame = None
+            except Exception:
+                pass
         if self.canvas:
             self.canvas.delete("solution_tag")
-        print("[Dev_Cheat] Response hidden via 'Q' key.")
+        print("[Dev_Cheat] Solution card dismissed via 'Q' key.")
 
     def clear(self):
         self.questions = []
         self.active_solution = None
+        if self._sol_frame:
+            try:
+                self._sol_frame.destroy()
+                self._sol_frame = None
+            except Exception:
+                pass
         if self.canvas:
             self.canvas.delete("all")
 
@@ -92,53 +115,58 @@ class DesktopOverlay:
         if not self.canvas:
             return
 
-        self.canvas.delete("all")
+        self.canvas.delete("q_box")
+        self.canvas.delete("q_badge")
 
-        # Draw red bounding boxes around detected questions
+        # Draw red bounding boxes around detected physics/math questions
         for q in self.questions:
             bbox = q.get("bbox", [0, 0, 0, 0])
             x, y, w, h = bbox
-            if w <= 0 or h <= 0:
+            if w <= 10 or h <= 10:
                 continue
 
-            # Draw outer glow / shadow
-            self.canvas.create_rectangle(
-                x - 2, y - 2, x + w + 2, y + h + 2,
-                outline="#ff0055",
-                width=1,
-                tags="q_box"
-            )
-            # Main Red Box
+            has_solution = bool(q.get("solution"))
+            box_color = "#00ffcc" if has_solution else "#ff1a4b"
+
+            # Outer crisp bounding box
             rect_id = self.canvas.create_rectangle(
                 x, y, x + w, y + h,
-                outline="#ff2244",
-                width=3,
+                outline=box_color,
+                width=2,
                 tags="q_box"
             )
 
-            # Badge / Label on top of red box
-            badge_text = f"🎯 {q.get('id', 'Q').upper()}: Click to Solve"
-            badge_w = len(badge_text) * 8 + 16
+            # Interactive Badge on top edge
+            q_label = q.get("title", q.get("id", "Q")).split(":")[0].strip()
+            if has_solution:
+                direct = q["solution"].get("direct_answer", "Solved")
+                badge_text = f"⚡ {q_label}: {direct[:25]}"
+                badge_bg = "#00b894"
+            else:
+                badge_text = f"🎯 {q_label}: Click to Solve"
+                badge_bg = "#ff1a4b"
+
+            badge_w = min(360, len(badge_text) * 8 + 18)
             badge_h = 24
             badge_y = max(4, y - badge_h)
 
             bg_id = self.canvas.create_rectangle(
                 x, badge_y, x + badge_w, badge_y + badge_h,
-                fill="#ff2244",
+                fill=badge_bg,
                 outline="#ffffff",
                 width=1,
                 tags="q_badge"
             )
             txt_id = self.canvas.create_text(
-                x + 8, badge_y + 12,
+                x + 9, badge_y + 12,
                 text=badge_text,
                 anchor="w",
                 fill="#ffffff",
-                font=("Consolas", 10, "bold"),
+                font=("Segoe UI", 9, "bold"),
                 tags="q_badge"
             )
 
-            # Bind click event on the question box or badge
+            # Click handlers
             def make_handler(target_q=q):
                 return lambda event: self._on_box_clicked(target_q)
 
@@ -146,136 +174,177 @@ class DesktopOverlay:
             self.canvas.tag_bind(bg_id, "<Button-1>", make_handler(q))
             self.canvas.tag_bind(txt_id, "<Button-1>", make_handler(q))
 
-        # Draw active floating solution card if available
-        if self.active_solution:
-            self._draw_solution_card(self.active_solution)
+        # Render floating solution card if active and not yet drawn
+        if self.active_solution and not self._sol_frame:
+            self._render_solution_widget(self.active_solution)
 
-    def _draw_solution_card(self, sol: Dict[str, Any]):
-        if not self.canvas:
+    def _render_solution_widget(self, sol: Dict[str, Any]):
+        """Renders an ultra-sleek, scrollable dark glassmorphic solution card."""
+        if not self.root:
             return
 
-        # Position solution card centered or near top right
-        card_w = 540
-        card_h = 320
-        screen_w = self.canvas.winfo_width() or 1920
-        card_x = max(20, screen_w - card_w - 40)
-        card_y = 60
+        card_w = 600
+        card_h = 420
+        screen_w = self.root.winfo_screenwidth()
+        pos_x = max(20, screen_w - card_w - 30)
+        pos_y = 50
 
-        # Background card (dark semi-opaque theme)
-        self.canvas.create_rectangle(
-            card_x, card_y, card_x + card_w, card_y + card_h,
-            fill="#0f111a",
-            outline="#00ffcc",
-            width=2,
-            tags="solution_tag"
+        # Frame container with glowing cyan border
+        frame = tk.Frame(
+            self.root,
+            bg="#0d111a",
+            highlightthickness=2,
+            highlightbackground="#00f2fe",
+            highlightcolor="#00f2fe"
         )
+        frame.place(x=pos_x, y=pos_y, width=card_w, height=card_h)
+        self._sol_frame = frame
 
-        # Header bar
-        self.canvas.create_rectangle(
-            card_x, card_y, card_x + card_w, card_y + 36,
-            fill="#1a1d2e",
-            outline="#00ffcc",
-            width=1,
-            tags="solution_tag"
-        )
-        self.canvas.create_text(
-            card_x + 14, card_y + 18,
-            text="⚡ DEV_CHEAT SOLUTION  (Press 'Q' to dismiss)",
-            anchor="w",
-            fill="#00ffcc",
-            font=("Segoe UI", 10, "bold"),
-            tags="solution_tag"
-        )
+        # Top Header Bar
+        header = tk.Frame(frame, bg="#161b26", height=38)
+        header.pack(fill=tk.X, side=tk.TOP)
 
-        # Close [X] button
-        close_btn = self.canvas.create_text(
-            card_x + card_w - 20, card_y + 18,
+        hdr_lbl = tk.Label(
+            header,
+            text="⚡ DEV_CHEAT SOLUTION",
+            fg="#00f2fe",
+            bg="#161b26",
+            font=("Segoe UI", 10, "bold")
+        )
+        hdr_lbl.pack(side=tk.LEFT, padx=12, pady=7)
+
+        dismiss_hint = tk.Label(
+            header,
+            text="[Press 'Q' to Dismiss]",
+            fg="#8b949e",
+            bg="#161b26",
+            font=("Consolas", 9)
+        )
+        dismiss_hint.pack(side=tk.LEFT, padx=6, pady=7)
+
+        close_btn = tk.Label(
+            header,
             text="✕",
-            fill="#ff4466",
+            fg="#ff5555",
+            bg="#161b26",
             font=("Segoe UI", 12, "bold"),
-            tags="solution_tag"
+            cursor="hand2"
         )
-        self.canvas.tag_bind(close_btn, "<Button-1>", lambda e: self.hide_responses())
+        close_btn.pack(side=tk.RIGHT, padx=12, pady=6)
+        close_btn.bind("<Button-1>", lambda e: self.hide_responses())
 
-        # Direct Answer Section
-        direct_ans = sol.get("direct_answer", "")
-        self.canvas.create_text(
-            card_x + 16, card_y + 60,
+        # Direct Answer Hero Box
+        ans_box = tk.Frame(frame, bg="#141924", padx=14, pady=10)
+        ans_box.pack(fill=tk.X, padx=12, pady=(10, 6))
+
+        ans_title = tk.Label(
+            ans_box,
             text="DIRECT ANSWER:",
-            anchor="w",
-            fill="#8892b0",
-            font=("Consolas", 9, "bold"),
-            tags="solution_tag"
+            fg="#38bdf8",
+            bg="#141924",
+            font=("Consolas", 9, "bold")
         )
-        self.canvas.create_text(
-            card_x + 16, card_y + 85,
-            text=direct_ans[:80],
-            anchor="w",
-            fill="#50fa7b",
-            font=("Segoe UI", 12, "bold"),
-            tags="solution_tag"
+        ans_title.pack(anchor="w")
+
+        direct_ans = sol.get("direct_answer", "Solved")
+        ans_val = tk.Label(
+            ans_box,
+            text=direct_ans,
+            fg="#4ade80",
+            bg="#141924",
+            font=("Segoe UI", 13, "bold"),
+            wraplength=card_w - 50,
+            justify="left"
+        )
+        ans_val.pack(anchor="w", pady=(2, 0))
+
+        # Derivation Section Header
+        der_header = tk.Label(
+            frame,
+            text="STEP-BY-STEP DERIVATION (Scroll with Mousewheel):",
+            fg="#8b949e",
+            bg="#0d111a",
+            font=("Consolas", 8, "bold")
+        )
+        der_header.pack(anchor="w", padx=14, pady=(4, 2))
+
+        # Scrollable Text Container
+        text_container = tk.Frame(frame, bg="#0d111a")
+        text_container.pack(fill=tk.BOTH, expand=True, padx=12, pady=(0, 10))
+
+        scrollbar = tk.Scrollbar(text_container, orient=tk.VERTICAL)
+        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+
+        txt_widget = tk.Text(
+            text_container,
+            bg="#141924",
+            fg="#e6edf3",
+            font=("Consolas", 10),
+            wrap=tk.WORD,
+            yscrollcommand=scrollbar.set,
+            relief=tk.FLAT,
+            padx=12,
+            pady=10
+        )
+        txt_widget.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+        scrollbar.config(command=txt_widget.yview)
+
+        # Mousewheel scroll binding for smooth scrolling anywhere on the card
+        def _on_mousewheel(event):
+            txt_widget.yview_scroll(int(-1 * (event.delta / 120)), "units")
+
+        txt_widget.bind("<MouseWheel>", _on_mousewheel)
+        frame.bind("<MouseWheel>", _on_mousewheel)
+
+        # Tag configurations for syntax highlighting steps
+        txt_widget.tag_config("step_header", foreground="#38bdf8", font=("Consolas", 10, "bold"))
+        txt_widget.tag_config("final_res", foreground="#4ade80", font=("Consolas", 10, "bold"))
+        txt_widget.tag_config("body", foreground="#f0f6fc", font=("Consolas", 10))
+
+        # Format and insert explanation cleanly line by line
+        raw_exp = sol.get("explanation", "").strip()
+        # Clean latex symbols
+        clean_exp = (
+            raw_exp.replace("$", "")
+            .replace("\\implies", "=>")
+            .replace("\\cdot", "*")
+            .replace("\\times", "*")
+            .replace("\\approx", "~")
+            .replace("\\frac", "")
+            .replace("\\propto", "proportional to")
         )
 
-        # Complexity / Badges
-        tc = sol.get("time_complexity", "")
-        sc = sol.get("space_complexity", "")
-        if tc or sc:
-            badge_info = f"Time: {tc or 'N/A'}  |  Space: {sc or 'N/A'}"
-            self.canvas.create_text(
-                card_x + 16, card_y + 115,
-                text=badge_info,
-                anchor="w",
-                fill="#f1fa8c",
-                font=("Consolas", 9),
-                tags="solution_tag"
-            )
+        lines = clean_exp.split("\n")
+        for line in lines:
+            trimmed = line.strip()
+            if not trimmed:
+                txt_widget.insert(tk.END, "\n")
+                continue
 
-        # Code or Explanation
-        code = sol.get("code", "").strip()
-        explanation = sol.get("explanation", "").strip()
+            if any(trimmed.lower().startswith(p) for p in ["step 1", "step 2", "step 3", "step 4", "step 5", "given:", "principle:"]):
+                txt_widget.insert(tk.END, f"{trimmed}\n", "step_header")
+            elif any(trimmed.lower().startswith(p) for p in ["final answer", "final result", "conclusion"]):
+                txt_widget.insert(tk.END, f"\n{trimmed}\n", "final_res")
+            else:
+                txt_widget.insert(tk.END, f"{trimmed}\n", "body")
 
-        if code:
-            self.canvas.create_rectangle(
-                card_x + 14, card_y + 135, card_x + card_w - 14, card_y + card_h - 16,
-                fill="#161824",
-                outline="#2d3148",
-                tags="solution_tag"
-            )
-            # Preview first 5 lines of code
-            code_lines = code.split("\n")[:6]
-            preview_code = "\n".join(code_lines)
-            self.canvas.create_text(
-                card_x + 22, card_y + 145,
-                text=preview_code,
-                anchor="nw",
-                fill="#f8f8f2",
-                font=("Consolas", 9),
-                tags="solution_tag"
-            )
-        elif explanation:
-            # Clean raw LaTeX syntax for clean, legible desktop display
-            clean_exp = explanation.replace("$", "").replace("\\implies", "=>").replace("\\cdot", "*").replace("\\frac", "").replace("\\times", "*").replace("\\approx", "~")
-            # Take clean steps
-            clean_lines = [l.strip() for l in clean_exp.split("\n") if l.strip()]
-            display_text = "\n".join(clean_lines[:8])
-
-            self.canvas.create_text(
-                card_x + 16, card_y + 145,
-                text=display_text[:400],
-                anchor="nw",
-                width=card_w - 32,
-                fill="#ccd6f6",
-                font=("Consolas", 10),
-                tags="solution_tag"
-            )
+        txt_widget.config(state=tk.DISABLED)
 
     def _on_box_clicked(self, question: Dict[str, Any]):
         print(f"[Dev_Cheat] Question box clicked: {question.get('id')}")
-        if self.on_solve_request:
+        # If solution already embedded in question, show it immediately!
+        if question.get("solution"):
+            self.show_solution(question["solution"])
+        elif self.on_solve_request:
             self.on_solve_request(question)
 
     def stop(self):
         self.is_running = False
+        if self._sol_frame:
+            try:
+                self._sol_frame.destroy()
+            except Exception:
+                pass
         if self.root:
             try:
                 self.root.quit()
