@@ -8,7 +8,7 @@ class DesktopOverlay:
     """
     Sleek, transparent cyber-HUD desktop overlay:
     1. Precision red bounding boxes around detected/snipped questions.
-    2. Interactive 'B' key Snipping Mode: Drag mouse to cover question with a vibrant red box.
+    2. Interactive 'B' key Snipping Mode: Drag mouse to cover question with a translucent red shaded box.
     3. Fully draggable/movable DEV Kit solution card with large, high-visibility typography.
     4. Smooth mousewheel scrolling and dismiss via 'Q' key or close button.
     """
@@ -37,6 +37,7 @@ class DesktopOverlay:
         self.is_snipping = False
         self._snip_start_x: Optional[int] = None
         self._snip_start_y: Optional[int] = None
+        self._snip_fill_win: Optional[tk.Toplevel] = None
 
     def start(self):
         if self._thread and self._thread.is_alive():
@@ -104,6 +105,18 @@ class DesktopOverlay:
         self._snip_start_x = None
         self._snip_start_y = None
 
+        # Create the translucent shaded fill window if needed
+        if not self._snip_fill_win:
+            try:
+                self._snip_fill_win = tk.Toplevel(self.root)
+                self._snip_fill_win.overrideredirect(True)
+                self._snip_fill_win.attributes("-topmost", True)
+                self._snip_fill_win.attributes("-alpha", 0.28)  # Translucent shaded tint
+                self._snip_fill_win.config(bg="#ff1a4b")  # Crimson/red translucent fill
+                self._snip_fill_win.withdraw()
+            except Exception as e:
+                print(f"[Overlay] Snip fill window notice: {e}")
+
         # Crosshair cursor
         self.canvas.config(cursor="crosshair")
 
@@ -130,13 +143,18 @@ class DesktopOverlay:
             fill="#ffffff", font=("Segoe UI", 11, "bold"),
             tags="snip_banner"
         )
-        print("[Dev_Cheat] Snipping Mode Active: Drag mouse across the screen to cover question in RED BOX!")
+        print("[Dev_Cheat] Snipping Mode Active: Drag mouse across screen to cover question in RED BOX!")
 
     def cancel_snip_mode(self):
         """Cancels snip mode and restores normal cursor."""
         self.is_snipping = False
         self._snip_start_x = None
         self._snip_start_y = None
+        if self._snip_fill_win:
+            try:
+                self._snip_fill_win.withdraw()
+            except Exception:
+                pass
         if self.canvas:
             self.canvas.config(cursor="")
             self.canvas.delete("snip_banner")
@@ -154,23 +172,31 @@ class DesktopOverlay:
         if not self.canvas or self._snip_start_x is None or self._snip_start_y is None:
             return
 
-        self.canvas.delete("snip_rect")
         x1 = min(self._snip_start_x, event.x)
         y1 = min(self._snip_start_y, event.y)
         x2 = max(self._snip_start_x, event.x)
         y2 = max(self._snip_start_y, event.y)
-        w = x2 - x1
-        h = y2 - y1
+        w = max(1, x2 - x1)
+        h = max(1, y2 - y1)
 
-        # VIBRANT RED BOX COVERING THE AREA WHILE DRAGGING / SCROLLING MOUSE
+        # 1. TRANSLUCENT SHADED RECTANGLE COVERING THE AREA
+        if self._snip_fill_win:
+            try:
+                self._snip_fill_win.geometry(f"{w}x{h}+{x1}+{y1}")
+                self._snip_fill_win.deiconify()
+            except Exception:
+                pass
+
+        # 2. CRISP RED BORDER ON CANVAS
+        self.canvas.delete("snip_rect")
         self.canvas.create_rectangle(
             x1, y1, x2, y2,
-            outline="#ff1a4b", width=3,
+            outline="#ff1a4b", width=2,
             tags="snip_rect"
         )
 
-        badge_w = 230
-        badge_h = 24
+        badge_w = 210
+        badge_h = 22
         badge_y = max(4, y1 - badge_h)
         self.canvas.create_rectangle(
             x1, badge_y, x1 + badge_w, badge_y + badge_h,
@@ -178,8 +204,8 @@ class DesktopOverlay:
             tags="snip_rect"
         )
         self.canvas.create_text(
-            x1 + 8, badge_y + 12,
-            text=f"🎯 Snip Area: {w} × {h}px",
+            x1 + 8, badge_y + 11,
+            text=f"🎯 Selected: {w} × {h}px",
             fill="#ffffff", font=("Segoe UI", 9, "bold"),
             anchor="w",
             tags="snip_rect"
@@ -201,6 +227,7 @@ class DesktopOverlay:
         if w >= 20 and h >= 20:
             # Lock the red box on screen immediately while solving!
             self.canvas.delete("snip_rect")
+            self.canvas.delete("pending_snip")
             self.canvas.create_rectangle(
                 x1, y1, x2, y2,
                 outline="#ff1a4b", width=3,
@@ -230,14 +257,20 @@ class DesktopOverlay:
         self.questions = questions
 
     def show_solution(self, solution: Dict[str, Any]):
+        """Updates and displays the answer in the movable DEV Kit window immediately."""
         self.active_solution = solution
-        # Force re-render of solution widget
+        # Clear pending snip placeholder if any
+        if self.canvas:
+            self.canvas.delete("pending_snip")
+
+        # Force re-render of solution widget with fresh answer
         if self._sol_frame:
             try:
                 self._sol_frame.destroy()
                 self._sol_frame = None
             except Exception:
                 pass
+        self._render_solution_widget(solution)
 
     def hide_responses(self):
         """User pressed 'Q': Hide all open response boxes/solutions."""
@@ -539,6 +572,11 @@ class DesktopOverlay:
 
     def stop(self):
         self.is_running = False
+        if self._snip_fill_win:
+            try:
+                self._snip_fill_win.destroy()
+            except Exception:
+                pass
         if self._sol_frame:
             try:
                 self._sol_frame.destroy()
