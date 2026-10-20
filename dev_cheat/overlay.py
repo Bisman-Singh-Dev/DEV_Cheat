@@ -3,12 +3,14 @@ import threading
 import tkinter as tk
 from tkinter import ttk
 from typing import List, Dict, Any, Optional, Callable
+from PIL import Image, ImageTk
+from .ocr_engine import ocr_engine
 
 class DesktopOverlay:
     """
     Sleek, transparent cyber-HUD desktop overlay:
     1. Precision red bounding boxes around detected/snipped questions.
-    2. Interactive 'B' key Snipping Mode: Drag mouse to cover question with a translucent red shaded box.
+    2. Real-time 'B' key Snipping Mode: See the red box stretch, expand, and follow mouse in real time!
     3. Fully draggable/movable DEV Kit solution card with large, high-visibility typography.
     4. Smooth mousewheel scrolling and dismiss via 'Q' key or close button.
     """
@@ -33,11 +35,13 @@ class DesktopOverlay:
         self._sol_pos_x: Optional[int] = None
         self._sol_pos_y: Optional[int] = None
 
-        # Snip mode state
+        # Real-time snip overlay window state
         self.is_snipping = False
+        self._snip_win: Optional[tk.Toplevel] = None
+        self._snip_canvas: Optional[tk.Canvas] = None
+        self._snip_photo: Optional[ImageTk.PhotoImage] = None
         self._snip_start_x: Optional[int] = None
         self._snip_start_y: Optional[int] = None
-        self._snip_fill_win: Optional[tk.Toplevel] = None
 
     def start(self):
         if self._thread and self._thread.is_alive():
@@ -76,8 +80,8 @@ class DesktopOverlay:
             # Global hotkeys inside Tkinter
             self.root.bind("<Key-q>", lambda e: self.hide_responses())
             self.root.bind("<Key-Q>", lambda e: self.hide_responses())
-            self.root.bind("<Key-b>", lambda e: self.toggle_snip_mode())
-            self.root.bind("<Key-B>", lambda e: self.toggle_snip_mode())
+            self.root.bind("<Key-b>", lambda e: self.start_snip_mode())
+            self.root.bind("<Key-B>", lambda e: self.start_snip_mode())
             self.root.bind("<Escape>", lambda e: self.cancel_snip_mode())
 
             self._poll_updates()
@@ -98,70 +102,91 @@ class DesktopOverlay:
             self.start_snip_mode()
 
     def start_snip_mode(self):
-        """Activates mouse drag selection mode over the screen."""
-        if not self.root or not self.canvas:
+        """
+        Activates dedicated real-time Snipping Window:
+        Captures screen snapshot so mouse movement & drag events are 100% captured by Tkinter,
+        showing the RED BOX expanding smoothly in real time!
+        """
+        if not self.root:
             return
-        self.is_snipping = True
-        self._snip_start_x = None
-        self._snip_start_y = None
 
-        # Create the translucent shaded fill window if needed
-        if not self._snip_fill_win:
-            try:
-                self._snip_fill_win = tk.Toplevel(self.root)
-                self._snip_fill_win.overrideredirect(True)
-                self._snip_fill_win.attributes("-topmost", True)
-                self._snip_fill_win.attributes("-alpha", 0.28)  # Translucent shaded tint
-                self._snip_fill_win.config(bg="#ff1a4b")  # Crimson/red translucent fill
-                self._snip_fill_win.withdraw()
-            except Exception as e:
-                print(f"[Overlay] Snip fill window notice: {e}")
+        if self.is_snipping:
+            self.cancel_snip_mode()
+            return
 
-        # Crosshair cursor
-        self.canvas.config(cursor="crosshair")
+        try:
+            # 1. Capture screen snapshot
+            snapshot = ocr_engine.capture_screen()
+            screen_w, screen_h = snapshot.size
 
-        # Bind mouse drag events for snipping
-        self.canvas.bind("<ButtonPress-1>", self._on_snip_press)
-        self.canvas.bind("<B1-Motion>", self._on_snip_motion)
-        self.canvas.bind("<ButtonRelease-1>", self._on_snip_release)
+            self.is_snipping = True
+            self._snip_start_x = None
+            self._snip_start_y = None
 
-        # Draw top notification banner
-        screen_w = self.root.winfo_screenwidth()
-        banner_w = 660
-        banner_h = 38
-        bx = (screen_w - banner_w) // 2
+            # 2. Dedicated fullscreen Toplevel window (not click-through, captures all mouse events!)
+            snip_win = tk.Toplevel(self.root)
+            snip_win.overrideredirect(True)
+            snip_win.attributes("-topmost", True)
+            snip_win.geometry(f"{screen_w}x{screen_h}+0+0")
+            self._snip_win = snip_win
 
-        self.canvas.delete("snip_banner")
-        self.canvas.create_rectangle(
-            bx, 10, bx + banner_w, 10 + banner_h,
-            fill="#ff1a4b", outline="#ffffff", width=2,
-            tags="snip_banner"
-        )
-        self.canvas.create_text(
-            screen_w // 2, 29,
-            text="🎯 DEV_CHEAT SNIP: Drag mouse to cover question in RED BOX | ESC to cancel",
-            fill="#ffffff", font=("Segoe UI", 11, "bold"),
-            tags="snip_banner"
-        )
-        print("[Dev_Cheat] Snipping Mode Active: Drag mouse across screen to cover question in RED BOX!")
+            # 3. Canvas with crosshair
+            snip_canvas = tk.Canvas(
+                snip_win,
+                width=screen_w,
+                height=screen_h,
+                highlightthickness=0,
+                cursor="crosshair"
+            )
+            snip_canvas.pack(fill=tk.BOTH, expand=True)
+            self._snip_canvas = snip_canvas
+
+            # 4. Render frozen snapshot so user sees screen with 100% clarity
+            photo = ImageTk.PhotoImage(snapshot)
+            snip_canvas.create_image(0, 0, image=photo, anchor="nw")
+            self._snip_photo = photo  # prevent GC
+
+            # 5. Top Banner
+            banner_w = 660
+            banner_h = 38
+            bx = (screen_w - banner_w) // 2
+            snip_canvas.create_rectangle(
+                bx, 12, bx + banner_w, 12 + banner_h,
+                fill="#ff1a4b", outline="#ffffff", width=2,
+                tags="snip_banner"
+            )
+            snip_canvas.create_text(
+                screen_w // 2, 31,
+                text="🎯 DEV_CHEAT: Drag mouse over question to box in RED | ESC to cancel",
+                fill="#ffffff", font=("Segoe UI", 11, "bold"),
+                tags="snip_banner"
+            )
+
+            # 6. Bind real-time mouse drag events
+            snip_canvas.bind("<ButtonPress-1>", self._on_snip_press)
+            snip_canvas.bind("<B1-Motion>", self._on_snip_motion)
+            snip_canvas.bind("<ButtonRelease-1>", self._on_snip_release)
+            snip_win.bind("<Escape>", lambda e: self.cancel_snip_mode())
+
+            print("[Dev_Cheat] Real-time Snip Mode Active: Drag mouse to cover question in RED BOX!")
+
+        except Exception as e:
+            print(f"[Overlay] Failed to start snip mode: {e}")
+            self.cancel_snip_mode()
 
     def cancel_snip_mode(self):
-        """Cancels snip mode and restores normal cursor."""
+        """Cancels real-time snip mode and closes snip window."""
         self.is_snipping = False
         self._snip_start_x = None
         self._snip_start_y = None
-        if self._snip_fill_win:
+        if self._snip_win:
             try:
-                self._snip_fill_win.withdraw()
+                self._snip_win.destroy()
             except Exception:
                 pass
-        if self.canvas:
-            self.canvas.config(cursor="")
-            self.canvas.delete("snip_banner")
-            self.canvas.delete("snip_rect")
-            self.canvas.unbind("<ButtonPress-1>")
-            self.canvas.unbind("<B1-Motion>")
-            self.canvas.unbind("<ButtonRelease-1>")
+            self._snip_win = None
+            self._snip_canvas = None
+            self._snip_photo = None
         print("[Dev_Cheat] Snipping Mode Cancelled.")
 
     def _on_snip_press(self, event):
@@ -169,7 +194,8 @@ class DesktopOverlay:
         self._snip_start_y = event.y
 
     def _on_snip_motion(self, event):
-        if not self.canvas or self._snip_start_x is None or self._snip_start_y is None:
+        """Updates the RED BOX in REAL TIME at 60 FPS as the mouse moves!"""
+        if not self._snip_canvas or self._snip_start_x is None or self._snip_start_y is None:
             return
 
         x1 = min(self._snip_start_x, event.x)
@@ -179,40 +205,37 @@ class DesktopOverlay:
         w = max(1, x2 - x1)
         h = max(1, y2 - y1)
 
-        # 1. TRANSLUCENT SHADED RECTANGLE COVERING THE AREA
-        if self._snip_fill_win:
-            try:
-                self._snip_fill_win.geometry(f"{w}x{h}+{x1}+{y1}")
-                self._snip_fill_win.deiconify()
-            except Exception:
-                pass
+        self._snip_canvas.delete("snip_rect")
 
-        # 2. CRISP RED BORDER ON CANVAS
-        self.canvas.delete("snip_rect")
-        self.canvas.create_rectangle(
+        # VIVID RED BOUNDING BOX OVER AREA IN REAL TIME
+        self._snip_canvas.create_rectangle(
             x1, y1, x2, y2,
-            outline="#ff1a4b", width=2,
+            outline="#ff1a4b",
+            width=3,
             tags="snip_rect"
         )
 
+        # Dynamic size badge on top edge
         badge_w = 210
-        badge_h = 22
-        badge_y = max(4, y1 - badge_h)
-        self.canvas.create_rectangle(
+        badge_h = 24
+        badge_y = max(6, y1 - badge_h)
+        self._snip_canvas.create_rectangle(
             x1, badge_y, x1 + badge_w, badge_y + badge_h,
             fill="#ff1a4b", outline="#ffffff", width=1,
             tags="snip_rect"
         )
-        self.canvas.create_text(
-            x1 + 8, badge_y + 11,
-            text=f"🎯 Selected: {w} × {h}px",
+        self._snip_canvas.create_text(
+            x1 + 8, badge_y + 12,
+            text=f"🎯 Box: {w} × {h}px",
             fill="#ffffff", font=("Segoe UI", 9, "bold"),
             anchor="w",
             tags="snip_rect"
         )
 
     def _on_snip_release(self, event):
-        if not self.canvas or self._snip_start_x is None or self._snip_start_y is None:
+        """Mouse released: crops exact region and begins solving immediately."""
+        if not self._snip_canvas or self._snip_start_x is None or self._snip_start_y is None:
+            self.cancel_snip_mode()
             return
 
         x1 = min(self._snip_start_x, event.x)
@@ -222,34 +245,35 @@ class DesktopOverlay:
         w = x2 - x1
         h = y2 - y1
 
+        # Destroy snip window immediately to return to desktop
         self.cancel_snip_mode()
 
         if w >= 20 and h >= 20:
-            # Lock the red box on screen immediately while solving!
-            self.canvas.delete("snip_rect")
-            self.canvas.delete("pending_snip")
-            self.canvas.create_rectangle(
-                x1, y1, x2, y2,
-                outline="#ff1a4b", width=3,
-                tags=("q_box", "pending_snip")
-            )
-            badge_w = 260
-            badge_h = 24
-            badge_y = max(4, y1 - badge_h)
-            self.canvas.create_rectangle(
-                x1, badge_y, x1 + badge_w, badge_y + badge_h,
-                fill="#ff1a4b", outline="#ffffff", width=1,
-                tags=("q_badge", "pending_snip")
-            )
-            self.canvas.create_text(
-                x1 + 8, badge_y + 12,
-                text="⚡ Solving with Gemini Vision...",
-                anchor="w",
-                fill="#ffffff", font=("Segoe UI", 9, "bold"),
-                tags=("q_badge", "pending_snip")
-            )
+            # Lock the red box on the persistent desktop HUD while solving!
+            if self.canvas:
+                self.canvas.delete("pending_snip")
+                self.canvas.create_rectangle(
+                    x1, y1, x2, y2,
+                    outline="#ff1a4b", width=3,
+                    tags=("q_box", "pending_snip")
+                )
+                badge_w = 270
+                badge_h = 24
+                badge_y = max(6, y1 - badge_h)
+                self.canvas.create_rectangle(
+                    x1, badge_y, x1 + badge_w, badge_y + badge_h,
+                    fill="#ff1a4b", outline="#ffffff", width=1,
+                    tags=("q_badge", "pending_snip")
+                )
+                self.canvas.create_text(
+                    x1 + 8, badge_y + 12,
+                    text="⚡ Solving with Gemini Vision...",
+                    anchor="w",
+                    fill="#ffffff", font=("Segoe UI", 9, "bold"),
+                    tags=("q_badge", "pending_snip")
+                )
 
-            print(f"[Dev_Cheat] Red box locked: ({x1}, {y1}) to ({x2}, {y2}) -> {w}x{h}px. Solving...")
+            print(f"[Dev_Cheat] Red box confirmed: ({x1}, {y1}) to ({x2}, {y2}) -> {w}x{h}px. Solving...")
             if self.on_snip_completed:
                 self.on_snip_completed(x1, y1, x2, y2)
 
@@ -259,7 +283,7 @@ class DesktopOverlay:
     def show_solution(self, solution: Dict[str, Any]):
         """Updates and displays the answer in the movable DEV Kit window immediately."""
         self.active_solution = solution
-        # Clear pending snip placeholder if any
+        # Clear pending snip placeholder
         if self.canvas:
             self.canvas.delete("pending_snip")
 
@@ -572,9 +596,9 @@ class DesktopOverlay:
 
     def stop(self):
         self.is_running = False
-        if self._snip_fill_win:
+        if self._snip_win:
             try:
-                self._snip_fill_win.destroy()
+                self._snip_win.destroy()
             except Exception:
                 pass
         if self._sol_frame:

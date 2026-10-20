@@ -1,5 +1,56 @@
 [
   {
+    "direct_answer": "AI Connection Paused",
+    "key_points": [
+      "Could not reach AI provider",
+      "Check internet connection or API quota"
+    ],
+    "code": "",
+    "time_complexity": "N/A",
+    "space_complexity": "N/A",
+    "explanation": "Please check your network connection or verify that GEMINI_API_KEY in .env has active quota.",
+    "source": "network-error",
+    "timestamp": "2026-10-20 18:28:45",
+    "question_text": "Command Prompt - python r Real—Time Screen Question Solver & Neural Assistant << System Configuration & Status Value Property http://127.O.O.1:5056 (Gemini Neural) AI Engine gemini—3.5—+1 ash—lite Windows Native Windows . Media. Ocr (Zero—Latency) Screen OCR Scan Interval Auto—Solve Single ENABLED Desktop Red Box HUD ENABLED Command Prompt Hotkey Legend [B] Interactive Snip & Box (Drag mouse over any question to solve) Hide active responses & dismiss overlay Force instant manual screen scan Clear highlighted questions & cache [Click] Box on screen/dashboard to solve Click on any Red Bounding [Ctrl+C] Stop Dev_Cheat safely Monitoring screen for coding problems, multiple choice, and tech questions. . Date modified: 02/09/2026 02:56 C:\\Users\\Bisman Date modified: 29/07/2026 00:37 C:\\Users\\Bisman Sing h\\.gem ini\\a ntigravity- i -a uto-editor\\.nem Date modified: 26/07/2026 16:40 C:\\Users\\Bisman 1 S,'n7 nq•å7 @ 5 Ao Bisman Singh main*",
+    "q_type": "mcq"
+  },
+  {
+    "direct_answer": "Option (e) C:\\Users\\Bisman",
+    "key_points": [
+      "Analyze the provided console output and directory listing.",
+      "Identify the most frequently recurring file path or user directory associated with the environment.",
+      "Match the terminal output pattern with the given options."
+    ],
+    "code": "",
+    "time_complexity": "N/A",
+    "space_complexity": "N/A",
+    "explanation": "Step 1: Examine the text captured from the Command Prompt screenshot interface.\nStep 2: Locate the repeating directory path entries such as 'C:\\Users\\Bisman' which appear multiple times in the file modification logs.\nStep 3: Compare these paths with the given multiple-choice options.\nFinal Result: Option (e) C:\\Users\\Bisman",
+    "source": "gemini",
+    "model_used": "gemini-3.5-flash-lite",
+    "timestamp": "2026-10-20 18:28:21",
+    "question_text": "Command Prompt - python r Real—Time Screen Question Solver & Neural Assistant << System Configuration & Status Value Property http://127.O.O.1:5056 (Gemini Neural) AI Engine gemini—3.5—+1 ash—lite Windows Native Windows . Media. Ocr (Zero—Latency) Screen OCR Scan Interval Auto—Solve Single ENABLED Desktop Red Box HUD ENABLED Command Prompt Hotkey Legend [B] Interactive Snip & Box (Drag mouse over any question to solve) Hide active responses & dismiss overlay Force instant manual screen scan Clear highlighted questions & cache [Click] Box on screen/dashboard to solve Click on any Red Bounding [Ctrl+C] Stop Dev_Cheat safely Monitoring screen for coding problems, multiple choice, and tech questions. . Date modified: 02/09/2026 02:56 C:\\Users\\Bisman Date modified: 29/07/2026 00:37 C:\\Users\\Bisman Sing h\\.gem ini\\a ntigravity- i -a uto-editor\\.nem Date modified: 26/07/2026 16:40 C:\\Users\\Bisman 1 S,'n7 nq•å7 @ 5 Ao Bisman Singh main*",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Option (e) C:\\Users\\Bisman",
+    "key_points": [
+      "Analyze the provided text from the command prompt window.",
+      "Locate the file and directory paths displayed in the system interface.",
+      "Identify the recurring directory path 'C:\\Users\\Bisman' associated with the user profile."
+    ],
+    "code": "",
+    "time_complexity": "N/A",
+    "space_complexity": "N/A",
+    "explanation": "Step 1: Parse the screenshot text containing directory paths and system metadata.\nStep 2: Identify user profile paths such as 'C:\\Users\\Bisman', 'C:\\Users\\Bisman Sing h\\.gem ini\\a ntigravity- i -a uto-editor\\.nem', and timestamps.\nStep 3: Match the most prominent and fundamental directory path corresponding to the user home directory listed across multiple file entries.\nFinal Result: Option (e) C:\\Users\\Bisman",
+    "source": "gemini",
+    "model_used": "gemini-3.5-flash-lite",
+    "timestamp": "2026-10-20 18:28:20",
+    "question_text": "Command Prompt - python r Real—Time Screen Question Solver & Neural Assistant << System Configuration & Status Value Property http://127.O.O.1:5056 (Gemini Neural) AI Engine gemini—3.5—+1 ash—lite Windows Native Windows . Media. Ocr (Zero—Latency) Screen OCR Scan Interval Auto—Solve Single ENABLED Desktop Red Box HUD ENABLED Command Prompt Hotkey Legend [B] Interactive Snip & Box (Drag mouse over any question to solve) Hide active responses & dismiss overlay Force instant manual screen scan Clear highlighted questions & cache [Click] Box on screen/dashboard to solve Click on any Red Bounding [Ctrl+C] Stop Dev_Cheat safely Monitoring screen for coding problems, multiple choice, and tech questions. . Date modified: 02/09/2026 02:56 C:\\Users\\Bisman Date modified: 29/07/2026 00:37 C:\\Users\\Bisman Sing h\\.gem ini\\a ntigravity- i -a uto-editor\\.nem Date modified: 26/07/2026 16:40 C:\\Users\\Bisman 1 S,'n7 nq•å7 @ 5 Ao Bisman Singh main*",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
     "direct_answer": "Option (a) Image . open(r 'C:",
     "key_points": [
       "Analyze the provided image text containing the Python script snippet.",
