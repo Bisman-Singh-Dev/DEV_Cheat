@@ -15,7 +15,7 @@ load_dotenv(BASE_DIR / ".env")
 class Config:
     def __init__(self):
         self.gemini_api_key = os.getenv("GEMINI_API_KEY", "").strip()
-        self.gemini_model = os.getenv("GEMINI_MODEL", "gemini-3.8-flash").strip()
+        self.gemini_model = os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite").strip()
         self.scan_interval = float(os.getenv("SCAN_INTERVAL", "2.0"))
         self.auto_solve_single = os.getenv("AUTO_SOLVE_SINGLE", "true").lower() in ("true", "1", "yes")
         self.port = int(os.getenv("PORT", "5055"))

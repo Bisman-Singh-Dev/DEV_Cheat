@@ -28,14 +28,16 @@ class QuestionDetector:
         # Patterns that strongly signal a question start
         self.question_start_patterns = [
             re.compile(r'^\s*(?:Q(?:uestion)?\s*[\d#]+[\.:\)]?)\s*', re.IGNORECASE),
-            re.compile(r'^\s*\d{1,3}[\.\)\:]\s+', re.IGNORECASE),
+            re.compile(r'^\s*\d{1,3}[\.\)\:]\s*', re.IGNORECASE),
             re.compile(r'^\s*(?:What|Which|Why|How|When|Where|Who|Whose|Whom)\b', re.IGNORECASE),
+            re.compile(r'^\s*(?:The\s+(?:distance|speed|velocity|acceleration|force|mass|energy|ratio|value|work|workdone|potential|current|charge|magnitude|equation|number))\b', re.IGNORECASE),
+            re.compile(r'^\s*(?:A\s+(?:particle|bullet|block|body|car|ball|train|wire|cylinder|sphere|charge|solid|liquid|gas))\b', re.IGNORECASE),
             re.compile(r'^\s*(?:Given\s+(?:an?|two|the)|Implement\s+|Write\s+(?:a|an)\s+|Find\s+(?:the|all)|Return\s+(?:the|all)|Calculate\s+|Determine\s+|Explain\s+)', re.IGNORECASE),
             re.compile(r'^\s*Problem\s*[\d#]+[\.:\)]?', re.IGNORECASE),
         ]
 
-        # Option patterns
-        self.option_pattern = re.compile(r'^\s*(?:[\(\[]?[A-Da-d1-4][\)\.\:\-]|(?:Option\s+[A-D1-4]))\s+', re.IGNORECASE)
+        # Option patterns (a) (b) (c) (d) or A) B) C) D) or 1) 2)
+        self.option_pattern = re.compile(r'(?:[\(\[]?[A-Da-d1-4][\)\.\:\-]|(?:Option\s+[A-D1-4]))', re.IGNORECASE)
 
         # Coding / Leetcode markers
         self.coding_markers = [
@@ -44,11 +46,32 @@ class QuestionDetector:
             "time complexity", "space complexity"
         ]
 
+        # UI words to ignore so IDE/Chrome browser chrome doesn't get boxed
+        self.ignore_ui_words = [
+            "file", "edit", "selection", "view", "terminal", "antigravity",
+            "pdf_previews", "dashboardpage", "package.json", "close x", "localhost",
+            "http://", "powershell", "cmd.exe", "source control", "changes"
+        ]
+
     def detect(self, ocr_data: Dict[str, Any]) -> List[QuestionBlock]:
         """
         Takes OCR lines and clusters them into distinct Question Blocks with bounding boxes.
         """
-        lines = ocr_data.get("lines", [])
+        raw_lines = ocr_data.get("lines", [])
+        if not raw_lines:
+            return []
+
+        # Filter out UI menu chrome lines
+        lines = []
+        for l in raw_lines:
+            txt_lower = l["text"].strip().lower()
+            if not txt_lower or len(txt_lower) < 2:
+                continue
+            # Skip if line is pure UI menu header
+            if any(ui in txt_lower for ui in ["file edit selection", "run terminal help", "antigravity ide", "close x"]):
+                continue
+            lines.append(l)
+
         if not lines:
             return []
 
@@ -59,9 +82,6 @@ class QuestionDetector:
 
         for i, line in enumerate(lines):
             text = line["text"].strip()
-            if not text:
-                continue
-
             is_start = False
             detected_type = "general"
 
@@ -71,22 +91,25 @@ class QuestionDetector:
                     is_start = True
                     break
 
-            # Check if line contains a question mark and starts like a sentence
-            if not is_start and "?" in text and len(text) > 15:
-                # If first word is capitalized or interrogative
+            # Standalone question number (e.g. "8." or "9." on its own line)
+            if re.match(r'^\d{1,3}[\.\)]$', text):
+                is_start = True
+
+            # Sentence ending with question mark
+            if not is_start and "?" in text and len(text) > 20:
                 if text[0].isupper():
                     is_start = True
 
-            # Check for coding markers
+            # Coding markers
             text_lower = text.lower()
             if any(marker in text_lower for marker in self.coding_markers):
                 detected_type = "coding"
 
-            # If current line is an option, it belongs to the previous question
-            is_option = bool(self.option_pattern.search(text))
+            # Check if this line is just multiple choice options for current question
+            is_pure_option = bool(re.match(r'^\s*[\(\[]?[A-Da-d1-4][\)\.\:\-]', text))
 
-            if is_start and current_block_lines and not is_option:
-                # Save previous block if it looks like a valid question
+            # Break into new question block if a new question starts
+            if is_start and current_block_lines and not is_pure_option:
                 block = self._create_block(current_block_lines, q_count, current_type)
                 if block:
                     question_candidates.append(block)
@@ -104,21 +127,6 @@ class QuestionDetector:
             if block:
                 question_candidates.append(block)
 
-        # Fallback heuristic: If no structured numbered questions detected,
-        # but there is an obvious problem statement (like LeetCode or a question mark)
-        if not question_candidates and lines:
-            full_text = ocr_data.get("text", "")
-            if "?" in full_text or any(marker in full_text.lower() for marker in self.coding_markers):
-                # Filter out pure UI headers (File, Edit, etc.)
-                sub_lines = [
-                    l for l in lines 
-                    if not any(ui in l["text"].lower() for ui in ["file edit", "antigravity", "terminal help", "close x"])
-                ]
-                if sub_lines:
-                    block = self._create_block(sub_lines, 1, "coding" if any(m in full_text.lower() for m in self.coding_markers) else "general")
-                    if block:
-                        question_candidates.append(block)
-
         return question_candidates
 
     def _create_block(self, lines: List[Dict[str, Any]], index: int, initial_type: str) -> Optional[QuestionBlock]:
@@ -126,17 +134,18 @@ class QuestionDetector:
             return None
 
         full_text = " ".join([l["text"] for l in lines]).strip()
-        if len(full_text) < 10:
+        # Must have reasonable length to be a genuine question
+        if len(full_text) < 25:
             return None
 
-        # Check if this text actually has any question indicators
+        # Check for question characteristics
         has_qm = "?" in full_text
-        has_options = bool(re.search(r'[\(\[]?[A-D][\)\.\:]', full_text))
+        has_options = bool(self.option_pattern.search(full_text))
         has_coding = any(m in full_text.lower() for m in self.coding_markers)
-        has_numbered = bool(re.search(r'^\s*(?:Q\d+|\d+[\.:\)])', full_text, re.IGNORECASE))
+        has_numbered = bool(re.search(r'(?:^\d{1,3}[\.\)]|Q(?:uestion)?\s*\d+)', full_text, re.IGNORECASE))
+        has_stem_terms = any(t in full_text.lower() for t in ["particle", "speed", "velocity", "acceleration", "calculate", "find", "determine", "integer", "value of", "close to"])
 
-        if not (has_qm or has_options or has_coding or has_numbered):
-            # Probably normal paragraph / UI chrome, not a question
+        if not (has_qm or has_options or has_coding or has_numbered or has_stem_terms):
             return None
 
         # Determine type
@@ -145,17 +154,22 @@ class QuestionDetector:
             q_type = "mcq"
         elif has_coding:
             q_type = "coding"
+        elif has_stem_terms or "calculate" in full_text.lower():
+            q_type = "math"
         elif has_qm:
             q_type = "theory"
 
         # Calculate bounding box encompassing all constituent lines
-        min_x = min(l["bbox"][0] for l in lines if l["bbox"][2] > 0)
-        min_y = min(l["bbox"][1] for l in lines if l["bbox"][3] > 0)
-        max_r = max(l["bbox"][0] + l["bbox"][2] for l in lines if l["bbox"][2] > 0)
-        max_b = max(l["bbox"][1] + l["bbox"][3] for l in lines if l["bbox"][3] > 0)
+        valid_boxes = [l["bbox"] for l in lines if l["bbox"][2] > 0 and l["bbox"][3] > 0]
+        if not valid_boxes:
+            return None
 
-        # Add slight padding for visual aesthetics
-        padding = 8
+        min_x = min(b[0] for b in valid_boxes)
+        min_y = min(b[1] for b in valid_boxes)
+        max_r = max(b[0] + b[2] for b in valid_boxes)
+        max_b = max(b[1] + b[3] for b in valid_boxes)
+
+        padding = 10
         bbox = [
             max(0, min_x - padding),
             max(0, min_y - padding),
@@ -163,8 +177,10 @@ class QuestionDetector:
             (max_b - min_y) + (padding * 2)
         ]
 
-        title = lines[0]["text"][:60].strip()
-        if len(lines[0]["text"]) > 60:
+        # Extract title from the first line that has substantial text
+        first_meaningful = next((l["text"].strip() for l in lines if len(l["text"].strip()) > 5), full_text)
+        title = first_meaningful[:65].strip()
+        if len(first_meaningful) > 65:
             title += "..."
 
         block = QuestionBlock(

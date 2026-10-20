@@ -1,5 +1,839 @@
 [
   {
+    "direct_answer": "n = 3",
+    "key_points": [
+      "Differentiate the given relation $x^2 = at^2 + 2bt + c$ with respect to time $t$ twice to find the acceleration $a_{acc} = \\frac{d^2x}{dt^2}$.",
+      "Express the acceleration purely in terms of position $x$ by eliminating $t$ and velocity $v$.",
+      "Compare the resulting acceleration expression with $x^{-n}$ to determine the integer $n$."
+    ],
+    "code": "",
+    "time_complexity": "N/A",
+    "space_complexity": "N/A",
+    "explanation": "Given the relation: $x^2 = at^2 + 2bt + c$\n\n1. Differentiate both sides with respect to time $t$:\n   $2x \\frac{dx}{dt} = 2at + 2b$\n   Dividing by 2 gives: $x v = at + b$, where $v = \\frac{dx}{dt}$ is the velocity.\n\n2. Differentiate again with respect to time $t$ to find the acceleration $a_{acc}$ (let's use $A$ for acceleration to avoid confusion with constant $a$):\n   $\\frac{d}{dt}(x v) = \\frac{d}{dt}(at + b)$\n   $v \\cdot \\frac{dx}{dt} + x \\frac{dv}{dt} = a$\n   $v^2 + x A = a$\n   Therefore, acceleration $A = \\frac{a - v^2}{x}$.\n\n3. From the first differentiation, we have $v = \\frac{at + b}{x}$. Substituting $v^2$ into the acceleration expression:\n   $A = \\frac{a - \\frac{(at + b)^2}{x^2}}{x} = \\frac{ax^2 - (at + b)^2}{x^3}$\n\n4. From the original equation, $at + b$ can be related through $(at+b)^2 = a(at^2+2bt+c) - ac + b^2$ or simply by observing $at+b = x v$. Alternatively, substitute $at^2 + 2bt + c = x^2$:\n   Notice that $ax^2 - (at+b)^2 = a(at^2+2bt+c) - (a^2t^2 + 2abt + b^2) = ac - b^2$, which is a constant.\n\n5. Thus, the acceleration $A$ becomes:\n   $A = \\frac{ac - b^2}{x^3} = (ac - b^2) x^{-3}$\n\n6. Comparing this with the given dependency $A \\propto x^{-n}$, we find that $n = 3$.",
+    "source": "gemini",
+    "model_used": "gemini-3.5-flash-lite",
+    "timestamp": "2026-10-20 17:31:58",
+    "question_text": "8. The distance x covered by a particle in one dimensional motion varies with time t as x^2 = at^2 + 2bt + c. If the acceleration of the particle depends on x as x^-n, where n is an integer, the value of n is _____. [NA 9 Jan 2020 I]",
+    "q_type": "math"
+  },
+  {
+    "direct_answer": "Option (b) 0.7 ms-1",
+    "key_points": [
+      "Use the work-energy theorem: Work done by the resisting force = Change in kinetic energy.",
+      "Calculate the work done by the wall: $W = F \times d$.",
+      "Set up the equation: $\\frac{1}{2}mv^2 - \\frac{1}{2}mu^2 = -F \\times d$."
+    ],
+    "code": "",
+    "time_complexity": "N/A",
+    "space_complexity": "N/A",
+    "explanation": "1. Identify the given values:\n   - Mass of the bullet, $m = 20 \\text{ g} = 0.02 \\text{ kg}$\n   - Initial speed, $u = 1 \\text{ m s}^{-1}$\n   - Thickness of the wall, $d = 20 \\text{ cm} = 0.2 \\text{ m}$\n   - Mean resistance force, $F = 2.5 \\times 10^{-2} \\text{ N}$\n\n2. Apply the work-energy theorem:\n   The work done by the resistive force in stopping/slowing down the bullet is equal to the change in its kinetic energy.\n   $$\\frac{1}{2} m v^2 - \\frac{1}{2} m u^2 = -F \\cdot d$$\n\n3. Substitute the values into the equation:\n   $$\\frac{1}{2} (0.02) v^2 - \\frac{1}{2} (0.02) (1)^2 = -(2.5 \\times 10^{-2}) \\times 0.2$$\n   $$0.01 v^2 - 0.01 = -0.5 \\times 10^{-2} = -0.005$$\n\n4. Solve for $v^2$:\n   $$0.01 v^2 = 0.01 - 0.005$$\n   $$0.01 v^2 = 0.005$$\n   $$v^2 = \\frac{0.005}{0.01} = 0.5$$\n\n5. Find the final speed $v$:\n   $$v = \\sqrt{0.5} \\approx 0.707 \\text{ m s}^{-1} \\approx 0.7 \\text{ m s}^{-1}$$\n\nThus, the correct option is (b).",
+    "source": "gemini",
+    "model_used": "gemini-3.5-flash-lite",
+    "timestamp": "2026-10-20 17:31:49",
+    "question_text": "A bullet of mass 20g has an initial speed of 1 ms-1, just before it starts penetrating a mud wall of thickness 20 cm. If the wall offers a mean resistance of 2.5x10^-2 N, the speed of the bullet after emerging from the other side of the wall is close to :\n(a) 0.1 ms-1\n(b) 0.7 ms-1\n(c) 0.3 ms-1\n(d) 0.4 ms-1",
+    "q_type": "mcq"
+  },
+  {
+    "direct_answer": "AI Connection Paused",
+    "key_points": [
+      "Could not reach AI provider",
+      "Check internet connection or API quota"
+    ],
+    "code": "",
+    "time_complexity": "N/A",
+    "space_complexity": "N/A",
+    "explanation": "Please check your network connection or verify that GEMINI_API_KEY in .env has active quota.",
+    "source": "network-error",
+    "timestamp": "2026-10-20 17:26:35",
+    "question_text": "A bullet of mass 20g has an initial speed of 1 ms-1, just before it starts penetrating a mud wall of thickness 20 cm. If the wall offers a mean resistance of 2.5x10^-2 N, the speed of the bullet after emerging from the other side of the wall is close to : [10 Apr. 2019 II]\n(a) 0.1 ms-1 (b) 0.7 ms-1\n(c) 0.3 ms-1 (d) 0.4 ms-1",
+    "q_type": "mcq"
+  },
+  {
+    "direct_answer": "Result: 0",
+    "key_points": [
+      "Calculated 1 - 1 = 0"
+    ],
+    "code": "result = 1 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 1 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:22:50",
+    "question_text": "v Draw v distance between two t 60 km/h. The average [Online May 7, 20121 45 km/h 60 km/h + gt+ft2. If its position ent after unit time (t = [20071 vo + 2g + 3f e t = 0, starts moving with a velocity 'v' that cement of the particle 1 : CI i ck to Solve W WII W i S Q Intl W/ + Q Q Q & & & 27 'X C O File C:/Users/Bisman%20Singh/Downloads/Telegram%20Desktop/71_JEE Main_Physics_2002 2020 Chapterwise_Solved Papers_crackjee. -1 -1 + E 23 (ms ) 4 2 1 DEV_CHEAT SOLUTION (Press to dismiss) DIRECT ANSWER: Result: O I Space: 0(1) Time: 0(1) result 1 - bat 2 tim 8. 9. The distance x covered by a particle in one dimensional motion varies with time t as x2 = at2 + 2bt + c. If the acceleration of the particle depends on x as x n, where n is an integer, the value of n is INA 9 Jan 202011 A bullet of mass 20g has an initial speed of I ms-1, just before it starts penetrating a mud wall of thickness 20 cm. Ifthe wall offers a mean resistance of 2.5 x IO 2 N, the speed of the bullet after emerging from the other side of the wall is close to : -1 (a) 0.1 ms -1 c 0.3 ms [10 Apr. 2019 111 tl/2 (d) [20061 t3 (b) 0.7ms d 0.4 ms ENG IN 17:22 20/10/2026",
+    "q_type": "mcq"
+  },
+  {
+    "direct_answer": "Result: 0",
+    "key_points": [
+      "Calculated 1 - 1 = 0"
+    ],
+    "code": "result = 1 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 1 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:22:47",
+    "question_text": "v Draw v distance between two t 60 km/h. The average Online May 7, 20121 5 km/h gt +ft2. If its position nt after unit time (t — [20071 t = 0, starts moving with a velocity 'v' that ement of the particle 1: Click to solve S W' W i S Q Intl W/ + Q Q Q & & & 27 'X C O File C:/Users/Bisman%20Singh/Downloads/Telegram%20Desktop/71_JEE Main_Physics_2002 2020 Chapterwise_Solved Papers_crackjee. -1 -1 + E 23 (ms ) 4 2 1 DEV_CHEAT SOLUTION (Press to dismiss) DIRECT ANSWER: Result: 2 I Space: 0(1) Time: 0(1) result - + 2 bat 2 tim 8. 9. The distance x covered by a particle in one dimensional motion varies with time t as x2 = at2 + 2bt + c. If the acceleration of the particle depends on x as x n, where n is an integer, the value of n is INA 9 Jan 202011 A bullet of mass 20g has an initial speed of I ms-1, just before it starts penetrating a mud wall of thickness 20 cm. Ifthe wall offers a mean resistance of 2.5 x IO 2 N, the speed of the bullet after emerging from the other side of the wall is close to : -1 (a) 0.1 ms -1 c 0.3 ms [10 Apr. 2019 111 (d) [20061 t3 (b) 0.7ms d 0.4 ms ENG IN 17:22 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 0 + 2 = 2"
+    ],
+    "code": "result = 0 + 2",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 0 + 2.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:22:45",
+    "question_text": "v Draw v distance between two 60 km/h. The average Online May 7, 20121 5 km/h 0 km/h gt +ft2. If its position ent after unit time (t = [20071 0+2g+3f e t = 0, starts moving with a velocity 'v' that ement of the particle I : CI i ck to Solve I WI' W i S Q Intl W/ + Q Q Q & & & 27 'X C O File C:/Users/Bisman%20Singh/Downloads/Telegram%20Desktop/71_JEE Main_Physics_2002 2020 Chapterwise_Solved Papers_crackjee. -1 -1 + E 23 (ms ) 4 2 1 DEV_CHEAT SOLUTION (Press to dismiss) DIRECT ANSWER: Result: 2 I Space: 0(1) Time: 0(1) result - + 2 bat 2 tim 8. 9. The distance x covered by a particle in one dimensional motion varies with time t as x2 = at2 + 2bt + c. If the acceleration of the particle depends on x as x n, where n is an integer, the value of n is INA 9 Jan 202011 A bullet of mass 20g has an initial speed of I ms-1, just before it starts penetrating a mud wall of thickness 20 cm. Ifthe wall offers a mean resistance of 2.5 x IO 2 N, the speed of the bullet after emerging from the other side of the wall is close to : -1 (a) 0.1 ms -1 c 0.3 ms [10 Apr. 2019 111 (d) [20061 t3 (b) 0.7ms d 0.4 ms ENG IN 17:22 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 0 + 2 = 2"
+    ],
+    "code": "result = 0 + 2",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 0 + 2.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:22:42",
+    "question_text": "v Draw v distance between two 60 km/h. The average [Online May 7, 20121 5 km/h 0 km/h gt +ft2. If its position ent after unit time (t = [20071 0+2g+3f e t = 0, starts moving Åty 'v' that Q_2: Click to Solve ement of the particle i S Q Intl W/ + A/ Q Q Q & 1: Click to solve S WI W & & E 27 'X C O File C:/Users/Bisman%20Singh/Downloads/Telegram%20Desktop/71_JEE Main_Physics_2002 2020 Chapterwise_Solved Papers_crackjee. -1 -1 + E 23 (ms ) 4 2 1 DEV_CHEAT SOLUTION (Press to dismiss) DIRECT ANSWER: Result: 2.0 I Space: 0(1) Time: 0(1) result - 2ø / lø bat 2 tim 8. 9. The distance x covered by a particle in one dimensional motion varies with time t as x2 = at2 + 2bt + c. If the acceleration of the particle depends on x as x n, where n is an integer, the value of n is INA 9 Jan 202011 A bullet of mass 20g has an initial speed of I ms-1, just before it starts penetrating a mud wall of thickness 20 cm. -2 X of the bullet after emerging from the other side of the wall is close to : -1 (a) 0.1 ms -1 c 0.3 ms [10 Apr. 2019 111 (d) [20061 t3 (b) 0.7ms d 0.4 ms ENG IN 17:22 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:22:33",
+    "question_text": "1: Click to Solve Wi S Q gol Kirl Intl WI' A Q File C:/Users/Bisman%20Singh/Downloads/Telegram%20Desktop/Kinematics.pdf Draw 4 of 12 & & E 271 xn # DE' DEV_CHEAT SOLUTION (Press to dismiss) DIRECT ANSWER: Result: 2.0 I Space. Time: 0(1) • 0(1) result — - 2ø / lø ENG IN x 17:22 20/10/2026 bat au 2- c Vt",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:22:30",
+    "question_text": "i DP} Q gol Kirl Intl WII A ( Q lal 1: Click to solve W' W O File C:/Users/Bisman%20Singh/Downloads/Telegram%20Desktop/Kinematics%20(4).pdf Draw 112 t 9 60 of61 G) & & E 271 DEV_CHEAT SOLUTION (Press DIRECT ANSWER: Question detected I Space: 0(1) Time: O(n) # Dev_Cheat: optimal solution def solution(): pass 32 x 'Q' to dismiss) stub x 17:22 20/10/2026 bat ENG IN",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Question detected",
+    "key_points": [
+      "Analyzed query parameters",
+      "Ready for submission"
+    ],
+    "code": "# Dev_Cheat: optimal solution stub\ndef solution():\n    pass",
+    "time_complexity": "O(n)",
+    "space_complexity": "O(1)",
+    "explanation": "Question captured from screen. Add GEMINI_API_KEY to .env for full real-time neural solutions.",
+    "source": "local-fallback",
+    "timestamp": "2026-10-20 17:22:27",
+    "question_text": "1: Click to Solve C 0 127.0.0.1:5055 DEV_Cheat VI .O • Command Prompt Active Live Screen & Red Box Overlay C 0 12/0.01±05', DEV_Cheat WII DEV_Qwt e Wil S Q Kirl & & E 271 DEV_CHEAT SOLUTION (Press 'Q' DIRECT ANSWER: Result: 2016 I Space. Time: 0(1) • 0(1) result — - 2ø26 - lø 2026-10-20 x to dismiss) x • Monitoring Screen Questions Detected • Red Boxes Active 4 Test Multi-Question S APIR X + Test LeetCode C E ECO Q C 1: c 0127.0M:soss 1: to C 01-27.0.me505S O • SOLUDON v v t E 23 v t Click any red box above to instantly solve that question. Press Q to hide answers. _4_ @ o GOI McQ DIRECT ANSWER Result: 2016 Time: 0(1) Space: 0(1) OPTIMAL SOLUTION result 2026 - 10 REASONING & BREAKDOWN: Arithmetic evaluation of 2026 - 10. • calculated 2026 - 10 2016 Monitoring screen. Press 'S' to force scan, • Q • to hide solutions. j Hide Responses Instant Scan Cooy Ans— Copy c Clear Highlights I CLICK Solve Red Box 111—1' I e ENG IN 17:22 20/10/2026",
+    "q_type": "general",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2016",
+    "key_points": [
+      "Calculated 2026 - 10 = 2016"
+    ],
+    "code": "result = 2026 - 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 2026 - 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:22:25",
+    "question_text": "Q e Wish wishc( 0 127.0.0.1:5055 wishc( C Settin Domain P... wishcc wishcc Wish findb • Solving q_l... Wish C steela Questions Detected Instag Q goog( Q Doma Bisma Q gemir Summarize S APIke @ DIX + O Scan Now S DEV_Cheat VI .O • Command Prompt Active Live Screen & Red Box Overlay DEV_Cheat • Red Boxes Active 4 Test Multi-Question + Test LeetCode _4_ Active Solution Search saved responses _ 2026-10-20 MCQ Questions Saved Responses ( 92 ) Clear A\" 1: C & E ECO Click to Solve Secure Settinc wishcc wishc( Q wishcc Wish findbf Wish c Result: 2016 2026-10-20 McQ 1: Click to Solve 0127.0.0.1:5055 DEV_Cheat VI .O • Result: 2016 2026-10-20 MCQ Command Prompt Active & Red Bo C E ECO Q C 1: c 0127.0M:soss 1: to C DEV_CW • SOLUDON v v t resslQ to hide answers. 1: C Click to Solve 0127.0.0.1:5055 Secure Settinc wishcc wishc( Q wishcc Wish findbe Mon Result: 2016 2026-10-20 • MCQ 1: Click to Solve 0127.0.0.1:5055 DEV_Cheat VI .O • Result: 2016 2026-10-20 MCQ Command Prompt Active & Red Bo 1: Click to Solve C 0127.0.0.1:5055 DEV_Cheat VI .O • Result: 2016 MCQ 2026-10-20 • Command Pronvt Active Live Screen & DEV Cheat— Real-Time... DEV_Cheat— Rea... >< Settin e C Wish wishc( 0127.0.0.1:5055 wishcc wishc( Q wishcc Wish findb Wish C steela In Question detected 2026-10-20 MCQ DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance two t 60 km/h. The Result: O 2026-10-20 • DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance two t 60 km/h. The Result: O 2026-10-20 McQ Q go/ Inta A E' Q lal Skil lal Q Q & & & & 271: Click to Solve DP C O File C:/Users/Bisma Result: -1 j Hide Responses Instant Scan cl Clear ENG IN Highlights I CLICK Solve Red Box 17:22 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:22:22",
+    "question_text": "1: Click to Solve Desktop Red Box Hide active Force insti . Clear highl [Click] Click [Ctrl+C] . Stop [ Monitoring screen -l Domain Portfolio: wishcollege.com X + X https://dcc.godaddy.com/control/portfo... DEV_CHEAT SOLUTION (Press to dismiss) DIRECT ANSWER: Result: 2.0 I Space. Time: 0(1) • 0(1) result — - 2ø / lø ERROR [Errno ork address/port) DEV_Cheat stopped PS C:\\Users\\Bisman Real—Time Screer Property Localhost Dashb0i AI Engine Screen OCR Scan Interval Auto—Solve Single Desktop Red Box l' Hide active Force insti . Clear highl [Click] Click [Ctrl+C] . Stop [ Monitoring screen ENG IN x 17:22 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:22:19",
+    "question_text": "LfmeLeaGt Wakt$ou. Co\"e86 Workplace DEV_Cheat Träsfi-ive Screéci$Red BOEüVerIÅS' dream_colle... Dvi Domain Portfolio: wishcollege.com X + Do https://dcc.godaddy.com/cantral/portfolio;'v,'i.. Verify it's you A) Solving q_ln Questions Detected O Scan Now s Verify it's you X Hide Responses Q • @ Active SolutiOn • Red Boxes Active DEV_CHEAI SOLUTION (P Question detected detec ted Test Multi-Question Test LeetCode o Questions masks Walkthro Saved ResponsesfakQaky-wat.„ College a QI: Discord DEV_Chea Anpgr ity EdrawMind IDE Logi—..o - -u Arduino iDE Options* 1.1 Wispr Flow Rastbe Pi Sigma Study College (2) Fus Autodesk Fusion - Firefox.- New fo:der GENERAL Waiting for Question Target Wnen multiple c;.lestions acpear, click any recl cox on the screen c.\" viewcort toso.ve instantly Press Q anytime to dismiss active responses 202G-10-zc DIRECT ANSWER Question detected Time: O(n) space: 0(1) Copy Answer Copy Code OPTIMAL SOLUTION # Dev_Cheat: optimal solution stub def solution(): pass REASONING & BREAKDOWN: Question captured from screen. Add GEMINI_API_KEY to .env for full real-time neural solutions. Analyzed query parameters Ready for submission DEV Cheat— Real-Timei. X DEV Cheat— Real-Time... ress Q to hide answers. Hide Responses Sc-n C •.ear• ENG IN Highlights CLICK So'. ve Red g Ox 17:22 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Recommended Choice: 1: Click to Solve",
+    "key_points": [
+      "Detected MCQ pattern",
+      "Review highlighted options"
+    ],
+    "code": "",
+    "time_complexity": "N/A",
+    "space_complexity": "N/A",
+    "explanation": "Identified multiple choice question. (Configure GEMINI_API_KEY for advanced AI reasoning).",
+    "source": "local-heuristic",
+    "timestamp": "2026-10-20 17:22:16",
+    "question_text": "1: Click to Solve Windows PowerShell DEV_CHEAT SOLUTION (Press to dismiss) DIRECT ANSWER: Result: 2016 I Space: 0(1) Time: 0(1) result - 2ø26 - lø , 5055): o x 7'.22 2026 x Desktop Red Box HUD ENABLED Command Prompt Hotkey Legend Hide active responses & dismiss overlay Force instant manual screen scan Clear highlighted questions & cache [Click] Click on any Red Bounding Box on screen/dashboard to solve [Ctrl+C] Stop Dev_Cheat safely nitoring screen for coding problems, multiple choice, and tech questions. . [Errno 10048] error while attempting to bind on address ('127.0.0.1' ROR k address/port) is normally permitted V _ Cheat stopped cleanly . [winerror 1 C:\\Users\\Bisman Singh\\.gemini\\antigravity—ide\\scratch\\DEV_Cheat> python main . py Real—Time Property Screen Question Solver & Neural Assistant << System Configuration & Status Localhost Dashboard AI Engine Screen OCR Scan Interval Auto—Solve Single Desktop Red Box HUD Value http://127.O.O.1:5055 (Gemini Neural) gemini—3.8—+1 ash Windows Native Windows . Media. Ocr (Zero—Latency) ENABLED ENABLED Command Prompt Hotkey Legend Hide active responses & dismiss overlay Force instant manual screen scan Clear highlighted questions & cache [Click] Click on any Red Bounding [Ctrl+C] Stop Dev_Cheat safely nitoring screen for coding problems , Box on screen/dashboard to multiple choice, and tech solve questions. .",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2016",
+    "key_points": [
+      "Calculated 2026 - 10 = 2016"
+    ],
+    "code": "result = 2026 - 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 2026 - 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:22:14",
+    "question_text": "1: Click to Solve o 127.0.0.1:5055 DEV_Cheat VI .O • Command Prompt Active Screen & Red Box Overlay DEV_Cheat Wil S Q Kirl & & E 271 x • Monitoring Screen Questions Detected • Red Boxes Active OEV_CHEAT SOLUTION Result: 2016 • 2-e26 •e Click any red box above to instantly solve that question. Press Q to hide answers. 4 Test Multi-Question (Preg •Q • to dismiss) _4_ + Test LeetCode 2026 GENERAL DEV_CHEAT SOLUTION (Press to dismiss) DIRECT ANSWER: Question detected I Space: 0(1) Time: O(n) # Dev_Cheat: optimal solution stub def solution(): pass 2026-10-20 17:22:11 DIRECT ANSWER Question detected Time: O(n) space: 0(1) OPTIMAL SOLUTION # Dev_Cheat: optimal solution stub def solution(): pass REASONING & BREAKDOWN: Question captured from screen. Add GEMINI_API_KEY to .env for full real-time neural solutions. • Analyzed query parameters • Ready for submission > DEV CHEAT_CLI: Monitoring screen. Press 'S' to force scan, • Q • to hide solutions. Hide Responses Instant Scan Clear Highlights x Cooy Ans— Copy CLICK I solve Red Box 17:22 2026",
+    "q_type": "coding",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Question detected",
+    "key_points": [
+      "Analyzed query parameters",
+      "Ready for submission"
+    ],
+    "code": "# Dev_Cheat: optimal solution stub\ndef solution():\n    pass",
+    "time_complexity": "O(n)",
+    "space_complexity": "O(1)",
+    "explanation": "Question captured from screen. Add GEMINI_API_KEY to .env for full real-time neural solutions.",
+    "source": "local-fallback",
+    "timestamp": "2026-10-20 17:22:11",
+    "question_text": "1: Click to Solve C 0 127.0.0.1:5055 DEV_Cheat VI .O • Command Prompt Active Live Screen & Red Box Overlay C 0 12/0.01305', DEV_Cheat Q Kirl & & E 271 DEV_CHEAT SOLUTION (Press 'Q' DIRECT ANSWER: Result: 2016 I Space. Time: 0(1) • 0(1) result — - 2ø26 - lø 2026-10-20 17:22:08 x to dismiss) x • Monitoring Screen Questions Detected • Red Boxes Active OEV_CHEAT SOLUTION Result 2.0 Result: 2.0 Click any red box above to instantly solve that question. Press Q to hide answers. 4 Test Multi-Question (Preg •Q • to dismiss) _4_ + Test LeetCode x 2026 GENERAL DIRECT ANSWER Result: 2016 Time: 0(1) Space: 0(1) OPTIMAL SOLUTION result 2026 - 10 REASONING & BREAKDOWN: Arithmetic evaluation of 2026 - 10. • calculated 2026 - 10 2016 Monitoring screen. Press 'S' to force scan, • Q • to hide solutions. Hide Responses Instant Scan Clear Highlights Cooy Ans— Copy CLICK I solve Red Box 17:22 2026",
+    "q_type": "general",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2016",
+    "key_points": [
+      "Calculated 2026 - 10 = 2016"
+    ],
+    "code": "result = 2026 - 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 2026 - 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:22:08",
+    "question_text": "1: Click to Solve C 0 127.0.0.1:5055 DEV_Cheat VI .O • Command Prompt Active Live Screen & Red Box Overlay Desktop Red HUD ENABLED Q Kirl & & E 271 DEV_CHEAT SOLUTION (Press 'Q' DIRECT ANSWER: Result: 2.0 I Space. Time: 0(1) • 0(1) result — - 2ø / lø 2026-10-20 x to dismiss) x Monitoring Screen Questions Detected • Red Boxes Active 4 Test Multi-Question + Test LeetCode Command Prompt Hotkey Legend . Hide active responses & dismiss overlay . Clear highlighted questions & cache [click] Click on any Red Bounding Box on screen/dashboard to solve [Ctrl+Cj : Stop Oev_Cheat safely , Monitoring screen -for coding problens, multiple Choice, and tech questions. : ERROR: [Errno 13848] error while attempting to bind on address ('127. a. e. I' , 5855) : address 'port) is normal Ly permitted : DEV_Cheat stopped C Lean Ly : PS python main. py [\"inerror 10848] only one usage of each socket address (protocol/netw Legend McQ DIRECT ANSWER Result: 2.0 Real-Time Property Screen Question Solver & Neural Assistant System Configuration & Status Vat ue Time: 0(1) Space: 0(1) OPTIMAL SOLUTION Localhost Dashboard AI Engine screen OCR Scan Interval e Single Desktop Red HUD genini—3.8-flash lative \"inclons ENABLED ENABLED Neural) Media (Zero-Latency) Command Prompt result 20 / lø Hotkey Hide «tive responses G disniss Overlay CS] : Force instant manual screen scan : Clear highlighted questions & cache [Click) : Click on any Red Bounding Box on screen/dashboard to _ Stop Dev_Cheat safely . Nonitoring screen for coding problens, multiple choice, and tech REASONING & BREAKDOWN: Arithmetic evaluation of 20 / 10. • calculated 20 | 10 2.0 solve questions, Solved! Press Click any red box above to instantly solve that question. Press Q to hide answers. 'Q' anytime to hide the solution overlay. Hide Responses Instant Scan Clear Highlights Cooy Ans— Copy I CLICK I solve Red Box 17:22 2026",
+    "q_type": "general",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:22:06",
+    "question_text": "Windows PowerShell Windows PowerShell o [winerror 10048] only one usage of each socket address (protocol/netw x Desktop Red Box HUD ENABLED Command Prompt Hotkey Legend Hide active responses & dismiss overlay Force instant manual screen scan Clear highlighted questions & cache [Click] Click on any Red Bounding Box on screen/dashboard to solve [Ctrl+C] Stop Dev_Cheat safely Monitoring screen for coding problems, multiple choice, and tech questions. . [Errno 10048] error while attempting to bind on address ( '127.0.0.1' 5055): ERROR ork address/port) is normally permitted DEV_Cheat stopped cleanly . PS C:\\Users\\Bisman Singh\\.gemini\\antigravity—ide\\scratch\\DEV_Cheat> python main . py Real—Time Property Screen Question Solver & Neural Assistant << System Configuration & Status Localhost Dashboard AI Engine Screen OCR Scan Interval Auto—Solve Single Desktop Red Box HUD Value http://127.O.O.1:5055 (Gemini Neural) gemini—3.8—+1 ash Windows Native Windows . Media. Ocr (Zero—Latency) ENABLED ENABLED Command Prompt Hotkey Legend Hide active responses & dismiss overlay Force instant manual screen scan Clear highlighted questions & cache [Click] Click on any Red Bounding Box on screen/dashboard to [Ctrl+C] Stop Dev_Cheat safely Monitoring screen for coding problems, multiple choice, and tech solve questions. . ENG IN 17:22 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:20:11",
+    "question_text": "1: Click to Solve Windows PowerShell X Windows PowerShell DEV_CHEAT SOLUTION (Press to dismiss) DIRECT ANSWER: Result: O I Space. Time: 0(1) • 0(1) o x 17:20 20/10/2026 x Copyright (C) Microsoft Corporation. All rights reserved . PS C:\\Users\\Bisman Singh> cd \"c:\\Users\\Bisman Singh\\ . PS C:\\Users\\Bisman Singh\\.gemini\\antigravity—ide\\scratch\\DEV_Cheat> python main . py result -1-1 Real—Time Property Screen Question Solver & Neural Assistant << System Configuration & Status Localhost Dashboard AI Engine Screen OCR Scan Interval Auto—Solve Single Desktop Red Box HUD Value http://127.O.O.1:5055 (Gemini Neural) gemini—3.8—+1 ash Windows Native Windows . Media. Ocr (Zero—Latency) ENABLED ENABLED Command Prompt Hotkey Legend Hide active responses & dismiss overlay Force instant manual screen scan Clear highlighted questions & cache [Click] Click on any Red Bounding Box on screen/dashboard to solve [Ctrl+C] Stop Dev_Cheat safely Monitoring screen for coding problems, multiple choice, and tech questions. . o ENG IN",
+    "q_type": "mcq"
+  },
+  {
+    "direct_answer": "Result: 0",
+    "key_points": [
+      "Calculated 1 - 1 = 0"
+    ],
+    "code": "result = 1 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 1 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:20:09",
+    "question_text": "DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance between two t 60 km/h. The average [Online May 7, 20121 45 km/h 60 km/h + gt+ft2. If its position ent after unit time (t = [20071 vo + 2g + 3f e t = 0, starts moving n with a velocity 'v' that cement of the particle Q Int/ A E' Q lal Skil lal Q Q Nel & & & & 27 1: Click to Solve DP C O File C:/Users/Bisman%20Singh/Downloads/Telegram%20Desktop/71_JEE Main_Physics_2002 2020 Chapterwise_Solved Papers_crackjee. -1 -1 (ms ) 4 2 1 DIRECT ANSWER: Result: O I Space: 0(1) Time: 0(1) result 1 - 2 tim 8. 9. The distance x covered by a particle in one dimensional motion varies with time t as x2 = at2 + 2bt + c. If the acceleration of the particle depends on x as x n, where n is an integer, the value of n is INA 9 Jan 202011 A bullet of mass 20g has an initial speed of I ms-1, just before it starts penetrating a mud wall of thickness 20 cm. Ifthe wall offers a mean resistance of 2.5 x IO 2 N, the speed of the bullet after emerging from the other side of the wall is close to : -1 (a) 0.1 ms -1 c 0.3 ms [10 Apr. 2019 111 tl/2 (d) [20061 t3 (b) 0.7ms d 0.4 ms o ENG IN bat 17:20 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 0",
+    "key_points": [
+      "Calculated 1 - 1 = 0"
+    ],
+    "code": "result = 1 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 1 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:20:06",
+    "question_text": "DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance between two t 60 km/h. The average [Online May 7, 20121 45 km/h 60 km/h + gt+ft2. If its position ent after unit time (t = [20071 vo + 2g + 3f e t = 0, starts moving n with a velocity 'v' that cement of the particle Q In/ A Q lal Skil lal Q Q Nel & & & & Nel DP C O File C:/Users/Bisman%20Singh/Downloads/Telegram%20Desktop/71_JEE Main_Physics_2002 2020 Chapterwise_Solved Papers_crackjee. -1 -1 (ms ) 4 2 1 DIRECT ANSWER: Result: 2016 I Space: 0(1) Time: 0(1) result - 2ø26 - lø 2 tim 8. 9. The distance x covered by a particle in one dimensional motion varies with time t as x2 = at2 + 2bt + c. If the acceleration of the particle depends on x as x n, where n is an integer, the value of n is INA 9 Jan 202011 A bullet of mass 20g has an initial speed of I ms-1, just before it starts penetrating a mud wall of thickness 20 cm. Ifthe wall offers a mean resistance of 2.5 x IO 2 N, the speed of the bullet after emerging from the other side of the wall is close to : -1 (a) 0.1 ms -1 c 0.3 ms [10 Apr. 2019 111 tl/2 (d) [20061 t3 (b) 0.7ms d 0.4 ms o ENG IN bat 17:20 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2016",
+    "key_points": [
+      "Calculated 2026 - 10 = 2016"
+    ],
+    "code": "result = 2026 - 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 2026 - 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:20:01",
+    "question_text": "1: Click to Solve o 127.0.0.1:5055 DEV_Cheat VI .O • Command Prompt Active Screen & Red Box Overlay EV_Cheat HEAT_CLI. Settinc wishcc e wishc( Q wishcc Wish findbe Wish c • Monitoring Screen steela Questions Detected Instag Q goog( Q Doma Bisma Q gemir Summarize S APIk€ # DX -k O Scan Now S • Red Boxes Active 4 Test Multi-Question Active Solution Search saved responses. 2026-10-20 MCQ Questions > DEV + Test LeetCode o Saved Responses ( 92 ) Clear A\" 1: C & E ECO Click to Solve Secure Settinc wishcc wishc( Q wishcc Wish findbf Wish c Result: 2016 2026-10-20 McQ 1: Click to Solve 0127.0.0.1:5055 DEV_Cheat VI .O • Result: 2016 2026-10-20 MCQ Command Prompt Active & Red Bo 1: C Click to Solve 0127.0.0.1:5055 Secure Settinc wishcc wishc( Q wishcc Wish findbe Mon Result: 2016 2026-10-20 • MCQ 1: Click to Solve 0127.0.0.1:5055 DEV_Cheat VI .O • Result: 2016 2026-10-20 MCQ Command Prompt Active & Red Bo C 0121n_mv5ØE • C O O Wish C E 23 v v t SOLUDON v v 1: Click to Solve C 0127.0.0.1:5055 DEV_Cheat VI .O • Result: 2016 MCQ 2026-10-20 • Command Pronvt Active Live Screen & 4 A Settin e C Wish wishc( 0127.0.0.1:5055 wishcc wishc( Q wishcc Wish findb Wish C steela In Question detected 2026-10-20 MCQ DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance two t 60 km/h. The Result: O 2026-10-20 • DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance two t 60 km/h. The Result: O 2026-10-20 McQ Q go/ Inta A E' Q lal Skil lal Q Q & & & & 271: Click to Solve DP C O File C:/Users/Bisma Result: -1 Click any red box above to instantly solve that question. Press Q to hide answers. • Responses hidden. Waiting for next question j Hide Responses Instant Scan cl Clear ENG IN Highlights I CLICK Solve Red Box 17:20 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2016",
+    "key_points": [
+      "Calculated 2026 - 10 = 2016"
+    ],
+    "code": "result = 2026 - 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 2026 - 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:19:58",
+    "question_text": "1: C & E ECO Click to Solve Secure Settinc wishcc wishc( Q wishcc Wish findbf Wish c steela Questions Detected Instag Q goog' Q Doma Bisma Q gemir Summarize 0 127.0.0.1:5055 DEV_Cheat VI .O • Command Prompt Active Live Screen & Red Box Overlay • Monitoring Screen S APIke # DX -k O Scan Now S • Red Boxes Active OEV_CHEAT SOLUTION Result: 2016 • 2-e26 - •e 4 Test Multi-Question S Cox (Preg •Q • to dismiss) + Test LeetCode o Active Solution Search saved responses _ 2026-10-20 McQ 1: Click to Solve 0127.0.0.1:5055 DEV_Cheat VI .O • Result: 2016 2026-10-20 MCQ Questions Saved Responses ( 91 ) Clear A\" sew @ settin Command Prompt Active & Red Bo DEV_Cheat 1: C Click to Solve 0127.0.0.1:5055 Secure Settinc wishcc wishc( Q wishcc Wish findbe Mon Result: 2016 2026-10-20 McQ 1: Click to Solve 0127.0.0.1:5055 DEV_Cheat VI .O • Result: 2016 2026-10-20 MCQ Command Prompt Active & Red Bo 1: ce c 0127.0M:soss Liws— • e C O Q wish C 1: Click to Solve C 0127.0.0.1:5055 DEV_Cheat VI .O • Result: 2016 2026-10-20 • MCQ Command Pronvt Active Live Screen & E 23 v v t E 23 v v t 23 v Dev_CHeAT sou_moN •o Click any red box above to instantly solve that question. Press Q to hide answers. • Responses hidden. Waiting for next question Settin e C Wish wishc( 0127.0.0.1:5055 wishcc wishc( Q wishcc Wish findb Wish C steela In Question detected 2026-10-20 MCQ DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance two t 60 km/h. The Result: O 2026-10-20 MCQ DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance two t 60 km/h. The Result: O 2026-10-20 • Q go/ Inta A E' Q lal Skil lal Q Q & & & & 271: Click to Solve DP C O File C:/Users/Bisma Result: -1 2026-10-20 MCQ Q_l: to Solve go Kir kir (b E E C O File Result: -1 j Hide Responses Instant Scan cl Clear ENG IN Highlights I CLICK Solve Red Box 17:19 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2016",
+    "key_points": [
+      "Calculated 2026 - 10 = 2016"
+    ],
+    "code": "result = 2026 - 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 2026 - 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:19:55",
+    "question_text": "1: Click to Solve o 127.0.0.1:5055 DEV_Cheat VI .O • Command Prompt Active Screen & Red Box Overlay EV_Cheat Secure Settinc wishcc wishc( Q wishcc Wish findbe Wish c steela Questions Detected Instag Q goog' • Red Boxes Active Q gemir' S APIke # DX O Bisma DEV_CHEAT SOLUTION (Press to dismiss) DIRECT ANSWER: Result: 2016 I Space. Time: 0(1) • 0(1) x • Monitoring Screen 4 Test Multi-Question Search s result — - 2ø26 - lø 2026-10-2 1: C Cli Result 2026-10-2 1: Click Result 2026-10-2 1: Click to Solve C 0127.0.0.1:5055 DEV_Cheat VI .O • Result: 2016 2026-10-20 • MCQ Command Pronvt Active Live Screen & settin C O C E 23 v v t Dev_CHeAT sou_moN •o Click any red box above to instantly solve that question. Press Q to hide answers. 23 v 4 Settin e C Wish wishc( 0127.0.0.1:5055 wishcc wishc( Q wishcc Wish findb Wish C steela In Question detected 2026-10-20 MCQ DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance two t 60 km/h. The Result: O 2026-10-20 MCQ DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance two t 60 km/h. The Result: O 2026-10-20 MCQ Q go/ Inta A E' Q lal Skil lal Q Q & & & & 271: Click to Solve DP C O File C:/Users/Bisma Result: -1 2026-10-20 MCQ Q_l: to Solve go Kir kir (b E E C O File Result: -1 2026-10-20 MCQ DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance two t 60 km/h. The Result: O > DEV HEAT_CLI. • Monitoring screen. Press 'S' to force scan, • Q • to hide solutions. + Test LeetCode o j Hide Responses Instant Scan c Clear Highlights I CLICK Solve Red Box ENG IN 17:19 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2016",
+    "key_points": [
+      "Calculated 2026 - 10 = 2016"
+    ],
+    "code": "result = 2026 - 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 2026 - 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:19:52",
+    "question_text": "1: C Click to Solve 0 127.0.0.1:5055 Secure Settinc wishcc wishc( Q wishcc Wish findbe Monitoring Screen Wish c steela Questions Detected Instag Q goog' O Bisma Q gemir Summarize Q Active Solution Search saved responses _ 2026-10-20 MCQ S APIke # DX -k O Scan Now S DEV_Cheat VI .O • Command Prompt Active Live Screen & Red Box Overlay • Red Boxes Active 4 Test Multi-Question + Test LeetCode o Questions Saved Responses ( 89 ) Clear A\" @ settin DEV_Cheat sew • Monitoring Wish 1: Click to Solve 0127.0.0.1:5055 DEV_Cheat VI .O • Result: 2016 2026-10-20 MCQ Command Prompt Active & Red Bo 1: Click to Solve C 0127.0.0.1:5055 DEV_Cheat VI .O • Result: 2016 MCQ 2026-10-20 • Command Pronvt Active Live Screen & C Q Q wish C DEV.cwAT sou_moN 23 -1 SOLUDON v v t Click any red box above to instantly solve that question. Press Q to hide answers. 1 Settin e C Wish wishc( 0127.0.0.1:5055 wishcc wishc( Q wishcc Wish findb Wish C steela In Question detected 2026-10-20 MCQ DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance two t 60 km/h. The Result: O 2026-10-20 MCQ DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance two t 60 km/h. The Result: O 2026-10-20 MCQ Q go/ Inta A E' Q lal Skil lal Q Q & & & & 271: Click to Solve DP C O File C:/Users/Bisma Result: -1 2026-10-20 MCQ Q_l: to Solve go Kir kir (b E E C O File Result: -1 2026-10-20 • DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance two t 60 km/h. The Result: O 2026-10-20 MCQ DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance two t 60 km/h. The Result: O screen. Press 'S' to force scan, • Q • to hide solutions. j Hide Responses Instant Scan cl Clear ENG IN Highlights I CLICK Solve Red Box 17:19 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2016",
+    "key_points": [
+      "Calculated 2026 - 10 = 2016"
+    ],
+    "code": "result = 2026 - 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 2026 - 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:19:50",
+    "question_text": "1: Click to Solve o 127.0.0.1:5055 DEV_Cheat VI .O • Command Prompt Active Screen & Red Box Overlay EV_Cheat Settinc wishcc wishc( Q wishcc Wish findbf Wish c • Monitoring Screen steela Questions Detected Instag Q goog' Q Doma Bisma Q gemir Summarize S APIke # DX -k O Scan Now S • Red Boxes Active OEV_CHEAT SOLUTION Question oøtin.l aef DEV.cwAT sou_moN C— ECO 4 Test Multi-Question (Preg •Q • to dismiss) Active Solution Search saved responses _ 2026-10-20 MCQ 1: Click to Solve C 0127.0.0.1:5055 DEV_Cheat VI .O • Result: 2016 2026-10-20 • MCQ Questions Command Pronvt Active Live Screen & Saved Responses ( 88 ) Clear A\" E 23 v v t SOLUDON v v t r3E Click any red box above to instantly solve that question. Press Q to hide answers. Settin e C Wish wishc( 0127.0.0.1:5055 wishcc wishc( Q wishcc Wish findb Wish C steela In Question detected 2026-10-20 MCQ DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance two t 60 km/h. The Result: O 2026-10-20 • MCQ DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance two t 60 km/h. The Result: O 2026-10-20 MCQ Q go/ Inta A E' Q lal Skil lal Q Q & & & & 271: Click to Solve DP C O File C:/Users/Bisma Result: -1 2026-10-20 MCQ Q_l: to Solve go Kir kir (b E E C O File Result: -1 2026-10-20 MCQ DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance two t 60 km/h. The Result: O 2026-10-20 • DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance two t 60 km/h. The Result: O 2026-10-20 • MCQ Q_l: to Solve LineLeadrr Trash Discord Antigravity IDE Logi Zoom Result: 4 > DEV HEAT_CLI. • Monitoring screen. Press 'S' to force scan, • Q • to hide solutions. + Test LeetCode o j Hide Responses Instant Scan cl Clear ENG IN Highlights I CLICK Solve Red Box 17:19 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2016",
+    "key_points": [
+      "Calculated 2026 - 10 = 2016"
+    ],
+    "code": "result = 2026 - 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 2026 - 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:19:47",
+    "question_text": "1: Click to Solve C 0 127.0.0.1:5055 DEV_Cheat VI .O • Command Prompt Active Live Screen & Red Box Overlay DEV_Cheat Secure Settinc wishcc wishc( Q wishcc 'a Wish findb Wish c steela Questions Detected Instag Q goog' Search s 2026-10-2 Settin e Que 2026-10-2 DEV_ Result 2026-10-2 Q gemir' APIke DX Doma Bisma DEV_CHEAT SOLUTION (Press to dismiss) DIRECT ANSWER: Question detected I Space: 0(1) Time: O(n) # Dev_Cheat: optimal solution stub def solution(): pass x • Monitoring Screen • Red Boxes Active 4 Test Multi-Question _4_ OEV_CFEM E a 3 t . • E 23 v t E 23 v v t E 23 v v t Soi\" Dev_CHeAT sou_moN e 23 v Click any red box above to instantly solve that question. Press Q to hide answers. + Test LeetCode o DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance two t 60 km/h. The Result: O 2026-10-20 MCQ Q go/ Inta A E' Q lal Skil lal Q Q & & & & 271: Click to Solve DP C O File C:/Users/Bisma Result: -1 2026-10-20 MCQ Q_l: to Solve go Kir kir (b E E C O File Result: -1 2026-10-20 MCQ DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance two t 60 km/h. The Result: O 2026-10-20 • DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance two t 60 km/h. The Result: O MCQ Q_l: to Solve LineLeadrr Trash Discord Antigravity IDE Logi Zoom Result: 4 2026-10-20 MCQ Q_12 Click to solve Trash Discord Antigravity IDE Logi Options* FreeCAD 1.1 Ras Result: 2.0 • Monitoring screen. Press 'S' to force scan, • Q • to hide solutions. j Hide Responses Instant Scan cl Clear ENG IN Highlights I CLICK Solve Red Box 17:19 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Question detected",
+    "key_points": [
+      "Analyzed query parameters",
+      "Ready for submission"
+    ],
+    "code": "# Dev_Cheat: optimal solution stub\ndef solution():\n    pass",
+    "time_complexity": "O(n)",
+    "space_complexity": "O(1)",
+    "explanation": "Question captured from screen. Add GEMINI_API_KEY to .env for full real-time neural solutions.",
+    "source": "local-fallback",
+    "timestamp": "2026-10-20 17:19:44",
+    "question_text": "Settin e C Wish wishc( 0 127.0.0.1:5055 wishcc wishc( Q wishcc Wish findb Wish C steela Instag Q goog( Q DEV_Cheat VI .O • Command Prompt Active Live Screen & Red Box Overlay O Q) 12/001305\" DEV_Cheat • Monitoring Screen Questions Detected Doma Bism a Q gemir S APIke # DIX + Summarize O Scan Now S • Red Boxes Active 4 Test Multi-Question + Test LeetCode o Active Solution Search saved responses. 2026-10-20 MCQ Questions Saved Responses ( 86 ) Clear A\" e e DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance two t 60 km/h. The Result: O 2026-10-20 MCQ DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance two t 60 km/h. The Result: O 2026-10-20 McQ Q go/ Inta A E' Q lal Skil lal Q Q & & & & 271: Click to Solve DP C O File C:/Users/Bisma Result: -1 2026-10-20 MCQ Q_l: to Solve go Kir kir (b E E C O File Result: -1 2026-10-20 MCQ DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance two t 60 km/h. The Result: O 2026-10-20 McQ DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance two t 60 km/h. The Result: O 2026-10-20 MCQ Q_l: to Solve LineLeadrr Trash Discord Antigravity IDE Logi Zoom Result: 4 2026-10-20 • Q_12 Click to solve Trash Discord Antigravity IDE Logi Options* FreeCAD 1.1 Ras Result: 2.0 2026-10-20 MCQ DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance two t 60 km/h. The Result: O Click any red box above to instantly solve that question. Press Q to hide answers. • Monitoring screen. Press 'S' to force scan, • Q • to hide solutions. IQ j Hide Responses IS Instant Scan I cl Clear ENG IN Highlights I CLICK Solve Red Box 17:19 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 0",
+    "key_points": [
+      "Calculated 1 - 1 = 0"
+    ],
+    "code": "result = 1 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 1 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:19:25",
+    "question_text": "DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance between two t 60 km/h. The average [Online May 7, 20121 45 km/h 60 km/h + gt+ft2. If its position ent after unit time (t = [20071 vo + 2g + 3f e t = 0, starts moving n with a velocity 'v' that cement of the particle Q Int4 A E' Q lal Skil lal Q Q Nel & & & & 27 1: Click to Solve DP C O File C:/Users/Bisman%20Singh/Downloads/Telegram%20Desktop/71_JEE Main_Physics_2002 2020 Chapterwise_Solved Papers_crackjee. -1 -1 (ms ) 4 2 1 DIRECT ANSWER: Result: -1 I Space: 0(1) Time: 0(1) result 1 - 2 tim 8. 9. The distance x covered by a particle in one dimensional motion varies with time t as x2 = at2 + 2bt + c. If the acceleration of the particle depends on x as x n, where n is an integer, the value of n is INA 9 Jan 202011 A bullet of mass 20g has an initial speed of I ms-1, just before it starts penetrating a mud wall of thickness 20 cm. Ifthe wall offers a mean resistance of 2.5 x IO 2 N, the speed of the bullet after emerging from the other side of the wall is close to : -1 (a) 0.1 ms -1 c 0.3 ms [10 Apr. 2019 111 tl/2 (d) [20061 t3 (b) 0.7ms d 0.4 ms o ENG IN bat 17:19 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 0",
+    "key_points": [
+      "Calculated 1 - 1 = 0"
+    ],
+    "code": "result = 1 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 1 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:19:24",
+    "question_text": "DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance between two t 60 km/h. The average [Online May 7, 20121 45 km/h 60 km/h + gt+ft2. If its position ent after unit time (t = [20071 vo + 2g + 3f e t = 0, starts moving n with a velocity 'v' that cement of the particle Q Int4 A E' Q lal Skil lal Q Q Nel & & & & 27 1: Click to Solve DP C O File C:/Users/Bisman%20Singh/Downloads/Telegram%20Desktop/71_JEE Main_Physics_2002 2020 Chapterwise_Solved Papers_crackjee. -1 -1 (ms ) 4 2 1 DIRECT ANSWER: Result: -1 I Space: 0(1) Time: 0(1) result 1 - 2 tim 8. 9. The distance x covered by a particle in one dimensional motion varies with time t as x2 = at2 + 2bt + c. If the acceleration of the particle depends on x as x n, where n is an integer, the value of n is INA 9 Jan 202011 A bullet of mass 20g has an initial speed of I ms-1, just before it starts penetrating a mud wall of thickness 20 cm. Ifthe wall offers a mean resistance of 2.5 x IO 2 N, the speed of the bullet after emerging from the other side of the wall is close to : -1 (a) 0.1 ms -1 c 0.3 ms [10 Apr. 2019 111 tl/2 (d) [20061 t3 (b) 0.7ms d 0.4 ms o ENG IN bat 17:19 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: -1",
+    "key_points": [
+      "Calculated 1 - 2 = -1"
+    ],
+    "code": "result = 1 - 2",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 1 - 2.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:19:22",
+    "question_text": "Q go/ Int4 A E' Q lal Skil lal Q Q & & & & 27 1: Click to Solve DP C O File C:/Users/Bisman%20Singh/Downloads/Telegram%20Desktop/71_JEE Main_Physics_2002 2020 Chapterwise_Solved Papers_crackjee. DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance between two t 60 km/h. The average [Online May 7, 20121 45 km/h 60 km/h + gt+ft2. If its position ent after unit time (t — [20071 vo + 2g + 3f e t = 0, starts moving n with a velocity 'v' that cement of the particle [20061 tl/2 (ms ) 4 2 1 DIRECT ANSWER: Result: O I Space: 0(1) Time: 0(1) result 1 - 2 tim 8. 9. The distance x covered by a particle in one dimensional motion varies with time t as x2 = at2 + 2bt + c. If the acceleration of the particle depends on x as x n, where n is an integer, the value of n is INA 9 Jan 202011 A bullet of mass 20g has an initial speed of I ms-1, just before it starts penetrating a mud wall of thickness 20 cm. Ifthe wall offers a mean resistance of 2.5 x IO 2 N, the speed of the bullet after emerging from the other side of the wall is close to : -1 (a) 0.1 ms -1 c 0.3 ms [10 Apr. 2019 111 -1 (b) 0.7ms -1 d 0.4 ms ENG IN bat 17:19 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: -1",
+    "key_points": [
+      "Calculated 1 - 2 = -1"
+    ],
+    "code": "result = 1 - 2",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 1 - 2.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:19:19",
+    "question_text": "Q_I: Click to Solve go Kir kir (b E E C O File C:/Users/Bisman%20Singh/Downloads/Telegram%20Desktop/71_JEE Main_Physics_2002 Papers_crackjee. Draw distance between two t 60 km/h. The average [Online May 7, 20121 45 km/h 60 km/h + gt +ft2. If its position ent after unit time (t = [20071 e t = 0, starts moving n with a velocity 'v' that cement of the particle [20061 tl/2 (ms- ) 4 2 1 DEV_CHEAT SOLUTION (Press 'Q' to dismiss) DIRECT ANSKER: Result: O I space: 0(1) result 1 - 2 tim 8. 9. The distance x covered by a particle in one dimensional motion varies with time t as x2 = at2 + 2bt + c. If the acceleration of the particle depends on x as x-n, where n is an integer, the value of n is INA 9 Jan 202011 A bullet of mass 20g has an initial speed of I ms-l, just before it starts penetrating a mud wall of thickness 20 cm. Ifthe wall offers a mean resistance of 2.5 x 10-2 N, the speed of the bullet after emerging from the other side of the wall is close to : -1 (a) 0.1 ms -1 c 0.3 ms [10 Apr. 2019 111 -1 (b) 0.7 ms -1 d 0.4 ms ENG IN bat 17:19 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 0",
+    "key_points": [
+      "Calculated 1 - 1 = 0"
+    ],
+    "code": "result = 1 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 1 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:19:14",
+    "question_text": "DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance between two t 60 km/h. The average [Online May 7, 20121 45 km/h 60 km/h + gt+ft2. If its position ent after unit time (t = [20071 vo + 2g + 3f e t = 0, starts moving n with a velocity 'v' that cement of the particle Q Int4 A E' Q lal Skil lal Q Q Nel & & & & 27 1: Click to Solve DP C O File C:/Users/Bisman%20Singh/Downloads/Telegram%20Desktop/71_JEE Main_Physics_2002 2020 Chapterwise_Solved Papers_crackjee. -1 -1 (ms ) 4 2 1 DIRECT ANSWER: Result: O I Space: 0(1) Time: 0(1) result 1 - 2 tim 8. 9. The distance x covered by a particle in one dimensional motion varies with time t as x2 = at2 + 2bt + c. If the acceleration of the particle depends on x as x n, where n is an integer, the value of n is INA 9 Jan 202011 A bullet of mass 20g has an initial speed of I ms-1, just before it starts penetrating a mud wall of thickness 20 cm. Ifthe wall offers a mean resistance of 2.5 x IO 2 N, the speed of the bullet after emerging from the other side of the wall is close to : -1 (a) 0.1 ms -1 c 0.3 ms [10 Apr. 2019 111 tl/2 (d) [20061 t3 (b) 0.7ms d 0.4 ms o ENG IN bat 17:19 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 0",
+    "key_points": [
+      "Calculated 1 - 1 = 0"
+    ],
+    "code": "result = 1 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 1 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:19:11",
+    "question_text": "DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance between two t 60 km/h. The average [Online May 7, 20121 45 km/h 60 km/h + gt+ft2. If its position ent after unit time (t = [20071 vo + 2g + 3f e t = 0, starts moving n with a velocity 'v' that cement of the particle Q go/ Int4 A E' Q lal Skil lal Q Q Nel & & & & (b 27 1: Click to Solve DP C O File C:/Users/Bisman%20Singh/Downloads/Telegram%20Desktop/71_JEE Main_Physics_2002 2020 Chapterwise_Solved Papers_crackjee. -1 -1 (ms ) 4 2 1 DIRECT ANSWER: Result: 4 I Space: 0(1) Time: 0(1) result - 2 + 2 2 tim 8. 9. The distance x covered by a particle in one dimensional motion varies with time t as x2 = at2 + 2bt + c. If the acceleration of the particle depends on x as x n, where n is an integer, the value of n is INA 9 Jan 202011 A bullet of mass 20g has an initial speed of I ms-1, just before it starts penetrating a mud wall of thickness 20 cm. Ifthe wall offers a mean resistance of 2.5 x IO 2 N, the speed of the bullet after emerging from the other side of the wall is close to : -1 (a) 0.1 ms -1 c 0.3 ms [10 Apr. 2019 111 tl/2 (d) [20061 t3 (b) 0.7ms d 0.4 ms o ENG IN bat 17:19 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 4",
+    "key_points": [
+      "Calculated 2 + 2 = 4"
+    ],
+    "code": "result = 2 + 2",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 2 + 2.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:19:09",
+    "question_text": "Q_I: Click to Solve LineLeadrr Trash Discord Antigravity IDE Logi Options* FreeCADn.1 Zoom Blender Workplace 09 & elee DEV_CHEAT SOLUTION (Press to dismiss) C O File C:/Users/Bisman%20Singh/Downloads/Telegram%20Desktop/71_JEE Main_Physics_2002 202 DIRECT ANSWER: + E 23 of524 1 G) Edge Desktop All dr atm C++ Projects Voicemod V3 EdrawMind Arduino IDE Wispr Flow Raspberry Pi Sigma Study Autodesk Fusion Firefox New folder Hello dreamcolle.. dream collem distance between two t 60 km/h. The average [Online May 7, 20121 45 km/h 60 km/h + gt +ft2. If its position ent after unit time (t — [20071 vo + 2g + 3f e t = 0, starts moving n with a velocity 'v' that 8. 9. Imager Telegram Google Chrome WonderShare Filmora 15 VS Code Result: 2.0 I Space: 0(1) Time: 0(1) result - 2ø / lø (s) The distance x covered by a particle in one motion varies with time t as x2 = at2 + 2 acceleration of the particle depends on x as is an integer, the value of n is A bullet of mass 20g has an initial speed o before it starts penetrating a mud wall of thic Ifthe wall offers a mean resistance of 2.5 x IO of the bullet after emerging from the other si cement tl/2 of the particle [20061 (d) t3 is close to : (a) 0.1 ms- (b) 0.7ms- ENG IN 17:19 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:19:03",
+    "question_text": "Q_12 Click to solve LineLeadrr Trash Discord Antigravity IDE Logi Options* FreeCAD 1.1 Raspberry Pi Imager Telegram Google Chrome Zoom Workplace Edge Blender Desktop All Walkthroum College dream collem C O File C:/Users/Bism distance betM t 60 km/h. The [Online May 45 km/h 60 km/h QIQ DEV_CHEAT SOLUTION (Press to dismiss) DIRECT ANSWER: Result: O I Space. Time: 0(1) x C++ Projects . Voicemod V3 Walkthroum College (2) EdrawMind Arduino IDE Wispr Flow Sigma Study Wondetshare FilmoråM5 VS Code Autodesk Fusion Firefox New folder Hello dreamcolle... dream collem + gt+ft2. If its position ent after unit time (t — [20071 vo + 2g + 3f e t = 0, starts moving n with a velocity 'v' that cement of the particle [20061 tl/2 • 0(1) 8. 9. The distance x cov motion varies wit acceleration of the is an integer, the va A bullet of mass 20 before it starts penet Ifthe wall offers a m of the bullet after e e is close to : (a) 0.1 ms- ENG IN 17:19 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 0",
+    "key_points": [
+      "Calculated 1 - 1 = 0"
+    ],
+    "code": "result = 1 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 1 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:19:01",
+    "question_text": "DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance between two t 60 km/h. The average [Online May 7, 20121 45 km/h 60 km/h + gt+ft2. If its position ent after unit time (t = [20071 vo + 2g + 3f e t = 0, starts moving n with a velocity 'v' that cement of the particle Q Int/ A E' Q lal Skil lal Q Q Nel & & & & 27 1: Click to Solve DP C O File C:/Users/Bisman%20Singh/Downloads/Telegram%20Desktop/71_JEE Main_Physics_2002 2020 Chapterwise_Solved Papers_crackjee. -1 -1 (ms ) 4 2 1 DIRECT ANSWER: Result: O I Space: 0(1) Time: 0(1) result 1 - 2 tim 8. 9. The distance x covered by a particle in one dimensional motion varies with time t as x2 = at2 + 2bt + c. If the acceleration of the particle depends on x as x n, where n is an integer, the value of n is INA 9 Jan 202011 A bullet of mass 20g has an initial speed of I ms-1, just before it starts penetrating a mud wall of thickness 20 cm. Ifthe wall offers a mean resistance of 2.5 x IO 2 N, the speed of the bullet after emerging from the other side of the wall is close to : -1 (a) 0.1 ms -1 c 0.3 ms [10 Apr. 2019 111 tl/2 (d) [20061 t3 (b) 0.7ms d 0.4 ms o ENG IN bat 17:19 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 0",
+    "key_points": [
+      "Calculated 1 - 1 = 0"
+    ],
+    "code": "result = 1 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 1 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:18:58",
+    "question_text": "DEV_CHEAT SOLUTION (Press to dismiss) + E 23 v Draw v distance between two t 60 km/h. The average [Online May 7, 20121 45 km/h 60 km/h + gt+ft2. If its position ent after unit time (t = [20071 vo + 2g + 3f e t = 0, starts moving n with a velocity 'v' that cement of the particle Q In/ A Q lal Skil lal Q Q Nel & & & & Nel DP C O File C:/Users/Bisman%20Singh/Downloads/Telegram%20Desktop/71_JEE Main_Physics_2002 2020 Chapterwise_Solved Papers_crackjee. -1 -1 (ms ) 4 2 1 DIRECT ANSWER: Result: 2.0 I Space: 0(1) Time: 0(1) result - 2ø / lø 2 tim 8. 9. The distance x covered by a particle in one dimensional motion varies with time t as x2 = at2 + 2bt + c. If the acceleration of the particle depends on x as x n, where n is an integer, the value of n is INA 9 Jan 202011 A bullet of mass 20g has an initial speed of I ms-1, just before it starts penetrating a mud wall of thickness 20 cm. Ifthe wall offers a mean resistance of 2.5 x IO 2 N, the speed of the bullet after emerging from the other side of the wall is close to : -1 (a) 0.1 ms -1 c 0.3 ms [10 Apr. 2019 111 tl/2 (d) [20061 t3 (b) 0.7ms d 0.4 ms o ENG IN bat 17:18 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:18:53",
+    "question_text": "LineLeadrr Trash Discord Antigravity IDE Logi Options* FreeCAD 1.1 Zoom Workplace Edge EdrawMind Arduino IDE Wispr Flow Blender Desktop All. Walkthroum College dream collem DEV_CHEAT SOLUTION (Press to dismiss) DIRECT ANSWER: Result: 2.0 I Space: 0(1) Time: 0(1) result - 2ø / lø x 17:18 20/10/2026 atm Raspberry Pi Sigma Study Imager Telegram Ch v C++ projects Voicemod V3 Walkthroum College (2) Autodesk Fusion Firefox New folder Hello dreamcolle.. Wondershare FilmoråM5 C O File C:/Users/Bisman%20Singh/Downloa... QIQ + + E 23 of524 G) ENG IN",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:18:48",
+    "question_text": "When multiple questions appear, click any red box on the screen or viewport to solve it instantly. Pressl Q anytime to dismiss active responses x 17:18 20/10/2026 atm Live Screen & Red Box Overlay cn_o— Red Boxes Active Raspberry Pi Sigma St Imager Telegram Wonders Filmora Ch v C O File C:/Users/Bisman%20Singh/Downloa... + E 23 of524 G) e IELTS-Sept 2022-7 P... Monitoring Screen + Test Multi- Question 2.0 Result: 2.0 QIQ + MCQ 2026-10-20 17:18:45 DIRECT ANSWER Result: 2.0 Time: 0(1) • 0(1) Space. OPTIMAL SOLUTION Copy Answer Copy Code result 20 / 10",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:18:45",
+    "question_text": "LineLe drr 12 Click to sol Zoom Blender Walkthroum Workplac @ New Tab dev - Search Results in scratch X DEV Cheat > Search Results in scratch (D New v Sort Real-Time Screer View Search options v DEV_CHEAT SOLUTION (Press to dismiss) DIRECT ANSWER: Result: 2.0 I Space. Time: 0(1) • 0(1) dev result - 2ø / lø X Close search Di Antil Li op Raspi 1m Tele c Ch > > Videos Desktop Downloads Documents Pictures Music Videos Screenshots scratch Screen Recordings Telegram Desktop This pc Acer (C:) @ÉØCheat Date modified: echeat Date modified: Date modified: 20/10/2026 17:04 20/10/2026 17:03 15/10/2026 08:56 d elopment Date modified: 15/10/2026 08:29 Bisman-Singh Date modified: 25/09/2026 23:35 Date modified: 04/09/2026 17:23 d ModeChecks Date modified: 02/09/2026 02:56 Date modified: 29/07/2026 00:37 æelopment Date modified: 26/07/2026 16:40 @t001s-indicator 1 S,'n7 nq•å7 C:\\Users\\Bisman Singh\\.gemini\\antigravity-ide\\scra C:\\Users\\Bisman Singh\\.gemini\\antigravity-ide\\scra C:\\Users\\Bisman Singh\\.gemini\\antigravity-ide\\scra C:\\Users\\Bisman Singh\\.gemini\\antigravity C:\\Users\\Bisman Singh\\.gemini\\antigravity-ide\\scratch C:\\Users\\Bisman Singh\\.gemini\\antigravity C:\\Users\\Bisman C:\\Users\\Bisman Singh\\.gemini\\antigravity-ide\\scratch\\ai-auto-editor\\.nem C:\\Users\\Bisman Singh\\.gemini\\antigravity-ide\\scratch\\ai-auto-editor\\.nem C:\\Users\\Bisman ,222 items 1 item selected Filmora 1 C O File C:/Users/Bisman%20Singh/Downloa... + E 23 of524 G) Time: 0(1) • 0(1) Space. OPTIMAL SOLUTION uestion Target ions appear, click any or viewport to solve it antly. e to dismiss active onses Copy Answer Copy Code result 20 / 10 x atm 17:18 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:18:42",
+    "question_text": "1: Click to Solve iew Go Run Terminal Help main.py5X JS app.js { } style.css index.html C:\\...\\web server.py pdf_previews - Antigravity IDE - main.py screen_monitor.py Al Develo r Screen Solver A DEV_CHEAT SOLUTION (Press to dismiss) DIRECT ANSWER: Result: 2.0 I Space. Time: 0(1) • 0(1) result - 2ø / lø avala epo x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > DEV_Cheat > main.py > 80 83 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 loe 101 102 103 104 105 106 107 108 109 Ile 111 112 113 114 115 116 117 118 119 120 121 122 123 def parse args(): parser. add argument(\" --host\" , type=str, default=config. host, help=f\"Server host (default: {config. host parser. add argument(\" -interval\", type=float, default=config.scan interval, help=\"Screen scan interval parser. add argument(\" --no-browser\" action=\"store true\", help=\"Don't open browser automatically\") parser. add argument(\"--no-overlay\", action=\"store true\", help=\"Disab1e transparent desktop red box ove parser. add argument(\" inr in return def main(): args -no-auto-solve\", action=\"store true\" , parser . parse args() parse args() help=\"Disab1e auto-solving for single ques # Update config with CLI args config. port = args . port config. host = args .host config. scan interval args . interval if args.no overlay: config.enable desktop overlay False if args.no auto solve: config.auto solve single False # Find available port if specified port is already import socket def is_port in use(port, host) : with socket. socket (socket . AF INET, socket . SOCK return s. connect ex( (host, port)) active_port = config. port if is_port in use(active_port, config. host): ou rowing rror 3. Changes pushed to Bisman-Singh-Dev/DEV_Cheat Z. You can now run it directly in your Command Prompt: bash x @ 10 bound STREAM) ce t Alt Reject Shift+Alt+a cd \"c: Singh\\.gemini\\antigravity-ide\\scratch\\DEV Cheat\" as s: console. print(f\" [yellow]port {active_port} is currently busy. Finding alternative open port for alt_port in range(active_port + 1, active port + 20): if not is _ port in use(alt port, config. host) : active_port = alt_port break config. port = active port print banner(config. host, config. port) # Start screen monitor background worker screen monitor. start() # Open localhost in browser Cha es Ctrl Reject Bisman Singh main* • @ 5 0 1, col 1 Spaces: 4 UTE-8 python main. py 1 file changed +15 -O + 15 -O main.py ...\\8isman 1 File With Changes Ask anything, @ to mention, / for actions + Gemini 3.8 Flash Low Python 3.146 64-bit SelectPythonlnterpreter 23 of 524 Review Reject all Pyrefiy (Basic) Antigravity - Settings 17:18 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:18:40",
+    "question_text": "1: Click to Solve Windows PowerShell X Windows PowerShell 2: Click to Solve \\DEV _ Cheat \" V_Cheat> python main . py ero—Latency) Command Prompt Hotkey Legend d to solve tech questions. . def DEV_CHEAT SOLUTION (Press to dismiss) DIRECT ANSWER: Question detected I Space: 0(1) Time: O(n) # Dev_Cheat: optimal solution stub def solution(): pass solution() o x 17:18 20/10/2026 x Copyright (C) Microsoft Corporation. All rights reserved . PS C:\\Users\\Bisman Singh> cd \"c:\\Users\\Bisman Singh\\.gemin PS C:\\Users\\Bisman Singh\\.gemini\\antigravity—ide\\scratch\\D Real—Time Property Screen Question Solver & Neural Assistant << System Configuration & Status Localhost Dashboard AI Engine Screen OCR Scan Interval Auto—Solve Single Desktop Red Box HUD Value http://127.O.O.1:5055 (Gemini Neural) gemini—3.8—+1 ash Windows Native Windows. Media. Ocr ( ENABLED ENABLED Hide active responses & dismiss overlay Force instant manual screen scan Clear highlighted questions & cache [Click] Click on any Red Bounding Box on screen/dashbo [Ctrl+C] Stop Dev_Cheat safely Monitoring screen for coding problems, multiple choice, an E 23 of 524",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Question detected",
+    "key_points": [
+      "Analyzed query parameters",
+      "Ready for submission"
+    ],
+    "code": "# Dev_Cheat: optimal solution stub\ndef solution():\n    pass",
+    "time_complexity": "O(n)",
+    "space_complexity": "O(1)",
+    "explanation": "Question captured from screen. Add GEMINI_API_KEY to .env for full real-time neural solutions.",
+    "source": "local-fallback",
+    "timestamp": "2026-10-20 17:18:33",
+    "question_text": "1: C Click to Solve 0 127.0.0.1:5055 Secu Settin wishcc wishc( Q wishcc Wish findbf Wish c steela Questions Detected Instag Q x DEV_Cheat VI .O • Command Prompt Active Live Screen & Red Box Overlay C 0 12/0.0130S', DEV_Cheat Monitoring screen. • Monitoring Screen • Red Boxes Active 4 Test Multi-Question + Test LeetCode S APIO OX OEV_CHEAT SOLUTION to Result 2.0 Result: 2.0 _4_ goog( McQ a Q gemirl S APIke # DX Doma Bism DEV_CHEAT SOLUTION (Press to dismiss) DIRECT ANSWER: Result: 2016 I Space. Time: 0(1) • 0(1) result — - 2ø26 - lø 2026-10-20 DIRECT ANSWER Result: 2016 Time: 0(1) Space: 0(1) OPTIMAL SOLUTION result 2026 - 10 23 o' 524 Click any red box above to instantly solve that question. Press Q to hide answers. Press 'S' to force scan, REASONING & BREAKDOWN: Arithmetic evaluation of 2026 - 10. • calculated 2026 - 10 2016 IQ ) Hide Responses • Q • to hide solutions. 23 of 524 IS Instant Scan I C I Clear Highlights Cooy Ans— Copy I CLICK I solve Red Box 17:18 20/10/2026",
+    "q_type": "general",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2016",
+    "key_points": [
+      "Calculated 2026 - 10 = 2016"
+    ],
+    "code": "result = 2026 - 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 2026 - 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:18:30",
+    "question_text": "1 : Click to Solve C 0 127.0.0.1:5055 DEV_Cheat VI .O • Command Prompt Active Live Screen & Red Box Overlay s power-Shel I Secure Settin wishcc wishc( Q wishcc Wish findb Wish c steela Questions Detected Instag Q x • Monitoring Screen • Red Boxes Active 4 Test Multi-Question + Test LeetCode : Copyright (C) Microsoft Corporation. All rights reserved. Singh> cd 'c: Nusers\\aisman I PS Sångh\\ python Real-Time Property Screen Question Solver & Neurat Assistant System Configuration S Status goog( McQ a Q gemirl S APIke # DX Doma Bism DEV_CHEAT SOLUTION (Press to dismiss) DIRECT ANSWER: Result: 2.0 I Space. Time: 0(1) • 0(1) result — - 2ø / lø 2026-10-20 Localhost Dashboard screen OCR Scan Interval Auto—Solve Single Desktop Red gox HUD Vat ue geninå—3. a—flash Native 1 ENAdLE0 ENAALEO DIRECT ANSWER Result: 2.0 Time: 0(1) Space: 0(1) Comand to solve Prompt Hotkey Legend . Hide active responses & dismiss overlay : Force instant manual screen scan . Clear highlighted questions G cache [Click] Click on any Red Bounding Box on screen/dashboard [ctrt+c] : Stop Oev_Cheat safety OPTIMAL SOLUTION result 20 / lø Monitor , multiple c Click any red box above to instantly solve that question. Press Q to hide answers. anytime to hide the solution overlay . REASONING & BREAKDOWN: Arithmetic evaluation of 20 / 10. • calculated 20 | 10 2.0 Solved! Press IQ ) Hide Responses IS Instant Scan I C I Clear Highlights 23 of 524 Cooy Ans— Copy I CLICK I solve Red Box 17:18 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:18:27",
+    "question_text": "Windows PowerShell Windows PowerShell X Windows PowerShell o Copyright (C) Microsoft Corporation. All rights reserved . PS C:\\Users\\Bisman Singh> cd \"c:\\Users\\Bisman Singh\\ . PS C:\\Users\\Bisman Singh\\.gemini\\antigravity—ide\\scratch\\DEV_Cheat> python main . py Real—Time Property Screen Question Solver & Neural Assistant << System Configuration & Status Localhost Dashboard AI Engine Screen OCR Scan Interval Auto—Solve Single Desktop Red Box HUD Value http://127.O.O.1:5055 (Gemini Neural) gemini—3.8—+1 ash Windows Native Windows . Media. Ocr (Zero—Latency) ENABLED ENABLED Command Prompt Hotkey Legend Hide active responses & dismiss overlay Force instant manual screen scan Clear highlighted questions & cache [Click] Click on any Red Bounding Box on screen/dashboard to solve [Ctrl+C] Stop Dev_Cheat safely Monitoring screen for coding problems, multiple choice, and tech questions. . e x 17:18 A ENG IN 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:17:19",
+    "question_text": "A File Edit Selection View Go Run Terminal Help server.py 8 screen_monitor.py 4 { } style.css index.html C:\\...\\web C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > DEV_Cheat > dev_cheat > pdf_previews - Antigravity IDE - solver.py overlay.py solver.py X solver.py > . Al Developer Screen Solver App Ermo 10048] error while attempting to bind on address ('127.0.0.1', 5055): [winerror 10048] only one usage of each socket address (protocol/network address/port) is normally permitted Working. x 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 38 39 40 41 42 import json import time import urllib. request import urllib.error from typing import Dict, Any, Optional from pathlib import path from . config import config, HISTORY FILE class SolverEngine: def def def def init (self) : self . history = self. load history() load history(self) -> list: if HISTORY FILE. exists(): try : with open(HISTORY FILE, return json. load(f) except Exception : return [ ] return [ ] save history(self): try: with open(HISTORY FILE, encoding=\"utf-8\") as f: encoding=\"utf-8\") as json.dump(self. history, f, indent=2, ensure ascii=Fa1se) except Exception as e: print(f\"[solver] Error saving history. solve(self, question text: str, q_type: str \"general\", options: Solves the given question using Gemini AI or fallback engine. Returns a structured solution dictionary. prompt = self. build_prompt(question text, q_type, options) solution None if config. gemini api key: solution self. solve with_gemini (prompt) if not solution or \"error\" in solution: Optional [list] # Fallback local solver solution self. solve fallback(question text, q_type, @ 12 AO options) Bisman Singh main* c_L0 1 None) , col 1 Dict[c Spaces:4 UTE-8 O Files With Changes Åsk anything, @ to mention, / for actions + Gemini 3.8 Flash Low Python 3.146 64-bit ENG IN Review Changes Antigravity - Settings 17:17 20/10/2026",
+    "q_type": "mcq"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:17:16",
+    "question_text": "A File Edit Selection View Go Run Terminal Help server.py 8 screen_monitor.py 4 { } style.css index.html C:\\...\\web C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > DEV_Cheat > dev_cheat > pdf_previews - Antigravity IDE - solver.py overlay.py solver.py X solver.py > . Al Developer Screen Solver App Ermo 10048] error while attempting to bind on address ('127.0.0.1', 5055): [winerror 10048] only one usage of each socket address (protocol/network address/port) is normally permitted Working x 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 38 39 40 41 42 import json import time import urllib. request import urllib.error from typing import Dict, Any, Optional from pathlib import path from . config import config, HISTORY FILE class SolverEngine: def def def def init (self) : self . history = self. load history() load history(self) -> list: if HISTORY FILE. exists(): try : with open(HISTORY FILE, return json. load(f) except Exception : return [ ] return [ ] save history(self): try: with open(HISTORY FILE, encoding=\"utf-8\") as f: encoding=\"utf-8\") as json.dump(self. history, f, indent=2, ensure ascii=Fa1se) except Exception as e: print(f\"[solver] Error saving history. solve(self, question text: str, q_type: str \"general\", options: Solves the given question using Gemini AI or fallback engine. Returns a structured solution dictionary. prompt = self. build_prompt(question text, q_type, options) solution None if config. gemini api key: solution self. solve with_gemini (prompt) if not solution or \"error\" in solution: Optional [list] # Fallback local solver solution self. solve fallback(question text, q_type, @ 12 AO options) Bisman Singh main* None) 1, col 1 Dict[c Spaces:4 UTE-8 O Files With Changes Ask anything, @ to mention, / for actions + Gemini 3.8 Flash Low Python 3.146 64-bit ENG IN Review Changes Antigravity - Settings 17:17 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:16:54",
+    "question_text": "A File Edit Selection View Go Run Terminal Help { } style.css index.html C:\\...\\web server.py 8 screen_monitor.py 4 C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > DEV_Cheat > dev_cheat > import json 1 dev - Search Results in scratch X > Search Results in scratch New pdf_previews - Antigravity IDE - solver.py overlay.py solver.py X solver.py > . dev Al Developer Screen Solver App i key x opping it should continusly look at the screen and see for question there it should tell me the answer with a reposne Details or 2m > & Running Continuously! tor is now running uninterrupted: x Sort View Search options v X Close search > Videos Desktop Downloads Documents Pictures Music Videos Screenshots scratch @ÉØCheat Date modified: echeat Date modified: Date modified: C:\\Users\\Bisman Singh\\.gemini\\antigravity-ide\\scratch 20/10/2026 17:04 20/10/2026 17:03 15/10/2026 08:56 Open Open in new process Open in new tab Open in new window Pin to Quick access Open with Visual Studio Open Git GUI here Open Git Bash here Open PowerShell window here Scan with Microsoft Defenderm Give access to Restore previous yersions Include in library Pin to Start Copy as path Send to Copy Create shortcut Delete Rename Open folder location Properties antigravity ide\\scratcfGCheat Screen Recordings Telegram Desktop This pc > Acer 1,222 items 1 item selected d elopment Date modified: 15/10/2026 08:29 Bisman-Singh Date modified: 25/09/2026 23:35 Date modified: 04/09/2026 17:23 d ModeChecks Date modified: 02/09/2026 02:56 Date modified: 29/07/2026 00:37 æelopment Date modified: 26/07/2026 16:40 @t001s-indicator 1 S,'n7 nq•å7 antigravity-ide\\scratch\\vitallens\\.next antigravity antigravity-ide\\scratch antigravity antigravity-ide\\scratch\\ai-auto-editor\\.nem antigravity-ide\\scratch\\ai-auto-editor\\.nem previously paused / stopped: Static Image Hash Check: If your screen hadn't changed or moved significantly between scans, the scanner was returning early. API Rate Limiting / Blocking Call: Gemini API calls had a long blocking tim eout (IOS) that held the monitor loop whenever r.etwork latency or a 429 quota pause occurred. sync Event Loop Collision: Fomarding events from the mm nitor thread to the FastAPl WebSocket loop without caused Windows Proactor pipe conflicts. pplied & pushed to Bisman-Singh-Dev/DEV_Cheat Z: Continuous Live Scanning: Removed the static screen hash gate; DEV_Cheat now continuously scans and updates questions on screen at every scan interval without stopping. Non-Blocking Fast Solver (3.5s Timeout + Instant Heuristic Fallback): If Gemini is busy or rate-limited, the solver fails over immediately to the local engine so the screen loop never halts. • Threadsafe WebSocket Dispatcher: WebSocket updates now 36 38 39 40 41 42 if config. gemini api key: solution self. solve with_gemini (prompt) if not solution or \"error\" in solution: # Fallback local solver solution self. solve fallback(question text, q Bisman Singh main* • @ 12 O c_L0 1, coli Spaces:4 UTE-8 LF { } O Files With Changes Ask anything, @ to mention, / for actions + Gemini 3.8 Flash Low Python 3.146 64-bit ENG IN Review Changes Antigravity - Settings 17:16 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:16:51",
+    "question_text": "A File Edit Selection View Go Run Terminal Help { } style.css index.html C:\\...\\web server.py 8 screen_monitor.py 4 C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > DEV_Cheat > dev_cheat > import json 1 dev - Search Results in scratch X > Search Results in scratch New pdf_previews - Antigravity IDE - solver.py overlay.py solver.py X solver.py > . dev X Search options v Close search C:\\Users\\Bisman Singh\\.gemini\\antigravity-ide\\scratch C:\\Users\\Bisman Al Developer Screen Solver App i key x opping it should continusly look at the screen and see for question there it should tell me the answer with a reposne Details x Sort View > Videos Desktop Downloads Documents Pictures Music Videos Screenshots scratch @ÉØCheat Date modified: Date modified: Date modified: 20/10/2026 17:04 20/10/2026 17:03 15/10/2026 08:56 Screen Recordings Telegram Desktop This pc > Acer 1,222 items 1 item selected d elopment Date modified: 15/10/2026 08:29 Bisman-Singh Date modified: 25/09/2026 23:35 Date modified: 04/09/2026 17:23 d ModeChecks Date modified: 02/09/2026 02:56 Date modified: 29/07/2026 00:37 æelopment Date modified: 26/07/2026 16:40 @t001s-indicator 1 S,'n7 nq•å7 C:\\Users\\Bisman Singh\\.gemini\\antigravity ide\\scratch\\vitallens\\.next C:\\Users\\Bisman Singh\\.gemini\\antigravity C:\\Users\\Bisman Singh\\.gemini\\antigravity-ide\\scratch C:\\Users\\Bisman Singh\\.gemini\\antigravity C:\\Users\\Bisman C:\\Users\\Bisman Singh\\.gemini\\antigravity-ide\\scratch\\ai-auto-editor\\.nem C:\\Users\\Bisman Singh\\.gemini\\antigravity-ide\\scratch\\ai-auto-editor\\.nem C:\\Users\\Bisman or 2m > & Running Continuously! tor is now running uninterrupted: previously paused / stopped: Static Image Hash Check: If your screen hadn't changed or moved significantly between scans, the scanner was returning early. API Rate Limiting / Blocking Call: Gemini API calls had a long blocking tim eout (IOS) that held the monitor loop whenever r.etwork latency or a 429 quota pause occurred. sync Event Loop Collision: Fomarding events from the mm nitor thread to the FastAPl WebSocket loop without caused Windows Proactor pipe conflicts. pplied & pushed to Bisman-Singh-Dev/DEV_Cheat Z: Continuous Live Scanning: Removed the static screen hash gate; DEV_Cheat now continuously scans and updates questions on screen at every scan interval without stopping. Non-Blocking Fast Solver (3.5s Timeout + Instant Heuristic Fallback): If Gemini is busy or rate-limited, the solver fails over immediately to the local engine so the screen loop never halts. • Threadsafe WebSocket Dispatcher: WebSocket updates now 36 38 39 40 41 42 if config. gemini api key: solution self. solve with_gemini (prompt) if not solution or \"error\" in solution: # Fallback local solver solution self. solve fallback(question text, q_type, options) Bisman Singh main* • @ 12 O c_L0 1, coli Spaces:4 UTE-8 LF { } O Files With Changes Ask anything, @ to mention, / for actions + Gemini 3.8 Flash Low Python 3.146 64-bit ENG IN Review Changes Antigravity - Settings 17:16 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:16:46",
+    "question_text": "Windows PowerShell Monitoring screen for coding problems, multiple choice, [Errno 10048] error while attempting to bind ERROR ork address/port) is normally permitted DEV_Ch eat stopped cleanly. and tech questions. . on address ('127.0.0.1' o [winerror 10048] only one usage of each socket address (protocol/netw x PS C: Singh \\ . gemini\\antigravity—ide\\scratch\\DEV_Chea 9 e , 5055): A ENG IN 17:16 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:16:39",
+    "question_text": "Windows PowerShell Monitoring screen for coding problems, multiple choice, [Errno 10048] error while attempting to bind ERROR ork address/port) is normally permitted DEV_Cheat stopped cleanly . and tech questions. . on address ('127.0.0.1' , 5055): o [winerror 10048] only one usage of each socket address (protocol/netw x PS C: Singh\\.gemini\\antigravity—ide\\scratch\\DEV_Cheat> 9 ENG IN 17:16 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Recommended Choice: C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > DEV_Cheat > dev_cheat >",
+    "key_points": [
+      "Detected MCQ pattern",
+      "Review highlighted options"
+    ],
+    "code": "",
+    "time_complexity": "N/A",
+    "space_complexity": "N/A",
+    "explanation": "Identified multiple choice question. (Configure GEMINI_API_KEY for advanced AI reasoning).",
+    "source": "local-heuristic",
+    "timestamp": "2026-10-20 17:16:36",
+    "question_text": "A File Edit Selection View Go Run Terminal Help server.py 8 screen_monitor.py 4 { } style.css index.html C:\\...\\web C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > DEV_Cheat > dev_cheat > pdf_previews - Antigravity IDE - solver.py overlay.py solver.py > . solver.py [winerror Al Developer Screen Solver App gemini api key",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Recommended Choice: C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > DEV_Cheat > dev_cheat >",
+    "key_points": [
+      "Detected MCQ pattern",
+      "Review highlighted options"
+    ],
+    "code": "",
+    "time_complexity": "N/A",
+    "space_complexity": "N/A",
+    "explanation": "Identified multiple choice question. (Configure GEMINI_API_KEY for advanced AI reasoning).",
+    "source": "local-heuristic",
+    "timestamp": "2026-10-20 17:16:33",
+    "question_text": "A File Edit Selection View Go Run Terminal Help server.py 8 screen_monitor.py 4 { } style.css index.html C:\\...\\web C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > DEV_Cheat > dev_cheat > pdf_previews - Antigravity IDE - solver.py overlay.py solver.py > . solver.py [winerror , Col 1 Al Developer Screen Solver App gemini api key",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Recommended Choice: C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > DEV_Cheat > dev_cheat >",
+    "key_points": [
+      "Detected MCQ pattern",
+      "Review highlighted options"
+    ],
+    "code": "",
+    "time_complexity": "N/A",
+    "space_complexity": "N/A",
+    "explanation": "Identified multiple choice question. (Configure GEMINI_API_KEY for advanced AI reasoning).",
+    "source": "local-heuristic",
+    "timestamp": "2026-10-20 17:16:30",
+    "question_text": "A File Edit Selection View Go Run Terminal Help server.py 8 screen_monitor.py 4 { } style.css index.html C:\\...\\web C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > DEV_Cheat > dev_cheat > pdf_previews - Antigravity IDE - solver.py overlay.py solver.py > . solver.py [winerror 1, Col 1 Al Developer Screen Solver App gemini api key",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
     "direct_answer": "Result: 2.0",
     "key_points": [
       "Calculated 20 / 10 = 2.0"
