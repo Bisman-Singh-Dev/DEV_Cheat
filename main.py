@@ -64,6 +64,7 @@ def print_banner(host: str, port: int):
     
     hotkey_panel = Panel(
         Text.from_markup(
+            "[bold green][B][/bold green] : [bold]Interactive Snip & Box[/bold] (Drag mouse over any question to solve)\n"
             "[bold red][Q][/bold red] : Hide active responses & dismiss overlay\n"
             "[bold cyan][S][/bold cyan] : Force instant manual screen scan\n"
             "[bold yellow][C][/bold yellow] : Clear highlighted questions & cache\n"

@@ -8,20 +8,31 @@ class DesktopOverlay:
     """
     Sleek, transparent cyber-HUD desktop overlay:
     1. Precision bounding boxes around detected physics/math questions.
-    2. Interactive click-to-solve badges and box triggers.
-    3. Glassmorphic, scrollable solution card with step-by-step numbered derivations.
-    4. Dismiss via 'Q' key or close button.
+    2. Interactive 'B' key Snipping Mode: Drag mouse across screen to box any question and solve it instantly.
+    3. Enlarged glassmorphic solution card with large, high-visibility typography and step-by-step derivations.
+    4. Smooth mousewheel scrolling and dismiss via 'Q' key or close button.
     """
-    def __init__(self, on_solve_request: Optional[Callable[[Dict[str, Any]], None]] = None):
+    def __init__(
+        self,
+        on_solve_request: Optional[Callable[[Dict[str, Any]], None]] = None,
+        on_snip_completed: Optional[Callable[[int, int, int, int], None]] = None
+    ):
         self.root: Optional[tk.Tk] = None
         self.canvas: Optional[tk.Canvas] = None
         self.on_solve_request = on_solve_request
+        self.on_snip_completed = on_snip_completed
+
         self.questions: List[Dict[str, Any]] = []
         self.active_solution: Optional[Dict[str, Any]] = None
         self.is_running = False
         self._thread: Optional[threading.Thread] = None
         self.transparent_color = "#000001"
         self._sol_frame: Optional[tk.Frame] = None
+
+        # Snip mode state
+        self.is_snipping = False
+        self._snip_start_x: Optional[int] = None
+        self._snip_start_y: Optional[int] = None
 
     def start(self):
         if self._thread and self._thread.is_alive():
@@ -57,10 +68,12 @@ class DesktopOverlay:
             )
             self.canvas.pack(fill=tk.BOTH, expand=True)
 
-            # Hotkeys inside Tkinter
+            # Global hotkeys inside Tkinter
             self.root.bind("<Key-q>", lambda e: self.hide_responses())
             self.root.bind("<Key-Q>", lambda e: self.hide_responses())
-            self.root.bind("<Escape>", lambda e: self.hide_responses())
+            self.root.bind("<Key-b>", lambda e: self.toggle_snip_mode())
+            self.root.bind("<Key-B>", lambda e: self.toggle_snip_mode())
+            self.root.bind("<Escape>", lambda e: self.cancel_snip_mode())
 
             self._poll_updates()
             self.root.mainloop()
@@ -73,12 +86,116 @@ class DesktopOverlay:
         self._redraw()
         self.root.after(150, self._poll_updates)
 
+    def toggle_snip_mode(self):
+        if self.is_snipping:
+            self.cancel_snip_mode()
+        else:
+            self.start_snip_mode()
+
+    def start_snip_mode(self):
+        """Activates mouse drag/scroll selection mode over the screen."""
+        if not self.root or not self.canvas:
+            return
+        self.is_snipping = True
+        self._snip_start_x = None
+        self._snip_start_y = None
+
+        # Set crosshair cursor
+        self.canvas.config(cursor="crosshair")
+
+        # Bind mouse drag events for snipping
+        self.canvas.bind("<ButtonPress-1>", self._on_snip_press)
+        self.canvas.bind("<B1-Motion>", self._on_snip_motion)
+        self.canvas.bind("<ButtonRelease-1>", self._on_snip_release)
+
+        # Draw top notification banner
+        screen_w = self.root.winfo_screenwidth()
+        banner_w = 640
+        banner_h = 36
+        bx = (screen_w - banner_w) // 2
+
+        self.canvas.delete("snip_banner")
+        self.canvas.create_rectangle(
+            bx, 10, bx + banner_w, 10 + banner_h,
+            fill="#0f172a", outline="#00f2fe", width=2,
+            tags="snip_banner"
+        )
+        self.canvas.create_text(
+            screen_w // 2, 28,
+            text="🎯 DEV_CHEAT SNIP MODE: Drag mouse over question to box it | Press ESC to cancel",
+            fill="#00f2fe", font=("Segoe UI", 11, "bold"),
+            tags="snip_banner"
+        )
+        print("[Dev_Cheat] Snipping Mode Active: Drag mouse across the screen to box a question!")
+
+    def cancel_snip_mode(self):
+        """Cancels snip mode and restores normal cursor."""
+        self.is_snipping = False
+        self._snip_start_x = None
+        self._snip_start_y = None
+        if self.canvas:
+            self.canvas.config(cursor="")
+            self.canvas.delete("snip_banner")
+            self.canvas.delete("snip_rect")
+            self.canvas.unbind("<ButtonPress-1>")
+            self.canvas.unbind("<B1-Motion>")
+            self.canvas.unbind("<ButtonRelease-1>")
+        print("[Dev_Cheat] Snipping Mode Cancelled.")
+
+    def _on_snip_press(self, event):
+        self._snip_start_x = event.x
+        self._snip_start_y = event.y
+
+    def _on_snip_motion(self, event):
+        if not self.canvas or self._snip_start_x is None or self._snip_start_y is None:
+            return
+
+        self.canvas.delete("snip_rect")
+        x1 = min(self._snip_start_x, event.x)
+        y1 = min(self._snip_start_y, event.y)
+        x2 = max(self._snip_start_x, event.x)
+        y2 = max(self._snip_start_y, event.y)
+        w = x2 - x1
+        h = y2 - y1
+
+        # Glowing cyan selection box with size indicator
+        self.canvas.create_rectangle(
+            x1, y1, x2, y2,
+            outline="#00f2fe", width=2, dash=(6, 3),
+            tags="snip_rect"
+        )
+        self.canvas.create_text(
+            x1 + 8, max(12, y1 - 10),
+            text=f"Selection: {w} × {h}px",
+            fill="#00f2fe", font=("Consolas", 9, "bold"),
+            anchor="w",
+            tags="snip_rect"
+        )
+
+    def _on_snip_release(self, event):
+        if not self.canvas or self._snip_start_x is None or self._snip_start_y is None:
+            return
+
+        x1 = min(self._snip_start_x, event.x)
+        y1 = min(self._snip_start_y, event.y)
+        x2 = max(self._snip_start_x, event.x)
+        y2 = max(self._snip_start_y, event.y)
+        w = x2 - x1
+        h = y2 - y1
+
+        self.cancel_snip_mode()
+
+        if w >= 25 and h >= 25:
+            print(f"[Dev_Cheat] Box selected: ({x1}, {y1}) to ({x2}, {y2}) -> {w}x{h}px. Solving...")
+            if self.on_snip_completed:
+                self.on_snip_completed(x1, y1, x2, y2)
+
     def update_questions(self, questions: List[Dict[str, Any]]):
         self.questions = questions
 
     def show_solution(self, solution: Dict[str, Any]):
         self.active_solution = solution
-        # Force re-render of solution widget on next poll
+        # Force re-render of solution widget
         if self._sol_frame:
             try:
                 self._sol_frame.destroy()
@@ -115,84 +232,89 @@ class DesktopOverlay:
         if not self.canvas:
             return
 
-        self.canvas.delete("q_box")
-        self.canvas.delete("q_badge")
+        # Do not wipe canvas elements if user is currently dragging snip box
+        if not self.is_snipping:
+            self.canvas.delete("q_box")
+            self.canvas.delete("q_badge")
 
-        # Draw red bounding boxes around detected physics/math questions
-        for q in self.questions:
-            bbox = q.get("bbox", [0, 0, 0, 0])
-            x, y, w, h = bbox
-            if w <= 10 or h <= 10:
-                continue
+            # Draw red bounding boxes around detected physics/math questions
+            for q in self.questions:
+                bbox = q.get("bbox", [0, 0, 0, 0])
+                x, y, w, h = bbox
+                if w <= 10 or h <= 10:
+                    continue
 
-            has_solution = bool(q.get("solution"))
-            box_color = "#00ffcc" if has_solution else "#ff1a4b"
+                has_solution = bool(q.get("solution"))
+                box_color = "#00ffcc" if has_solution else "#ff1a4b"
 
-            # Outer crisp bounding box
-            rect_id = self.canvas.create_rectangle(
-                x, y, x + w, y + h,
-                outline=box_color,
-                width=2,
-                tags="q_box"
-            )
+                # Outer crisp bounding box
+                rect_id = self.canvas.create_rectangle(
+                    x, y, x + w, y + h,
+                    outline=box_color,
+                    width=2,
+                    tags="q_box"
+                )
 
-            # Interactive Badge on top edge
-            q_label = q.get("title", q.get("id", "Q")).split(":")[0].strip()
-            if has_solution:
-                direct = q["solution"].get("direct_answer", "Solved")
-                badge_text = f"⚡ {q_label}: {direct[:25]}"
-                badge_bg = "#00b894"
-            else:
-                badge_text = f"🎯 {q_label}: Click to Solve"
-                badge_bg = "#ff1a4b"
+                # Interactive Badge on top edge
+                q_label = q.get("title", q.get("id", "Q")).split(":")[0].strip()
+                if has_solution:
+                    direct = q["solution"].get("direct_answer", "Solved")
+                    badge_text = f"⚡ {q_label}: {direct[:25]}"
+                    badge_bg = "#00b894"
+                else:
+                    badge_text = f"🎯 {q_label}: Click to Solve"
+                    badge_bg = "#ff1a4b"
 
-            badge_w = min(360, len(badge_text) * 8 + 18)
-            badge_h = 24
-            badge_y = max(4, y - badge_h)
+                badge_w = min(380, len(badge_text) * 8 + 20)
+                badge_h = 24
+                badge_y = max(4, y - badge_h)
 
-            bg_id = self.canvas.create_rectangle(
-                x, badge_y, x + badge_w, badge_y + badge_h,
-                fill=badge_bg,
-                outline="#ffffff",
-                width=1,
-                tags="q_badge"
-            )
-            txt_id = self.canvas.create_text(
-                x + 9, badge_y + 12,
-                text=badge_text,
-                anchor="w",
-                fill="#ffffff",
-                font=("Segoe UI", 9, "bold"),
-                tags="q_badge"
-            )
+                bg_id = self.canvas.create_rectangle(
+                    x, badge_y, x + badge_w, badge_y + badge_h,
+                    fill=badge_bg,
+                    outline="#ffffff",
+                    width=1,
+                    tags="q_badge"
+                )
+                txt_id = self.canvas.create_text(
+                    x + 9, badge_y + 12,
+                    text=badge_text,
+                    anchor="w",
+                    fill="#ffffff",
+                    font=("Segoe UI", 9, "bold"),
+                    tags="q_badge"
+                )
 
-            # Click handlers
-            def make_handler(target_q=q):
-                return lambda event: self._on_box_clicked(target_q)
+                # Click handlers
+                def make_handler(target_q=q):
+                    return lambda event: self._on_box_clicked(target_q)
 
-            self.canvas.tag_bind(rect_id, "<Button-1>", make_handler(q))
-            self.canvas.tag_bind(bg_id, "<Button-1>", make_handler(q))
-            self.canvas.tag_bind(txt_id, "<Button-1>", make_handler(q))
+                self.canvas.tag_bind(rect_id, "<Button-1>", make_handler(q))
+                self.canvas.tag_bind(bg_id, "<Button-1>", make_handler(q))
+                self.canvas.tag_bind(txt_id, "<Button-1>", make_handler(q))
 
         # Render floating solution card if active and not yet drawn
         if self.active_solution and not self._sol_frame:
             self._render_solution_widget(self.active_solution)
 
     def _render_solution_widget(self, sol: Dict[str, Any]):
-        """Renders an ultra-sleek, scrollable dark glassmorphic solution card."""
+        """Renders an enlarged, highly legible, scrollable dark glassmorphic solution card."""
         if not self.root:
             return
 
-        card_w = 600
-        card_h = 420
         screen_w = self.root.winfo_screenwidth()
+        screen_h = self.root.winfo_screenheight()
+
+        # Enlarged dimensions for clear reading
+        card_w = min(780, screen_w - 60)
+        card_h = min(560, screen_h - 100)
         pos_x = max(20, screen_w - card_w - 30)
         pos_y = 50
 
         # Frame container with glowing cyan border
         frame = tk.Frame(
             self.root,
-            bg="#0d111a",
+            bg="#090d16",
             highlightthickness=2,
             highlightbackground="#00f2fe",
             highlightcolor="#00f2fe"
@@ -201,48 +323,48 @@ class DesktopOverlay:
         self._sol_frame = frame
 
         # Top Header Bar
-        header = tk.Frame(frame, bg="#161b26", height=38)
+        header = tk.Frame(frame, bg="#131926", height=42)
         header.pack(fill=tk.X, side=tk.TOP)
 
         hdr_lbl = tk.Label(
             header,
             text="⚡ DEV_CHEAT SOLUTION",
             fg="#00f2fe",
-            bg="#161b26",
-            font=("Segoe UI", 10, "bold")
+            bg="#131926",
+            font=("Segoe UI", 12, "bold")
         )
-        hdr_lbl.pack(side=tk.LEFT, padx=12, pady=7)
+        hdr_lbl.pack(side=tk.LEFT, padx=14, pady=8)
 
         dismiss_hint = tk.Label(
             header,
-            text="[Press 'Q' to Dismiss]",
-            fg="#8b949e",
-            bg="#161b26",
-            font=("Consolas", 9)
+            text="[Press 'Q' to Dismiss | 'B' to Snip]",
+            fg="#94a3b8",
+            bg="#131926",
+            font=("Consolas", 10)
         )
-        dismiss_hint.pack(side=tk.LEFT, padx=6, pady=7)
+        dismiss_hint.pack(side=tk.LEFT, padx=8, pady=8)
 
         close_btn = tk.Label(
             header,
             text="✕",
             fg="#ff5555",
-            bg="#161b26",
-            font=("Segoe UI", 12, "bold"),
+            bg="#131926",
+            font=("Segoe UI", 14, "bold"),
             cursor="hand2"
         )
-        close_btn.pack(side=tk.RIGHT, padx=12, pady=6)
+        close_btn.pack(side=tk.RIGHT, padx=14, pady=6)
         close_btn.bind("<Button-1>", lambda e: self.hide_responses())
 
-        # Direct Answer Hero Box
-        ans_box = tk.Frame(frame, bg="#141924", padx=14, pady=10)
-        ans_box.pack(fill=tk.X, padx=12, pady=(10, 6))
+        # DIRECT ANSWER HERO BOX (Large, bold, high-contrast)
+        ans_box = tk.Frame(frame, bg="#111827", padx=16, pady=12)
+        ans_box.pack(fill=tk.X, padx=14, pady=(12, 8))
 
         ans_title = tk.Label(
             ans_box,
             text="DIRECT ANSWER:",
             fg="#38bdf8",
-            bg="#141924",
-            font=("Consolas", 9, "bold")
+            bg="#111827",
+            font=("Consolas", 11, "bold")
         )
         ans_title.pack(anchor="w")
 
@@ -251,59 +373,60 @@ class DesktopOverlay:
             ans_box,
             text=direct_ans,
             fg="#4ade80",
-            bg="#141924",
-            font=("Segoe UI", 13, "bold"),
+            bg="#111827",
+            font=("Segoe UI", 16, "bold"),
             wraplength=card_w - 50,
             justify="left"
         )
-        ans_val.pack(anchor="w", pady=(2, 0))
+        ans_val.pack(anchor="w", pady=(3, 0))
 
         # Derivation Section Header
         der_header = tk.Label(
             frame,
             text="STEP-BY-STEP DERIVATION (Scroll with Mousewheel):",
-            fg="#8b949e",
-            bg="#0d111a",
-            font=("Consolas", 8, "bold")
+            fg="#94a3b8",
+            bg="#090d16",
+            font=("Consolas", 10, "bold")
         )
-        der_header.pack(anchor="w", padx=14, pady=(4, 2))
+        der_header.pack(anchor="w", padx=16, pady=(4, 2))
 
         # Scrollable Text Container
-        text_container = tk.Frame(frame, bg="#0d111a")
-        text_container.pack(fill=tk.BOTH, expand=True, padx=12, pady=(0, 10))
+        text_container = tk.Frame(frame, bg="#090d16")
+        text_container.pack(fill=tk.BOTH, expand=True, padx=14, pady=(0, 12))
 
-        scrollbar = tk.Scrollbar(text_container, orient=tk.VERTICAL)
+        scrollbar = tk.Scrollbar(text_container, orient=tk.VERTICAL, width=14)
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
         txt_widget = tk.Text(
             text_container,
-            bg="#141924",
-            fg="#e6edf3",
-            font=("Consolas", 10),
+            bg="#111827",
+            fg="#f8fafc",
+            font=("Consolas", 12),
             wrap=tk.WORD,
             yscrollcommand=scrollbar.set,
             relief=tk.FLAT,
-            padx=12,
-            pady=10
+            padx=14,
+            pady=12,
+            spacing1=3,
+            spacing3=4
         )
         txt_widget.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
         scrollbar.config(command=txt_widget.yview)
 
-        # Mousewheel scroll binding for smooth scrolling anywhere on the card
+        # Smooth mousewheel scroll binding
         def _on_mousewheel(event):
             txt_widget.yview_scroll(int(-1 * (event.delta / 120)), "units")
 
         txt_widget.bind("<MouseWheel>", _on_mousewheel)
         frame.bind("<MouseWheel>", _on_mousewheel)
 
-        # Tag configurations for syntax highlighting steps
-        txt_widget.tag_config("step_header", foreground="#38bdf8", font=("Consolas", 10, "bold"))
-        txt_widget.tag_config("final_res", foreground="#4ade80", font=("Consolas", 10, "bold"))
-        txt_widget.tag_config("body", foreground="#f0f6fc", font=("Consolas", 10))
+        # Tag configurations for large, clear syntax highlighted steps
+        txt_widget.tag_config("step_header", foreground="#38bdf8", font=("Consolas", 13, "bold"))
+        txt_widget.tag_config("final_res", foreground="#4ade80", font=("Consolas", 14, "bold"))
+        txt_widget.tag_config("body", foreground="#f8fafc", font=("Consolas", 12))
 
-        # Format and insert explanation cleanly line by line
+        # Clean math and latex symbols
         raw_exp = sol.get("explanation", "").strip()
-        # Clean latex symbols
         clean_exp = (
             raw_exp.replace("$", "")
             .replace("\\implies", "=>")
@@ -311,6 +434,11 @@ class DesktopOverlay:
             .replace("\\times", "*")
             .replace("\\approx", "~")
             .replace("\\frac", "")
+            .replace("\\sqrt", "sqrt")
+            .replace("\\int", "integral")
+            .replace("\\alpha", "alpha")
+            .replace("\\beta", "beta")
+            .replace("\\theta", "theta")
             .replace("\\propto", "proportional to")
         )
 
@@ -321,9 +449,14 @@ class DesktopOverlay:
                 txt_widget.insert(tk.END, "\n")
                 continue
 
-            if any(trimmed.lower().startswith(p) for p in ["step 1", "step 2", "step 3", "step 4", "step 5", "given:", "principle:"]):
+            if any(trimmed.lower().startswith(p) for p in [
+                "step 1", "step 2", "step 3", "step 4", "step 5",
+                "given:", "principle:", "formula:"
+            ]):
                 txt_widget.insert(tk.END, f"{trimmed}\n", "step_header")
-            elif any(trimmed.lower().startswith(p) for p in ["final answer", "final result", "conclusion"]):
+            elif any(trimmed.lower().startswith(p) for p in [
+                "final answer", "final result", "conclusion"
+            ]):
                 txt_widget.insert(tk.END, f"\n{trimmed}\n", "final_res")
             else:
                 txt_widget.insert(tk.END, f"{trimmed}\n", "body")
@@ -332,7 +465,6 @@ class DesktopOverlay:
 
     def _on_box_clicked(self, question: Dict[str, Any]):
         print(f"[Dev_Cheat] Question box clicked: {question.get('id')}")
-        # If solution already embedded in question, show it immediately!
         if question.get("solution"):
             self.show_solution(question["solution"])
         elif self.on_solve_request:

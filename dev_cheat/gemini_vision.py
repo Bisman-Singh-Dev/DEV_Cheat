@@ -101,7 +101,7 @@ Return strictly a valid JSON object matching this schema:
                     headers={"Content-Type": "application/json"}
                 )
 
-                with urllib.request.urlopen(req, timeout=14) as response:
+                with urllib.request.urlopen(req, timeout=20) as response:
                     res_data = json.loads(response.read().decode("utf-8"))
                     text = res_data["candidates"][0]["content"]["parts"][0]["text"]
                     parsed = json.loads(text)
@@ -165,5 +165,94 @@ Return strictly a valid JSON object matching this schema:
                 continue
 
         return []
+
+    def solve_crop(self, crop_image: Image.Image) -> Optional[Dict[str, Any]]:
+        """
+        Solves a cropped question image selected interactively by the user (e.g. after pressing 'B').
+        Provides 100% mathematical and conceptual rigor with step-by-step numbered derivation.
+        """
+        if not config.gemini_api_key:
+            return None
+
+        w, h = crop_image.size
+        max_dim = 1400
+        ratio = min(1.0, max_dim / max(w, h))
+        target_w = max(1, int(w * ratio))
+        target_h = max(1, int(h * ratio))
+
+        thumb = crop_image.resize((target_w, target_h), Image.Resampling.LANCZOS)
+        if thumb.mode != "RGB":
+            thumb = thumb.convert("RGB")
+
+        buf = io.BytesIO()
+        thumb.save(buf, format="JPEG", quality=95)
+        b64_image = base64.b64encode(buf.getvalue()).decode("utf-8")
+
+        prompt = """You are a world-class Physics and Mathematics Olympiad / JEE Advanced Master Professor.
+Analyze this cropped question image with absolute mathematical, physical, and conceptual rigor.
+1. Read the exact question statement, diagrams, equations, indices, subscripts, superscripts, and all multiple-choice options carefully.
+2. Solve the problem with 100% mathematical correctness. Verify all steps, signs, limits, and units.
+3. Determine the definitive correct answer and matching option (e.g. 'Option (c) v0 + g/2 + f/3' or 'Option (a) t^2' or numerical value).
+4. Provide a systematic, numbered step-by-step derivation:
+   Step 1: Given Quantities, Diagram Details & Physical Principles
+   Step 2: Governing Mathematical Formulas & Differential Equations
+   Step 3: Step-by-Step Derivation & Integration / Calculation
+   Step 4: Final Conclusion matching the exact Option
+   (Keep every step clearly numbered on its own line. Do NOT combine into a single paragraph).
+
+Return STRICTLY a valid JSON object matching this schema:
+{
+  "direct_answer": "Option (c) v0 + g/2 + f/3",
+  "question_title": "Velocity and displacement integration",
+  "key_points": ["Given velocity v(t) = v0 + gt + ft^2", "Displacement x = integral v dt from 0 to 1"],
+  "explanation": "Step 1: Identify given quantities...\\nStep 2: Set up integral...\\nStep 3: Calculate...\\nFinal Result: Option (c)"
+}"""
+
+        for model in self.models_to_try:
+            try:
+                url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={config.gemini_api_key}"
+                payload = {
+                    "contents": [{
+                        "parts": [
+                            {"inlineData": {"mimeType": "image/jpeg", "data": b64_image}},
+                            {"text": prompt}
+                        ]
+                    }],
+                    "generationConfig": {
+                        "temperature": 0.0,
+                        "maxOutputTokens": 2500,
+                        "responseMimeType": "application/json"
+                    }
+                }
+                req = urllib.request.Request(
+                    url,
+                    data=json.dumps(payload).encode("utf-8"),
+                    headers={"Content-Type": "application/json"}
+                )
+                with urllib.request.urlopen(req, timeout=25) as response:
+                    res_data = json.loads(response.read().decode("utf-8"))
+                    text = res_data["candidates"][0]["content"]["parts"][0]["text"]
+                    parsed = json.loads(text)
+                    direct_ans = parsed.get("direct_answer", "Solved")
+                    explanation = parsed.get("explanation", "")
+                    title = parsed.get("question_title", "Cropped Question")
+                    key_points = parsed.get("key_points", [f"Direct: {direct_ans}"])
+
+                    return {
+                        "question_id": f"snip_{int(time.time())}",
+                        "question_title": title,
+                        "direct_answer": direct_ans,
+                        "explanation": explanation,
+                        "key_points": key_points,
+                        "time_complexity": "N/A",
+                        "space_complexity": "N/A",
+                        "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+                        "q_type": "mcq" if "option" in direct_ans.lower() else "math"
+                    }
+            except Exception as e:
+                print(f"[Gemini Vision] Crop solve with {model} failed: {e}")
+                continue
+
+        return None
 
 gemini_vision = GeminiVisionEngine()

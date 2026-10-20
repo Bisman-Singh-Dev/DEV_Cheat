@@ -8,6 +8,7 @@
   const historyCount = document.getElementById("historyCount");
   const cliMsg = document.getElementById("cliMsg");
 
+  const btnSnipMode = document.getElementById("btnSnipMode");
   const btnManualScan = document.getElementById("btnManualScan");
   const btnHideResponses = document.getElementById("btnHideResponses");
   const btnSimulateMultiple = document.getElementById("btnSimulateMultiple");
@@ -405,7 +406,11 @@
         return;
       }
 
-      if (e.key === "q" || e.key === "Q") {
+      if (e.key === "b" || e.key === "B") {
+        e.preventDefault();
+        fetch("/api/snip", { method: "POST" });
+        setCliMsg("🎯 Snip Mode Active! Drag mouse on screen across the question to solve.");
+      } else if (e.key === "q" || e.key === "Q") {
         e.preventDefault();
         fetch("/api/hide", { method: "POST" });
         hideResponses();
@@ -445,6 +450,13 @@
   }
 
   // Event Listeners
+  if (btnSnipMode) {
+    btnSnipMode.addEventListener("click", () => {
+      fetch("/api/snip", { method: "POST" });
+      setCliMsg("🎯 Snip Mode Active! Drag mouse on screen across the question to solve.");
+    });
+  }
+
   btnManualScan.addEventListener("click", () => {
     fetch("/api/scan", { method: "POST" });
     setCliMsg("Manual scan triggered...");

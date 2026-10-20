@@ -100,6 +100,12 @@ async def clear_all():
     screen_monitor.clear_all()
     return {"status": "cleared"}
 
+@app.post("/api/snip")
+async def trigger_snip():
+    if desktop_overlay.root:
+        desktop_overlay.root.after(0, desktop_overlay.start_snip_mode)
+    return {"status": "snip_mode_started"}
+
 @app.post("/api/toggle-monitor")
 async def toggle_monitor():
     if screen_monitor.is_paused:

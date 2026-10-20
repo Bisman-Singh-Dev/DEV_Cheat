@@ -33,8 +33,9 @@ class ScreenMonitor:
         # Event callbacks
         self.listeners: List[Callable[[str, Any], None]] = []
 
-        # Hook overlay solve request
+        # Hook overlay callbacks
         desktop_overlay.on_solve_request = self.solve_question
+        desktop_overlay.on_snip_completed = self.handle_snip_completed
 
         # Setup keyboard and mouse listeners
         self._setup_hotkeys()
@@ -46,6 +47,10 @@ class ScreenMonitor:
             return
 
         def on_click(x, y, button, pressed):
+            # If overlay is in snip mode, let the overlay canvas handle the drag
+            if desktop_overlay.is_snipping:
+                return
+
             # Trigger on mouse click release (pressed=False) and left mouse button
             if not pressed and button == mouse.Button.left:
                 if not self.current_questions:
@@ -81,7 +86,12 @@ class ScreenMonitor:
         def on_press(key):
             try:
                 char = getattr(key, 'char', None)
-                if char in ('q', 'Q'):
+                if char in ('b', 'B'):
+                    print("[Dev_Cheat] 'B' key pressed -> Activating interactive mouse snip mode!")
+                    if desktop_overlay.root:
+                        desktop_overlay.root.after(0, desktop_overlay.start_snip_mode)
+                    self._emit("snip_mode_started", {})
+                elif char in ('q', 'Q'):
                     self.handle_q_key()
                 elif char in ('s', 'S'):
                     print("[Dev_Cheat] Manual Scan triggered via 'S' hotkey.")
@@ -98,6 +108,74 @@ class ScreenMonitor:
             self._kb_listener.start()
         except Exception as e:
             print(f"[Dev_Cheat] Keyboard listener notice: {e}")
+
+    def handle_snip_completed(self, x1: int, y1: int, x2: int, y2: int):
+        """Called when user drags and boxes a question after pressing 'B'."""
+        print(f"[Dev_Cheat] Processing snipped area: ({x1}, {y1}) to ({x2}, {y2})...")
+        threading.Thread(target=self._process_snip_async, args=(x1, y1, x2, y2), daemon=True).start()
+
+    def _process_snip_async(self, x1: int, y1: int, x2: int, y2: int):
+        self.status = "solving"
+        self._emit("status_change", {"status": "solving", "target": "Snipped Area"})
+
+        # Capture current screen and crop to selected area
+        screen = ocr_engine.capture_screen()
+        self.last_screenshot = screen
+
+        w = x2 - x1
+        h = y2 - y1
+        cropped = screen.crop((x1, y1, x2, y2))
+
+        # Solve with Gemini Vision
+        solution = gemini_vision.solve_crop(cropped)
+
+        if not solution:
+            # Fallback to local OCR + text solver
+            try:
+                loop = asyncio.new_event_loop()
+                ocr_res = loop.run_until_complete(ocr_engine.recognize(cropped))
+                loop.close()
+                text = " ".join(l["text"] for l in ocr_res.get("lines", []))
+                solution = solver.solve(text)
+            except Exception as e:
+                print(f"[Dev_Cheat] Fallback solve error: {e}")
+                solution = {
+                    "direct_answer": "Error solving question",
+                    "explanation": "Could not connect to Gemini Vision. Please check your internet connection.",
+                    "timestamp": time.strftime("%Y-%m-%d %H:%M:%S")
+                }
+
+        q_id = f"snip_{int(time.time())}"
+        solution["question_id"] = q_id
+        self.last_solution = solution
+
+        # Save to solver history
+        solver.history.insert(0, solution)
+        solver._save_history()
+
+        # Create QuestionBlock for persistent box on screen
+        block = QuestionBlock(
+            q_id=q_id,
+            title=solution.get("question_title", "Selected Question"),
+            text=solution.get("direct_answer", ""),
+            bbox=[x1, y1, w, h],
+            q_type=solution.get("q_type", "mcq")
+        )
+        block.solution = solution
+        self.current_questions = [block]
+
+        # Update overlay with the confirmed bounding box and open solution window
+        desktop_overlay.update_questions([block.to_dict()])
+        desktop_overlay.show_solution(solution)
+
+        self._emit("solved", {
+            "question": block.to_dict(),
+            "solution": solution
+        })
+
+        self.status = "idle"
+        self._emit("status_change", {"status": "idle"})
+        print(f"[Dev_Cheat] Solved Snipped Question: {solution.get('direct_answer')}")
 
     def handle_q_key(self):
         """User pressed 'Q': Hide all active responses."""
@@ -157,7 +235,7 @@ class ScreenMonitor:
         asyncio.set_event_loop(loop)
 
         while self.is_running:
-            if not self.is_paused:
+            if not self.is_paused and not desktop_overlay.is_snipping:
                 try:
                     loop.run_until_complete(self._perform_scan())
                 except Exception as e:
@@ -189,6 +267,12 @@ class ScreenMonitor:
             except Exception as e:
                 print(f"[Monitor] Local OCR fallback error: {e}")
 
+        # If user has an active snipped box on screen, don't overwrite it with empty scan
+        if not detected and self.current_questions and any("snip_" in q.id for q in self.current_questions):
+            self.status = "idle"
+            self._emit("status_change", {"status": "idle"})
+            return
+
         self.current_questions = detected
         questions_dict = [q.to_dict() for q in detected]
         q_count = len(detected)
@@ -198,7 +282,6 @@ class ScreenMonitor:
             "questions": questions_dict
         })
 
-        # Update overlay with precision bounding boxes
         desktop_overlay.update_questions(questions_dict)
 
         if q_count == 0:
@@ -207,7 +290,6 @@ class ScreenMonitor:
             return
 
         if q_count == 1:
-            # Single Question -> Instantly solve and display solution
             q = detected[0]
             q_hash = hashlib.md5(q.text.encode()).hexdigest()
 
@@ -227,7 +309,6 @@ class ScreenMonitor:
                 self._last_solved_question_hash = q_hash
             self.status = "idle"
         else:
-            # Multiple Questions -> Red boxes placed around each, waiting for user click!
             print(f"[Dev_Cheat] {q_count} physics/math questions detected with Gemini Vision! Red boxes active. Click any question or badge to view its solution.")
             self.status = "idle"
 
@@ -240,7 +321,6 @@ class ScreenMonitor:
         q_type = question_data.get("type", "general")
         options = question_data.get("options", [])
 
-        # If question already has vision solution, reuse it
         if question_data.get("solution"):
             solution = question_data["solution"]
         else:
