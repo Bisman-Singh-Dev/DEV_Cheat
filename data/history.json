@@ -1,5 +1,590 @@
 [
   {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:14:05",
+    "question_text": "A File Edit ;ection.tsx Selection View Go Run DashboardPage.tsx Windows PowerShell Terminal Help sitemap.xml pdf_previews - Antigravity IDE - .env.local firebase.json rename_brand.py .env.local x Scratch] , 5055): Al Developer Screen Solver App o x x Real—Time Property Screen Question Solver & Neural Assistant << System Configuration & Status ly look at the screen and see for question answer with a reposne request, json req = urllib.req v port urllib. request, jsonreq ://127.0.0.1: 5Ø55/api/ status ' )re . read() . decode())\" sed\" :false, \"is running\" :true, \"qu e_solution\" : true, \" config\" : { \"gemi \"scan interval\" : 2.0, \"auto solv \" : true, \"enable_desktop_overlay\" • Localhost Dashboard AI Engine Screen OCR Scan Interval Auto—Solve Single Desktop Red Box HUD Value http://127.O.O.1:5055 (Gemini Neural) gemini—3.8—+1 ash Windows Native Windows . Media. Ocr (Zero—Latency) ENABLED ENABLED Command Prompt Hotkey Legend Hide active responses & dismiss overlay Force instant manual screen scan Clear highlighted questions & cache [Click] Click on any Red Bounding Box on screen/dashboard to solve [Ctrl+C] Stop Dev_Cheat safely Monitoring screen for coding problems, multiple choice, and tech questions. . [Errno 10048] error while attempting to bind on address ('127.0.0.1' ERROR f each socket address (protocol/network address/port) is normally permitted DEV_Cheat stopped cleanly . PS C: Singh\\.gemini\\antigravity—ide\\scratch\\DEV_Cheat> [winerror 10048] only one usage o O Files With Changes Ask anything, @ to mention, / for actions Bisman Singh main* 41 @ o Ao + Gemini 3.8 Flash Low Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN Review Changes Antigravity - Settings 17:13 20/10/2026",
+    "q_type": "mcq"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:13:53",
+    "question_text": "A File Edit Selection View Go Run Terminal Help pdf_previews - Antigravity IDE - .env.local ;ection.tsx sitemap.xml DashboardPage.tsx firebase.json rename_brand.py .env.local Scratchl x Al Developer Screen Solver App gemini api key Worked for 1m > Your new Gemini API key has been configured: 1. Environment File Updated: • Saved to . env : env Ab8RN6Kdjp4uzFzx1zTUj n_ FkohFae Ec rohZTe1K rz2pFgpA 2. Live Server Updated: • The running DEV_Cheat server ( http://127.Ø.Ø.1:5Ø55 ) received the configuration update dynamically via /api/config with has_api_key: true l. • Any question detected or clicked on screen/dashboard will now use x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC main FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ this active key. 1 file changed +2-1 O Files With Changes Review Review Changes",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:13:41",
+    "question_text": "A File Edit Selection View Go Run Terminal Help pdf_previews - Antigravity IDE - .env.local ;ection.tsx sitemap.xml DashboardPage.tsx firebase.json rename_brand.py .env.local Scratchl x Al Developer Screen Solver App gemini api key Worked for 1m > Your new Gemini API key has been configured: 1. Environment File Updated: • Saved to . env : env Ab8RN6Kdjp4uzFzx1zTUj n_ FkohFae Ec rohZTe1K rz2pFgpA 2. Live Server Updated: • The running DEV_Cheat server ( http://127.Ø.Ø.1:5Ø55 ) received the configuration update dynamically via /api/config with has_api_key: true l. • Any question detected or clicked on screen/dashboard will now use x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC main FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ this active key. 1 file changed +2-1 O Files With Changes",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:13:28",
+    "question_text": "A File Edit ;ection.tsx Selection View Go Run DashboardPage.tsx Windows PowerShell Terminal Help sitemap.xml pdf_previews - Antigravity IDE - .env.local firebase.json rename_brand.py .env.local x Scratch] , 5055): Al Developer Screen Solver App o x x Real—Time Property Screen Question Solver & Neural Assistant << System Configuration & Status Localhost Dashboard AI Engine Screen OCR Scan Interval Auto—Solve Single Desktop Red Box HUD Value http://127.O.O.1:5055 (Gemini Neural) gemini—3.8—+1 ash Windows Native Windows . Media. Ocr (Zero—Latency) ENABLED ENABLED Command Prompt Hotkey Legend Hide active responses & dismiss overlay Force instant manual screen scan Clear highlighted questions & cache [Click] Click on any Red Bounding Box on screen/dashboard to solve [Ctrl+C] Stop Dev_Cheat safely Monitoring screen for coding problems, multiple choice, and tech questions. . [Errno 10048] error while attempting to bind on address ('127.0.0.1' ERROR f each socket address (protocol/network address/port) is normally permitted DEV_Cheat stopped cleanly . PS C: Singh\\.gemini\\antigravity—ide\\scratch\\DEV_Cheat> aeEcrOhZT01K_-rz2pFgpA nfigured: 6Kdjp4uzFzx1zTUjn_FkohFaeEcrOhZTe1K -flash r ( http://127.e. ynamically via /api/config with licked on screen/dashboard will now use Review > Acer 1,222 items 1 item selected dev tools-indicator na•å C:\\Users\\Bisman [winerror 10048] only one usage o O Files With Changes C O File C:/Users/Bisman%20Singh/Downloa.. Ask anything, @ to mention, / for actions + Gemini 3.8 Flash Low Ln7,C0162 Spaces•4 UTE-8 LF Dotenv ENG IN Review Changes Antigravity - Settings 17:13 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 4",
+    "key_points": [
+      "Calculated 2 + 2 = 4"
+    ],
+    "code": "result = 2 + 2",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 2 + 2.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:13:16",
+    "question_text": "Q In/ A Q lal Skil lal Q Q Nel & & & & Nel DP C O File C:/Users/Bisman%20Singh/Downloads/Telegram%20Desktop/71_JEE Main_Physics_2002 2020 Chapterwise_Solved Papers_crackjee.pdf v Draw v distance between two t 60 km/h. The average [Online May 7, 20121 45 km/h 60 km/h + gt+ft2. If its position ent after unit time (t = [20071 vo + 2g + 3f e t = 0, starts moving n with a velocity 'v' that cement of the particle [20061 tl/2 + E 23 (ms ) 4 2 1 8. 9 time (s) The distance x covered by a particle in one dimensional motion varies with time t as x2 = at2 + 2bt + c. If the acceleration of the particle depends on x as x n, where n is an integer, the value of n is INA 9 Jan 202011 A bullet of mass 20g has an initial speed of I ms-1, just before it starts penetrating a mud wall of thickness 20 cm. Ifthe wall offers a mean resistance of 2.5 x IO 2 N, the speed of the bullet after emerging from the other side of the wall is close to : -1 (a) 0.1 ms -1 c 0.3 ms [10 Apr. 2019 111 -1 (b) 0.7ms -1 d 0.4 ms ENG IN Edit with Acrobat 17:13 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:13:10",
+    "question_text": "A File Edit ;ection.tsx Selection View Go Run DashboardPage.tsx Windows PowerShell Terminal Help sitemap.xml pdf_previews - Antigravity IDE - .env.local firebase.json rename_brand.py .env.local x Scratch] , 5055): Al Developer Screen Solver App o x x 1----/1-----1 Real—Time Property Screen Question Solver & Neural Assistant << System Configuration & Status Localhost Dashboard AI Engine Screen OCR Scan Interval Auto—Solve Single Desktop Red Box HUD Value http://127.O.O.1:5055 (Gemini Neural) gemini—3.8—+1 ash Windows Native Windows . Media. Ocr (Zero—Latency) ENABLED ENABLED Command Prompt Hotkey Legend aeEcrOhZT01K_-rz2pFgpA nfigured: 6Kdjp4uzFzx1zTUjn_FkohFaeEcrOhZTe1K -flash r ( http://127.e. ynamically via /api/config with licked on screen/dashboard will now use Hide active responses & dismiss overlay Force instant manual screen scan Clear highlighted questions & cache [Click] Click on any Red Bounding Box on screen/dashboard to solve [Ctrl+C] Stop Dev_Cheat safely Monitoring screen for coding problems, multiple choice, and tech questions. . [Errno 10048] error while attempting to bind on address ('127.0.0.1' ERROR f each socket address (protocol/network address/port) is normally permitted DEV_Cheat stopped cleanly . PS C: Singh\\.gemini\\antigravity—ide\\scratch\\DEV_Cheat> C:\\Users\\Bisman > Acer 1,197 items 1 item selected Bisman Singh main* @ 20 A1 e A [winerror 10048] only one usage o O Files With Changes Ask anything, @ to mention, / for actions + Gemini 3.8 Flash Low Ln7,C0162 Spaces•4 UTE-8 LF Dotenv ENG IN Review Review Changes Antigravity - Settings 17:13 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:13:00",
+    "question_text": "A File Edit ;ection.tsx Selection View Go Run DashboardPage.tsx Windows PowerShell Terminal Help sitemap.xml pdf_previews - Antigravity IDE - .env.local firebase.json rename_brand.py .env.local x Scratch] , 5055): Al Developer Screen Solver App o x x Real—Time Property Screen Question Solver & Neural Assistant << System Configuration & Status Localhost Dashboard AI Engine Screen OCR Scan Interval Auto—Solve Single Desktop Red Box HUD Value http://127.O.O.1:5055 (Gemini Neural) gemini—3.8—+1 ash Windows Native Windows . Media. Ocr (Zero—Latency) ENABLED ENABLED Command Prompt Hotkey Legend Hide active responses & dismiss overlay Force instant manual screen scan Clear highlighted questions & cache [Click] Click on any Red Bounding Box on screen/dashboard to solve [Ctrl+C] Stop Dev_Cheat safely Monitoring screen for coding problems, multiple choice, and tech questions. . [Errno 10048] error while attempting to bind on address ('127.0.0.1' ERROR f each socket address (protocol/network address/port) is normally permitted DEV_Cheat stopped cleanly . PS C: Singh\\.gemini\\antigravity—ide\\scratch\\DEV_Cheat> aeEcrOhZT01K_-rz2pFgpA nfigured: 6Kdjp4uzFzx1zTUjn_FkohFaeEcrOhZTe1K -flash r ( http://127.e. ynamically via /api/config with licked on screen/dashboard will now use Review C:\\Users\\Bisman > Acer 898 items 1 item selected Bisman Singh main* [winerror 10048] only one usage o O Files With Changes Ask anything, @ to mention, / for actions @ 20 A1 + Gemini 3.8 Flash Low Ln7, Col 62 Spaces•4 UTE-8 LF { } Dotenv ENG IN Review Changes Antigravity - Settings 17:12 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:12:48",
+    "question_text": "A File Edit ;ection.tsx Selection View Go Run DashboardPage.tsx Terminal Help sitemap.xml firebase.json pdf_previews - Antigravity IDE - .env.local rename_brand.py .env.local Scratch] x Al Developer Screen Solver App o O Files With Changes x Windows PowerShell Windows PowerShell Copyright (C) Microsoft Corporation. All rights reserved . PS C:\\Users\\Bisman Singh\\.gemini\\antigravity—ide\\scratch\\DEV_Cheat> x aeEcrOhZT01K_-rz2pFgpA nfigured: 6Kdjp4uzFzx1zTUjn_FkohFaeEcrOhZTe1K -flash r ( http://127.e. amically via /api/config with licked on screen/dashboard will now use C:\\Users\\Bisman > Acer 711 items 1 item selected Bisman Singh main* @ 20 A1 e A Ask anything, @ to mention, / for actions + Gemini 3.8 Flash Low Ln7,C0162 Spaces•4 UTE-8 LF Dotenv ENG IN Review Review Changes Antigravity - Settings 17:12 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:12:35",
+    "question_text": "A File Edit Selection View Go Run Terminal Help New ;ection.tsx sitemap.xml DashboardPage.tsx firebase.json pdf_previews - Antigravity IDE - .env.local rename_brand.py .env.local Scratchl x Al Developer Screen Solver App x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt 1 dev - Search Results in scratch X > Search Results in scratch View Search options v X dev Close search x i key x or 1m > Q Gemini API key has been configured: Sort Details > Videos Desktop Downloads Documents Pictures Music Videos Screenshots scratch Date modified: 20/10/2026 17:04 Bisman-Singh Date modified: 25/09/2026 23:35 d ModeChecks Date modified: 13/07/2026 22:55 @t001s-indicator Date modified: 13/07/2026 22:54 d tools-info Date modified: 13/07/2026 22:54 d ools-indicator Cut Copy Rename Screen Recordings Telegram Desktop This pc > Acer 568 items 1 item selected Bisman Singh main* • @ 20 I Date modified: d overlay Date modified: Date modified: Date modified: rn1GifW-'. Open Open in new tab Open in new window Open folder location Pin to Quick access Pin to Start Compress to... Copy as path Properties Open project in ChatGPT Loading... Loading... Show more options Delete Enter Ctrl+Shift+C Alt+Enter ment File Updated: Saved to O . env : env Ab8RN6Kdjp4uzFzx1zTUj n_ FkohFae Ec rohZTe1K rz2pFgpA rver Updated: The running DEV_Cheat server ( http://127.ø. ration update dynamically via /api/config with has_api_key: true l. Any question detected or clicked on screen/dashboard will now use 13/07/2026 22:54 13/07/2026 22:54 13/07/2026 22:54 13/07/2026 22:54 this active key. nged +2-1 O Files With Changes Ask anything, @ to mention, / for actions + Gemini 3.8 Flash Low Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN Review Review Changes Antigravity - Settings 17:12 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:12:23",
+    "question_text": "A File Edit Selection View Go Run Terminal Help New pdf_previews - Antigravity IDE - .env.local ;ection.tsx sitemap.xml DashboardPage.tsx firebase.json rename_brand.py .env.local Scratchl x dev X Close search Al Developer Screen Solver App x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt 1 dev - Search Results in scratch X > x i key x or 1m > Q Gemini API key has been configured: Search Results in scratch Sort ÜCheat View Search options v Details > Videos Desktop Downloads Documents Pictures Music Videos Screenshots scratch Screen Recordings Telegram Desktop Date modified: 20/10/2026 17:04 Bisman-SinghG Date modified: 25/09/2026 23:35 Date modified: 13/07/2026 22:55 Date modified: 13/07/2026 22:54 Date modified: 13/07/2026 22:54 ools-indicator C:\\Users\\Bisman Singh\\.gemini\\antigravity-ide\\scratch C:\\Users\\Bisman Singh\\.gemini\\antigravity-ide\\scratch C:\\Users\\Bisman C:\\Users\\Bisman C:\\Users\\Bisman C:\\Users\\Bisman C:\\Users\\Bisman C:\\Users\\Bisman C:\\Users\\Bisman C:\\Users\\Bisman ment File Updated: Saved to O . env : env Ab8RN6Kdjp4uzFzx1zTUj n_ FkohFae Ec rohZTe1K rz2pFgpA rver Updated: The running DEV_Cheat server ( http://127.ø. ration update dynamically via /api/config with has_api_key: true l. Any question detected or clicked on screen/dashboard will now use Date modified: Date modified: Date modified: Date modified: 13/07/2026 22:54 13/07/2026 22:54 13/07/2026 22:54 13/07/2026 22:54 This pc > Acer 282 items Bisman Singh main* this active key. nged +2-1 O Files With Changes Ask anything, @ to mention, / for actions @ 20 A1 + Gemini 3.8 Flash Low Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN Review Review Changes Antigravity - Settings 17:12 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:12:11",
+    "question_text": "A File Edit Selection View Go Run Terminal Help New pdf_previews - Antigravity IDE - .env.local ;ection.tsx sitemap.xml DashboardPage.tsx firebase.json rename_brand.py .env.local Scratchl x dev X Close search Al Developer Screen Solver App x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt 1 dev - Search Results in scratch X > Search Results in scratch x i key x or 1m > Q Sort View Search options v Details > Videos Desktop Downloads Documents Pictures Music Videos Screenshots scratch Date modified: 20/10/2026 17:04 Bisman-Singh Date modified: 25/09/2026 23:35 C:\\Users\\Bisman Singh\\.gemini\\antigravity-ide\\scratch C:\\Users\\Bisman Singh\\.gemini\\antigravity-ide\\scratch Gemini API key has been configured: ment File Updated: Saved to O . env : env Ab8RN6Kdjp4uzFzx1zTUj n_ FkohFae Ec rohZTe1K rz2pFgpA rver Updated: The running DEV_Cheat server ( http://127.ø. ration update dynamically via /api/config with has_api_key: true l. Any question detected or clicked on screen/dashboard will now use Screen Recordings Telegram Desktop This pc > Acer 2 items Bisman Singh main* • @ 20 I this active key. nged +2-1 O Files With Changes Ask anything, @ to mention, / for actions + Gemini 3.8 Flash Low Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN Review Review Changes Antigravity - Settings 17:12 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 1",
+    "key_points": [
+      "Calculated 2 - 1 = 1"
+    ],
+    "code": "result = 2 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 2 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:11:58",
+    "question_text": "A File Edit Selection View Go Run Terminal Help pdf_previews - Antigravity IDE - .env.local ;ection.tsx sitemap.xml DashboardPage.tsx firebase.json rename_brand.py .env.local Scratchl x Al Developer Screen Solver App i key x or 1m > Gemini API key has been configured: ment File Updated: Saved to O . env : env Ab8RN6Kdjp4uzFzx1zTUj n_ FkohFae Ec rohZTe1K rz2pFgpA rver Updated: The running DEV_Cheat server ( http://127.ø. ration update dynamically via /api/config with has_api_key: true l. Any question detected or clicked on screen/dashboard will now use x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt 1 Bisman Singh main* • @ 20 I this active key. nged +2-1 O Files With Changes Ask anything, @ to mention, / for actions + Gemini 3.8 Flash Low Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN Review Review Changes Antigravity - Settings 17:11 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:11:46",
+    "question_text": "A File Edit Selection View Go Run Terminal Help pdf_previews - Antigravity IDE - .env.local ;ection.tsx sitemap.xml DashboardPage.tsx firebase.json rename_brand.py .env.local Scratchl x Al Developer Screen Solver App gemini api key Worked for 1m > Your new Gemini API key has been configured: 1. Environment File Updated: • Saved to . env : env Ab8RN6Kdjp4uzFzx1zTUj n_ FkohFae Ec rohZTe1K rz2pFgpA 2. Live Server Updated: • The running DEV_Cheat server ( http://127.Ø.Ø.1:5Ø55 ) received the configuration update dynamically via /api/config with has_api_key: true l. • Any question detected or clicked on screen/dashboard will now use x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ Bisman Singh main* • @ 20 I this active key. 1 file changed +2-1 5:10 PM O Files WithChanaev A Antigravity I DE Ask anything, @ t Antigravity IDE + Gemini 3.8 Fla Al Developer Screen Solver App Ln 7, Col 62 ENG Review | [21 Review Chanaes 17:11 IN 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:11:34",
+    "question_text": "A File Edit Selection View Go Run Terminal Help pdf_previews - Antigravity IDE - .env.local ;ection.tsx sitemap.xml DashboardPage.tsx firebase.json rename_brand.py .env.local x Scratchl Al Developer Screen Solver App [Bisman-Singh-Dev/DEV_Cheat](https://github.com/Bisman-Singh- Dev/DEV_Cheat) This mv in this i he gemini api key Worked for 1m > Your new Gemini API key has been configured: 1. Environment File Updated' • Saved to env GEMINI_API KEY-AQ. Ab8RN6Kdjp4uzFzx1zTUjn FkohFaeEcr0hZTe1K rz2pFgpA GEMINI BODEL=gemini-3.8-f1ash 2. Live Server Updated' • The running DEV_Cheat server ( http://127.ø.ø.1:5055 ) received the configuration update dynamically via /api/config with has_api_key: true . • Any question detected or clicked on screen/dashboard will now use x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ Bisman Singh main * • @ 20 A1 this active key. O Files WithChanaev A Antigravity I DE Åsk anything, @ t Antigravity IDE + Gemini 3.8 Fla Al Developer Screen Solver App Ln 7, Col 62 Spaces.VAAJIFbAF\"üAJ0tenvA\" ENG | [21 Review Chanaes 17:11 IN 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:11:31",
+    "question_text": "A File Edit Selection View Go Run Terminal Help pdf_previews - Antigravity IDE - .env.local ;ection.tsx sitemap.xml DashboardPage.tsx firebase.json rename_brand.py .env.local Scratchl x Al Developer Screen Solver App [Bisman-Singh-Dev/DEV_Cheat](https://github.com/Bisman-Singh- Dev/DEV_Cheat) This is mv reno name make rhnanes in this and also i showy he Rh'e monitor configurations, and keyboard shortcuts. • Automatically initializes background screen capture, native Windows OCR, Al solver, and launches the localhost dashboard. 2. Autonomous Real-Time Screen Monitoring & OCR: • Uses native Windows. Pledia.Ocr ( winocr ) for sub-second recognition with zero installation overhead and pixel-level line/word bounding boxes [x, y, w, h] l. • Screen change detector prevents unnecessary CPU cycles when the display is stationary. 3. Intelligent Question Detection: • Detects LeetCode / HackerRank problems, MCQ formats ( A) , B) C) , D) / 1. , 2. ), coding snippets, and tech interview questions. • Single Question: Automatically solves it immediately and projects the solution (\"solves the question there only\"). • Multiple Questions: Draws glowing Red Bounding Boxes with interactive [QI] , [Q2] badges around every question on screen. 4. Click-to-Solve & Q Key Response Dismissal: • Click to Solve: Clicking any red box (directly on the desktop transparent HUD overlay or on the localhost canvas) triggers instant Al solving for that question. • Press Q to Dismiss: Pressing Q on your keyboard immediately hides/closes all active solution cards and resets the view so you can continue your task. • Persistent History. Every response is automatically saved to x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ O Files With Changes Ask anything, @ to mention, / for actions Bisman Singh main* • @ 20 I + Gemini 3.8 Flash Low Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN Review Changes Antigravity - Settings 17:11 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:11:19",
+    "question_text": "A File Edit Selection View Go Run Terminal Help pdf_previews - Antigravity IDE - .env.local ;ection.tsx sitemap.xml DashboardPage.tsx firebase.json rename_brand.py .env.local x Scratchl Al Developer Screen Solver App gemini api key Ran curl .exe -s -X POST \"https://generativelanguage.googl& ...\\DEV Cheat > curl .exe -s —X POST \"https://generativelang uage . googleapis . com/vlbeta/models/gemini-3.8-flash : genera t eContent ? key—AQ. Ab8RN6Kdj p4uzF zx1 z TUj n_FkohF aeEc rOhZ TOIK x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ rz2pFgpA\" -H \"Content -Type: application/json\" ntents\\\" : e 10 \"error\": { \"code\": 400, \"message\" • \"Invalid JSON payload received. -max-tim Expected a n object key or \"status\": \"INVALID ARGUMENT\" Run python -c \" import requests url ' https : / /generativ ...\\DEV Cheat > python -c \"import requestsurl ' https://g enerativelanguage. googleapis . com/vlbeta/models/gemini-3. 8- f1 ash : generateContent ? key—AQ. Ab8RN6Kdj p4uzF zx1 z TIJjn_Fk requests . post (ur 1, ohFaeEcrOhZTe1K -rz2pFgpA'r {'contents': [ {'parts': [ { 'text': 'Say 'STATUS: , r. status_code)print( ' BODY: ' roam Working J son = timeout r. text .env Singh\\.gemini\\antigravity-ide\\scratch\\DEV_Cheat\\.env 1 File With Changes Ask anything, @ to mention, / for actions View 1 edited file .env Alt+L > Bisman Singh main * • @ 20 A1 + Gemini 3.8 Flash Low Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN Reject all Accept all Antigravity - Settings 17:11 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Question detected",
+    "key_points": [
+      "Analyzed query parameters",
+      "Ready for submission"
+    ],
+    "code": "# Dev_Cheat: optimal solution stub\ndef solution():\n    pass",
+    "time_complexity": "O(n)",
+    "space_complexity": "O(1)",
+    "explanation": "Question captured from screen. Add GEMINI_API_KEY to .env for full real-time neural solutions.",
+    "source": "local-fallback",
+    "timestamp": "2026-10-20 17:11:06",
+    "question_text": "wishcc Secure €3 Setting Wish wishcc https://github.com/Bisman-Singh-Dev?tab=repositories Bisman Singh wishcc Q wish cc Wish findbe Wish C steelar Instagr Q gle Type Dome Language • Find a repository... DEV Cheat Public Python MIT License Sort Updated 1 minute ago Dream-College Private A modern platform to help students navigate their college application journey, find counselors, and connect with a community of peers. TypeScript vitallens TypeScript 1 Updated yesterday Public Bisman-Singh-Dev • he/him Mechatronics Robotics LLMs$ Edit profile Pa 3 followers • 9 following Delhi Public School Indirapuram India www.wishcollege.com Local bismansingh JavaScript 1 Updated yesterday Public Updated 2 days ago O https://orcid.org/0009-0009-6133-223X https://bismansingh.vercel.app Highlights https://github.com/Bisman-Singh-Dev/DEV Cheat Bisman-Singh-Dev Public 1 Updated 2 days ago Hand-Movement-Detected-Working-Mouse Public Python 1 GNU General Public License v3.O Updated 3 weeks ago APIkey + New Star Starred Starred Starred Starred Starred ENG IN 17:10 20/10/2026",
+    "q_type": "theory",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:10:44",
+    "question_text": "What is DEV Cheat? Readme MIT license Activity O stars O watching O forks Releases No releases published Create a new release Packages No packages published Publish_your first package Contributors 1 Bisman-Singh-Dev Bisman Singh Languages Python 51.6% • JavaScript 18.7% css 18.2% . HTML 11.5% Suggested workflows Based on your tech stack Python application Configure Create and test a Python application. By GitHub Actions ENG IN 17:10 20/10/2026",
+    "q_type": "theory",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2.0",
+    "key_points": [
+      "Calculated 20 / 10 = 2.0"
+    ],
+    "code": "result = 20 / 10",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 20 / 10.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:10:32",
+    "question_text": "11. Usage @ Rate Limit O Spend Billing OBSERVE g Logs and Datasets Changelog 7 wishcc Secure €3 Setting cc Wish C https://aistudio.google.com/api-keys Jul 17, 2026 Jul 17, 2026 Jul 17, 2026 Jul 16, 2026 Jul 15, 2026 Jul 15, 2026 wishcc API Keys wishcc Q wish Wish Project findbe Wish C steelar Instagi Q google Created Oct 20, 2026 Aug 27, 2026 Dome Bismar Q gemin S API quickstart Group by Key ...FgpA • API Key Project Filter by Billing Tier Set up billing Free tier Set up billing Free tier Set up billing Free tier Set up billing Free tier Set up billing Free tier Set up billing Free tier Set up billing Free tier Set up billing Free tier All projects Gemini API Key 5 ...BEGA Gemini API Key ...XTWw Gemini API Key 4 ...ODNw Gemini API Key 3 ...XMVg Gemini API Key 3 ...Jxzw Gemini API Key 2 ...rmQg Gemini API Key 2 ...jCww Gemini API Key Al Health Instructor gen-lang-client-0034733979 JARVIS gen-lang-client-0755667019 Al Health Instructor gen-lang-client-0034733979 Al Health Instructor gen-lang-client-0034733979 My First Project project-f802d11e-d55f-4dc4-ae4 Al Health Instructor millinia70@gm.. PRO gen-lang Health gen-lang Health gen-lang -client-0034733979 -client-0982488474 -client-0982488474 Create API key 11 • 11 • 11 • 11 • 11 • 11 • 11 • 11 • ENG IN 17:10 20/10/2026",
+    "q_type": "general",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 4",
+    "key_points": [
+      "Calculated 2 + 2 = 4"
+    ],
+    "code": "result = 2 + 2",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 2 + 2.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:10:28",
+    "question_text": "Q In/ A Q lal Skil lal Q Q Nel & & & & Nel DP C O File C:/Users/Bisman%20Singh/Downloads/Telegram%20Desktop/71_JEE Main_Physics_2002 2020 Chapterwise_Solved Papers_crackjee.pdf v Draw v distance between two t 60 km/h. The average [Online May 7, 20121 45 km/h 60 km/h + gt+ft2. If its position ent after unit time (t = [20071 vo + 2g + 3f e t = 0, starts moving n with a velocity 'v' that + E 23 (ms ) 4 2 1 8. 9 time (s) The distance x covered by a particle in one dimensional motion varies with time t as x2 = at2 + 2bt + c. If the acceleration of the particle depends on x as x n, where n is an integer, the value of n is INA 9 Jan 202011 A bullet of mass 20g has an initial speed of I ms-1, just before it starts penetrating a mud wall of thickness 20 cm. Ifthe wall offers a mean resistance of 2.5 x IO 2 N, the speed ce tl/2 *71 X Domain P. keys I Google Al Stu... Ilet after emerging from the other side of the wall [10 Apr. 2019 111 -1 ns -1 ns -1 (b) 0.7ms -1 0.4 ENG IN Edit with Acrobat 17:10 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:10:25",
+    "question_text": "A File Edit Selection View Go Run Terminal Help pdf_previews - Antigravity IDE - .env.local ;ection.tsx sitemap.xml DashboardPage.tsx firebase.json rename_brand.py .env.local x Scratchl Al Developer Screen Solver App gemini api key Editing .env +0 -O O x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ x .env Singh\\.gemini\\antigravity-ide\\scratch\\DEV_Cheat\\.env 1 File With Changes Ask anything, @ to mention, / for actions View 1 edited file .env Alt+L > Bisman Singh main* • @ 20 I + Gemini 3.8 Flash Low Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN Reject all Antigravity - Settings 17:10 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:10:22",
+    "question_text": "A File Edit Selection View Go Run Terminal Help pdf_previews - Antigravity IDE - .env.local ;ection.tsx sitemap.xml DashboardPage.tsx firebase.json rename_brand.py .env.local Scratchl x Al Developer Screen Solver App gemini api key Working.. O Files With Changes Åsk anything, @ to mention, / for actions x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ Bisman Singh main* • @ 20 I + Gemini 3.8 Flash Low Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN Review Changes Antigravity - Settings 17:10 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:10:19",
+    "question_text": "A File Edit Selection View Go Run Terminal Help pdf_previews - Antigravity IDE - .env.local ;ection.tsx sitemap.xml DashboardPage.tsx firebase.json rename_brand.py .env.local x Scratchl Al Developer Screen Solver App gemini api key Working O Files With Changes Ask anything, @ to mention, / for actions x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ Bisman Singh main* • @ 20 I + Gemini 3.8 Flash Low Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN Review Changes Antigravity - Settings 17:10 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:10:17",
+    "question_text": "A File Edit Selection View Go Run Terminal Help pdf_previews - Antigravity IDE - .env.local ;ection.tsx sitemap.xml firebase.json rename_brand.py DashboardPage.tsx .env.local Scratchl x Al Developer Screen Solver App [Bisman-Singh-Dev/DEV_Cheat](https://github.com/Bisman-Singh- Dev/DEV_Cheat) This is mv reno name make rhnanes in this and also i showy he Rh'e Repository Structure main. py / dev_cheat.py : CLI entry points with ASCII banner & argument parsing. : Native Windows OCR & screen capture. Question boundary detection & clustering into bounding boxes. dev_cheat/solver.py : Gemini 3.8 Flash solver & local offline fallback : Background monitor loop & global keyboard listener. dev_cheat/overlay.py : Desktop transparent HUD window. dev_cheat/server.py : FastAPl WebSocket & REST API backend. web/ index. html , { } web/style.css , JS web/app.js : Localhost web interface. B' . env. : pre-configured with active Gemini API key. . env & x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ REAWE.md : Documentation. 18 files changed +3421 -O O Files With Changes Bisman Singh main* • @ 20 I Select Model Ctrl+/ gem + Gemini 3.8 Flash Low Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN Review Review Changes Antigravity - Settings 17:10 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:10:14",
+    "question_text": "A File Edit Selection View Go Run Terminal Help pdf_previews - Antigravity IDE - .env.local ;ection.tsx sitemap.xml DashboardPage.tsx firebase.json rename_brand.py .env.local x Scratchl Al Developer Screen Solver App [Bisman-Singh-Dev/DEV_Cheat](https://github.com/Bisman-Singh- Dev/DEV_Cheat) This is mv reno name make rhnanes in this and also i showy he Rh'e Repository Structure main. py / dev_cheat.py : CLI entry points with ASCII banner & argument parsing. : Native Windows OCR & screen capture. Question boundary detection & clustering into bounding boxes. dev_cheat/solver.py : Gemini 3.8 Flash solver & local offline fallback : Background monitor loop & global keyboard listener. dev_cheat/overlay.py : Desktop transparent HUD window. dev_cheat/server.py : FastAPl WebSocket & REST API backend. web/ index. html , { } web/style.css , JS web/app.js : Localhost web interface. B' . env. : pre-configured with active Gemini API key. . env & x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ REAWE.md : Documentation. 18 files changed +3421 -O O Files With Changes Bisman Singh main* • @ 20 I gemini api key/ + Gemini 3.8 Flash High Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN Review Review Changes Antigravity - Settings 17:10 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:10:12",
+    "question_text": "A File Edit Selection View Go Run Terminal Help pdf_previews - Antigravity IDE - .env.local ;ection.tsx sitemap.xml firebase.json rename_brand.py DashboardPage.tsx .env.local x Scratchl Al Developer Screen Solver App [Bisman-Singh-Dev/DEV_Cheat](https://github.com/Bisman-Singh- Dev/DEV_Cheat) This mv in this i he # Run in headless mode (without opening browser automatically) python main.py - -no-browser Hotkeys Reference x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ Key +48 -0 +13-0 +20 -O +31 _O Action Hide Description Dismisses open solution overlays and +103 +190 +198 +280 +220 +246 -O -O -O -O -O -O .gitignore ...an Singh\\.gemini\\antigravity-ide\\scratch\\DEV_Cheat\\.gitignore requirements.txt .env.example .env Singh\\.gemini\\antigravity-ide\\scratch\\DEV_Cheat\\.env init_.py config.py ocr_engine.py ...gravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\ocr_engine.py question_detector.py solver. py ...emini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\solver.py overlay.py ...ini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\overlay.py screen_monitor.py ...e\\scratch\\DEV_Cheat\\dev_cheat\\screen_monitor.py server.py ...emini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\server.py 18 Files With Changes < Alt+H .gitignore View 18 edited files requirements.txt Alt+L > Bisman Singh main* • @ O gemini api key + Gemini 3.8 Flash High Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN Reject all Accept all Antigravity - Settings 17:10 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:10:07",
+    "question_text": "A File Edit Selection View Go Run Terminal Help pdf_previews - Antigravity IDE - .env.local ;ection.tsx sitemap.xml DashboardPage.tsx firebase.json rename_brand.py .env.local x Scratchl Al Developer Screen Solver App [Bisman-Singh-Dev/DEV_Cheat](https://github.com/Bisman-Singh- Dev/DEV_Cheat) This mv in this i he # Run in headless mode (without opening browser automatically) python main.py - -no-browser Hotkeys Reference x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ Key +48 -0 +13-0 +20 -O +31 _O Action Hide Description Dismisses open solution overlays and +103 +190 +198 +280 +220 +246 -O -O -O -O -O -O .gitignore ...an Singh\\.gemini\\antigravity-ide\\scratch\\DEV_Cheat\\.gitignore requirements.txt .env.example .env Singh\\.gemini\\antigravity-ide\\scratch\\DEV_Cheat\\.env init_.py config.py ocr_engine.py ...gravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\ocr_engine.py question_detector.py solver. py ...emini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\solver.py overlay.py ...ini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\overlay.py screen_monitor.py ...e\\scratch\\DEV_Cheat\\dev_cheat\\screen_monitor.py server.py ...emini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\server.py 18 Files With Changes < Alt+H .gitignore View 18 edited files requirements.txt Alt+L > Bisman Singh main* • @ O gemini api key + Gemini 3.8 Flash High Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN Reject all Antigravity - Settings 17:10 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:10:04",
+    "question_text": "A File Edit Selection View Go Run Terminal Help ;ection.tsx sitemap.xml DashboardPage.tsx pdf_previews - Antigravity IDE - .env.local firebase.json rename_brand.py .env.local Scratchl x Al Developer Screen Solver App [Bisman-Singh-Dev/DEV_Cheat](https://github.com/Bisman-Singh- Dev/DEV_Cheat) This mv in this i he # Run in headless mode (without opening browser automatically) python main.py - -no-browser Hotkeys Reference x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ Key +48 -0 +13-0 +20 -O +31 _O Action Hide Description Dismisses open solution overlays and +103 +190 +198 +280 +220 +246 -O -O -O -O -O -O .gitignore ...an Singh\\.gemini\\antigravity-ide\\scratch\\DEV_Cheat\\.gitignore requirements.txt .env.example .env Singh\\.gemini\\antigravity-ide\\scratch\\DEV_Cheat\\.env init_.py config.py ocr_engine.py ...gravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\ocr_engine.py question_detector.py solver. py ...emini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\solver.py overlay.py ...ini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\overlay.py screen_monitor.py ...e\\scratch\\DEV_Cheat\\dev_cheat\\screen_monitor.py server.py ...emini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\server.py 18 Files With Changes < Alt+H .gitignore View 18 edited files requirements.txt Alt+L > Bisman Singh main* • @ O gemini api key/ + Gemini 3.8 Flash High Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN Reject all Antigravity - Settings 17:10 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:10:01",
+    "question_text": "A File Edit Selection View Go Run Terminal Help pdf_previews - Antigravity IDE - .env.local ;ection.tsx sitemap.xml DashboardPage.tsx firebase.json rename_brand.py .env.local x Scratchl Al Developer Screen Solver App [Bisman-Singh-Dev/DEV_Cheat](https://github.com/Bisman-Singh- Dev/DEV_Cheat) This mv in this i he # Run in headless mode (without opening browser automatically) python main.py - -no-browser Hotkeys Reference x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ Key +48 -0 +13-0 +20 -O +31 _O Action Hide Description Dismisses open solution overlays and +103 +190 +198 +280 +220 +246 -O -O -O -O -O -O .gitignore ...an Singh\\.gemini\\antigravity-ide\\scratch\\DEV_Cheat\\.gitignore requirements.txt .env.example .env Singh\\.gemini\\antigravity-ide\\scratch\\DEV_Cheat\\.env init_.py config.py ocr_engine.py ...gravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\ocr_engine.py question_detector.py solver. py ...emini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\solver.py overlay.py ...ini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\overlay.py screen_monitor.py ...e\\scratch\\DEV_Cheat\\dev_cheat\\screen_monitor.py server.py ...emini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\server.py 18 Files With Changes < Alt+H .gitignore View 18 edited files requirements.txt Alt+L > Bisman Singh main* • @ O gemini api key + Gemini 3.8 Flash High Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN Reject all Antigravity - Settings 17:10 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:09:58",
+    "question_text": "A File Edit Selection View Go Run Terminal Help ;ection.tsx sitemap.xml DashboardPage.tsx pdf_previews - Antigravity IDE - .env.local firebase.json rename_brand.py .env.local Scratchl x Al Developer Screen Solver App [Bisman-Singh-Dev/DEV_Cheat](https://github.com/Bisman-Singh- Dev/DEV_Cheat) This mv in this i he # Run in headless mode (without opening browser automatically) python main.py - -no-browser Hotkeys Reference x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ Key +48 -0 +13-0 +20 -O +31 _O Action Hide Description Dismisses open solution overlays and +103 +190 +198 +280 +220 +246 -O -O -O -O -O -O .gitignore ...an Singh\\.gemini\\antigravity-ide\\scratch\\DEV_Cheat\\.gitignore requirements.txt .env.example .env Singh\\.gemini\\antigravity-ide\\scratch\\DEV_Cheat\\.env init_.py config.py ocr_engine.py ...gravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\ocr_engine.py question_detector.py solver. py ...emini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\solver.py overlay.py ...ini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\overlay.py screen_monitor.py ...e\\scratch\\DEV_Cheat\\dev_cheat\\screen_monitor.py server.py ...emini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\server.py 18 Files With Changes < Alt+H .gitignore View 18 edited files requirements.txt Alt+L > Bisman Singh main* • @ O gemini api key/ + Gemini 3.8 Flash High Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN Reject all Antigravity - Settings 17:09 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:09:56",
+    "question_text": "A File Edit Selection View Go Run Terminal Help pdf_previews - Antigravity IDE - .env.local ;ection.tsx sitemap.xml DashboardPage.tsx firebase.json rename_brand.py .env.local x Scratchl Al Developer Screen Solver App [Bisman-Singh-Dev/DEV_Cheat](https://github.com/Bisman-Singh- Dev/DEV_Cheat) This mv in this i he # Run in headless mode (without opening browser automatically) python main.py - -no-browser Hotkeys Reference x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ Key +48 -0 +13-0 +20 -O +31 _O Action Hide Description Dismisses open solution overlays and +103 +190 +198 +280 +220 +246 -O -O -O -O -O -O .gitignore ...an Singh\\.gemini\\antigravity-ide\\scratch\\DEV_Cheat\\.gitignore requirements.txt .env.example .env Singh\\.gemini\\antigravity-ide\\scratch\\DEV_Cheat\\.env init_.py config.py ocr_engine.py ...gravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\ocr_engine.py question_detector.py solver. py ...emini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\solver.py overlay.py ...ini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\overlay.py screen_monitor.py ...e\\scratch\\DEV_Cheat\\dev_cheat\\screen_monitor.py server.py ...emini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\server.py 18 Files With Changes < Alt+H .gitignore View 18 edited files requirements.txt Alt+L > Bisman Singh main* • @ O gemini api key/ + Gemini 3.8 Flash High Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN Reject all Antigravity - Settings 17:09 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:09:53",
+    "question_text": "A File Edit Selection View Go Run Terminal Help pdf_previews - Antigravity IDE - .env.local ;ection.tsx sitemap.xml DashboardPage.tsx firebase.json rename_brand.py .env.local x Scratchl Al Developer Screen Solver App [Bisman-Singh-Dev/DEV_Cheat](https://github.com/Bisman-Singh- Dev/DEV_Cheat) This mv in this i he # Run in headless mode (without opening browser automatically) python main.py - -no-browser Hotkeys Reference x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ Key +48 -0 +13-0 +20 -O +31 _O Action Hide Description Dismisses open solution overlays and +103 +190 +198 +280 +220 +246 -O -O -O -O -O -O .gitignore ...an Singh\\.gemini\\antigravity-ide\\scratch\\DEV_Cheat\\.gitignore requirements.txt .env.example .env Singh\\.gemini\\antigravity-ide\\scratch\\DEV_Cheat\\.env init_.py config.py ocr_engine.py ...gravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\ocr_engine.py question_detector.py solver. py ...emini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\solver.py overlay.py ...ini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\overlay.py screen_monitor.py ...e\\scratch\\DEV_Cheat\\dev_cheat\\screen_monitor.py server.py ...emini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\server.py Reject all < Alt+H .gitignore View 18 edited files requirements.txt Alt+L > Bisman Singh main* • @ O 18 Files With Changes AQAb8RN6Kdj A Antigravity I DE gemini api key Antigravity IDE + Gemini 3.8 Fla Al Developer Screen Solver App Ln 7, Col 62 ENG 17:09 IN 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:09:50",
+    "question_text": "A File Edit Selection View Go Run Terminal Help ;ection.tsx sitemap.xml DashboardPage.tsx pdf_previews - Antigravity IDE - .env.local firebase.json rename_brand.py .env.local Scratchl x Al Developer Screen Solver App [Bisman-Singh-Dev/DEV_Cheat](https://github.com/Bisman-Singh- Dev/DEV_Cheat) This mv in this i he # Run in headless mode (without opening browser automatically) python main.py - -no-browser Hotkeys Reference x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ Key +48 -0 +13-0 +20 -O +31 _O Action Hide Description Dismisses open solution overlays and +103 +190 +198 +280 +220 +246 -O -O -O -O -O -O .gitignore ...an Singh\\.gemini\\antigravity-ide\\scratch\\DEV_Cheat\\.gitignore requirements.txt .env.example .env Singh\\.gemini\\antigravity-ide\\scratch\\DEV_Cheat\\.env init_.py config.py ocr_engine.py ...gravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\ocr_engine.py question_detector.py solver. py ...emini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\solver.py overlay.py ...ini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\overlay.py screen_monitor.py ...e\\scratch\\DEV_Cheat\\dev_cheat\\screen_monitor.py server.py ...emini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\server.py Reject all < Alt+H .gitignore View 18 edited files requirements.txt Alt+L > Bisman Singh main* • @ O 18 Files With Changes AQAb8RN6Kdj A Antigravity I DE gemini api key/ Antigravity IDE + Gemini 3.8 Fla Al Developer Screen Solver App Ln 7, Col 62 ENG 17:09 IN 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:09:48",
+    "question_text": "A File Edit Selection View Go Run Terminal Help pdf_previews - Antigravity IDE - .env.local ;ection.tsx sitemap.xml DashboardPage.tsx firebase.json rename_brand.py .env.local x Scratchl Al Developer Screen Solver App [Bisman-Singh-Dev/DEV_Cheat](https://github.com/Bisman-Singh- Dev/DEV_Cheat) This mv in this i he # Run in headless mode (without opening browser automatically) python main.py - -no-browser Hotkeys Reference x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ Key +48 -0 +13-0 +20 -O +31 _O Action Hide Description Dismisses open solution overlays and +103 +190 +198 +280 +220 +246 -O -O -O -O -O -O .gitignore ...an Singh\\.gemini\\antigravity-ide\\scratch\\DEV_Cheat\\.gitignore requirements.txt .env.example .env Singh\\.gemini\\antigravity-ide\\scratch\\DEV_Cheat\\.env init_.py config.py ocr_engine.py ...gravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\ocr_engine.py question_detector.py solver. py ...emini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\solver.py overlay.py ...ini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\overlay.py screen_monitor.py ...e\\scratch\\DEV_Cheat\\dev_cheat\\screen_monitor.py server.py ...emini\\antigravity-ide\\scratch\\DEV_Cheat\\dev_cheat\\server.py 18 Files With Changes < Alt+H .gitignore View 18 edited files requirements.txt Alt+L > Bisman Singh main* • @ O gemini api key + Gemini 3.8 Flash High Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN Reject all Antigravity - Settings 17:09 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:09:41",
+    "question_text": "A File Edit Selection View Go Run Terminal Help ;ection.tsx sitemap.xml DashboardPage.tsx pdf_previews - Antigravity IDE - .env.local firebase.json rename_brand.py .env.local Scratchl x Al Developer Screen Solver App [Bisman-Singh-Dev/DEV_Cheat](https://github.com/Bisman-Singh- Dev/DEV_Cheat) This mv in this i he Ran 3 commands Edited main.py Explored 1 task Ran 4 commands Explored 2 tasks Edited server.py Ran 2 commands Explored 1 task End-to-end test of solving and Q dismiss finished Thought for Is Ran 9 commands Explored 1 task, 1 browser Ran 2 commands DEV_Cheat + Review Changes x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ < Alt+H .gitignore View 18 edited files requirements.txt Alt+L > Bisman Singh main* • @ O gemini api key + Gemini 3.8 Flash High Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN Antigravity - Settings 17:09 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:09:37",
+    "question_text": "A File Edit Selection View Go Run Terminal Help pdf_previews - Antigravity IDE - .env.local ;ection.tsx sitemap.xml DashboardPage.tsx firebase.json rename_brand.py .env.local x Scratchl Al Developer Screen Solver App [Bisman-Singh-Dev/DEV_Cheat](https://github.com/Bisman-Singh- Dev/DEV_Cheat) This mv in this i he Ran 3 commands Edited main.py Explored 1 task Ran 4 commands Explored 2 tasks Edited server.py Ran 2 commands Explored 1 task End-to-end test of solving and Q dismiss finished Thought for Is Ran 9 commands Explored 1 task, 1 browser Ran 2 commands DEV_Cheat + Review Changes x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ < Alt+H .gitignore View 18 edited files requirements.txt Alt+L > Bisman Singh main* • @ O gemini api key/ + Gemini 3.8 Flash High Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN Antigravity - Settings 17:09 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:09:35",
+    "question_text": "A File Edit Selection View Go Run Terminal Help pdf_previews - Antigravity IDE - .env.local ;ection.tsx sitemap.xml DashboardPage.tsx firebase.json rename_brand.py .env.local x Scratchl Al Developer Screen Solver App [Bisman-Singh-Dev/DEV_Cheat](https://github.com/Bisman-Singh- Dev/DEV_Cheat) This mv in this i he Ran 3 commands Edited main.py Explored 1 task Ran 4 commands Explored 2 tasks Edited server.py Ran 2 commands Explored 1 task End-to-end test of solving and Q dismiss finished x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ Thought for Is Ran 9 commands Explored 1 task, 1 browser Running 2 commands v Ran git status Ran git add data/history.json; -m < Alt+H .gitignore View 18 edited files requirements.txt Alt+L > Bisman Singh main* • @ O gemini api key/ + Gemini 3.8 Flash High Ln 7, Col 62 Spaces 4 UTE-8 LF git commit { } Dotenv ENG IN \"chore: save Review Changes Antigravity - Settings 17:09 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:09:32",
+    "question_text": "A File Edit Selection View Go Run Terminal Help ;ection.tsx sitemap.xml DashboardPage.tsx pdf_previews - Antigravity IDE - .env.local firebase.json rename_brand.py .env.local Scratchl x Al Developer Screen Solver App [Bisman-Singh-Dev/DEV_Cheat](https://github.com/Bisman-Singh- Dev/DEV_Cheat) This mv in this i he Ran 3 commands Edited main.py Explored 1 task Ran 4 commands Explored 2 tasks Edited server.py Ran 2 commands Explored 1 task End-to-end test of solving and Q dismiss finished x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ Thought for Is Ran 9 commands Explored 1 task, 1 browser Running 2 commands v Ran git status Ran git add data/history.json; -m < Alt+H .gitignore View 18 edited files requirements.txt Alt+L > Bisman Singh main* • @ O gemini api key/ + Gemini 3.8 Flash High Ln 7, Col 62 Spaces 4 UTE-8 LF git commit { } Dotenv ENG IN \"chore: save Review Changes Antigravity - Settings 17:09 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
+    "direct_answer": "Result: 2",
+    "key_points": [
+      "Calculated 3 - 1 = 2"
+    ],
+    "code": "result = 3 - 1",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)",
+    "explanation": "Arithmetic evaluation of 3 - 1.",
+    "source": "local-math",
+    "timestamp": "2026-10-20 17:09:29",
+    "question_text": "A File Edit Selection View Go Run Terminal Help pdf_previews - Antigravity IDE - .env.local ;ection.tsx sitemap.xml DashboardPage.tsx firebase.json rename_brand.py .env.local x Scratchl Al Developer Screen Solver App [Bisman-Singh-Dev/DEV_Cheat](https://github.com/Bisman-Singh- Dev/DEV_Cheat) This mv in this i he Ran 3 commands Edited main.py Explored 1 task Ran 4 commands Explored 2 tasks Edited server.py Ran 2 commands Explored 1 task End-to-end test of solving and Q dismiss finished x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ Thought for Is Ran 9 commands Explored 1 task, 1 browser Running 2 commands v Ran git status Run git add data/history.json; git commit -m < Alt+H .gitignore View 18 edited files requirements.txt Alt+L > Bisman Singh main* • @ O gernin + Gemini 3.8 Flash High Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN \"chore: sav Review Changes Antigravity - Settings 17:09 20/10/2026",
+    "q_type": "mcq",
+    "question_id": "q_1"
+  },
+  {
     "direct_answer": "Result: 2",
     "key_points": [
       "Calculated 3 - 1 = 2"
@@ -11,7 +596,8 @@
     "source": "local-math",
     "timestamp": "2026-10-20 17:09:27",
     "question_text": "A File Edit Selection View Go Run Terminal Help pdf_previews - Antigravity IDE - .env.local ;ection.tsx sitemap.xml DashboardPage.tsx firebase.json rename_brand.py .env.local x Scratchl Al Developer Screen Solver App [Bisman-Singh-Dev/DEV_Cheat](https://github.com/Bisman-Singh- Dev/DEV_Cheat) This mv in this i he Ran 3 commands Edited main.py Explored 1 task Ran 4 commands Explored 2 tasks Edited server.py Ran 2 commands Explored 1 task End-to-end test of solving and Q dismiss finished x C: > Users > Bisman Singh > .gemini > antigravity-ide > scratch > vitallens > .env.local 1 2 3 5 6 7 8 9 GROQ_API KEY=gsk ii3P1bE9øaaYC1baYV0bWGdyb3FY8eUUkNxawpdAj4TkfdoeqeHt NEXT NEXT NEXT NEXT NEXT NEXT NEXT PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC PUBLIC FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE FIREBASE API KEY-A1zaSYAkm17mxnbP6EDZdVf7p3-1WPHmkR7YHg AUTH DOMAIN=vita11ens-38da2.firebaseapp.com PROJECT ID=vita11ens-38da2 STORAGE BUCKET=vita11ens-38da2. firebasestorage . app MESSAGING SENDER APP falf6a72f1dbf9d7e71øgø MEASUREMENT ID=G-GPIG8X29LYZ Thought for Is Ran 9 commands Explored 1 task, 1 browser Ran git status ...\\DEV Cheat > git status Your branch is up to date with • origin/main . Review Changes < Alt+H .gitignore View 18 edited files requirements.txt Alt+L > Bisman Singh main* • @ O goog; + Gemini 3.8 Flash High Ln 7, Col 62 Spaces 4 UTE-8 LF { } Dotenv ENG IN Antigravity - Settings 17:09 20/10/2026",
-    "q_type": "mcq"
+    "q_type": "mcq",
+    "question_id": "q_1"
   },
   {
     "direct_answer": "Result: 2",

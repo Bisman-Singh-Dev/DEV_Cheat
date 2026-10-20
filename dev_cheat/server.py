@@ -33,15 +33,21 @@ class ConnectionManager:
                 self.disconnect(connection)
 
 manager = ConnectionManager()
+main_loop = None
 
-# Forward monitor events to websockets
+@app.on_event("startup")
+async def startup_event():
+    global main_loop
+    main_loop = asyncio.get_running_loop()
+
+# Forward monitor events to websockets safely across threads
 def on_monitor_event(event_type: str, data: Any):
-    try:
-        loop = asyncio.get_event_loop()
-        if loop.is_running():
-            asyncio.create_task(manager.broadcast({"type": event_type, "data": data}))
-    except Exception:
-        pass
+    global main_loop
+    if main_loop and main_loop.is_running():
+        asyncio.run_coroutine_threadsafe(
+            manager.broadcast({"type": event_type, "data": data}),
+            main_loop
+        )
 
 screen_monitor.add_listener(on_monitor_event)
 

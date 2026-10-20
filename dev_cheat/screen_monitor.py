@@ -133,13 +133,6 @@ class ScreenMonitor:
         screen = ocr_engine.capture_screen()
         self.last_screenshot = screen
 
-        # 2. Check if screen changed significantly (fast thumbnail hash)
-        thumb = screen.resize((120, 75))
-        curr_hash = hashlib.md5(thumb.tobytes()).hexdigest()
-        if curr_hash == self._last_hash:
-            return  # No change on screen
-        self._last_hash = curr_hash
-
         self.status = "scanning"
         self._emit("status_change", {"status": "scanning"})
 

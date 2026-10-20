@@ -102,12 +102,12 @@ Respond in the following STRICT JSON format only (no markdown quotes outside JSO
                 data=req_data,
                 headers={"Content-Type": "application/json"}
             )
-            with urllib.request.urlopen(req, timeout=10) as response:
+            with urllib.request.urlopen(req, timeout=3.5) as response:
                 result = json.loads(response.read().decode("utf-8"))
                 candidate = result["candidates"][0]["content"]["parts"][0]["text"]
                 return self._parse_json_response(candidate)
         except Exception as e:
-            print(f"[Solver] Gemini request failed: {e}")
+            # Fallback immediately without hanging the monitor loop
             return {"error": str(e)}
 
     def _parse_json_response(self, text: str) -> Dict[str, Any]:
