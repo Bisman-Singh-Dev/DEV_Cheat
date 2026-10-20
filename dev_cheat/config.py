@@ -21,6 +21,8 @@ class Config:
         self.port = int(os.getenv("PORT", "5055"))
         self.host = os.getenv("HOST", "127.0.0.1")
         self.enable_desktop_overlay = os.getenv("ENABLE_DESKTOP_OVERLAY", "true").lower() in ("true", "1", "yes")
+        self.open_chatgpt = os.getenv("OPEN_CHATGPT", "true").lower() in ("true", "1", "yes")
+        self.show_dev_window = os.getenv("SHOW_DEV_WINDOW", "false").lower() in ("true", "1", "yes")
 
     def update(self, **kwargs):
         for k, v in kwargs.items():

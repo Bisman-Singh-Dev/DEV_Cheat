@@ -5,6 +5,7 @@ from tkinter import ttk
 from typing import List, Dict, Any, Optional, Callable
 from PIL import Image, ImageTk
 from .ocr_engine import ocr_engine
+from .config import config
 
 class DesktopOverlay:
     """
@@ -280,21 +281,49 @@ class DesktopOverlay:
     def update_questions(self, questions: List[Dict[str, Any]]):
         self.questions = questions
 
+    def show_toast(self, message: str, duration_ms: int = 4500):
+        """Displays a sleek top banner toast notification on screen."""
+        if not self.root or not self.canvas:
+            return
+        screen_w = self.root.winfo_screenwidth()
+        pill_w = min(740, len(message) * 9 + 40)
+        pill_h = 38
+        x1 = (screen_w - pill_w) // 2
+        y1 = 16
+
+        self.canvas.delete("toast_banner")
+        self.canvas.create_rectangle(
+            x1, y1, x1 + pill_w, y1 + pill_h,
+            fill="#0f172a", outline="#10b981", width=2,
+            tags="toast_banner"
+        )
+        self.canvas.create_text(
+            screen_w // 2, y1 + 19,
+            text=message,
+            fill="#4ade80", font=("Segoe UI", 11, "bold"),
+            tags="toast_banner"
+        )
+        self.root.after(duration_ms, lambda: self.canvas.delete("toast_banner") if self.canvas else None)
+
     def show_solution(self, solution: Dict[str, Any]):
-        """Updates and displays the answer in the movable DEV Kit window immediately."""
+        """Updates and handles question solution presentation."""
         self.active_solution = solution
-        # Clear pending snip placeholder
         if self.canvas:
             self.canvas.delete("pending_snip")
 
-        # Force re-render of solution widget with fresh answer
-        if self._sol_frame:
-            try:
-                self._sol_frame.destroy()
-                self._sol_frame = None
-            except Exception:
-                pass
-        self._render_solution_widget(solution)
+        # When ChatGPT mode is active, show the sleek toast notification!
+        if config.open_chatgpt:
+            self.show_toast("✓ Question opened in ChatGPT! (Prompt pre-filled & copied to clipboard - Ctrl+V)")
+
+        # Render floating solution card only if enabled
+        if config.show_dev_window:
+            if self._sol_frame:
+                try:
+                    self._sol_frame.destroy()
+                    self._sol_frame = None
+                except Exception:
+                    pass
+            self._render_solution_widget(solution)
 
     def hide_responses(self):
         """User pressed 'Q': Hide all open response boxes/solutions."""
@@ -352,8 +381,11 @@ class DesktopOverlay:
                 # Interactive Badge on top edge
                 q_label = q.get("title", q.get("id", "Q")).split(":")[0].strip()
                 if has_solution:
-                    direct = q["solution"].get("direct_answer", "Solved")
-                    badge_text = f"⚡ {q_label}: {direct[:25]}"
+                    if config.open_chatgpt:
+                        badge_text = f"⚡ {q_label}: Opened in ChatGPT"
+                    else:
+                        direct = q["solution"].get("direct_answer", "Solved")
+                        badge_text = f"⚡ {q_label}: {direct[:25]}"
                     badge_bg = "#00b894"
                 else:
                     badge_text = f"🎯 {q_label}: Click to Solve"

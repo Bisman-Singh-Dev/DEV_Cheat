@@ -11,6 +11,7 @@ from .question_detector import question_detector, QuestionBlock
 from .gemini_vision import gemini_vision
 from .solver import solver
 from .overlay import desktop_overlay
+from .chatgpt_service import open_question_in_chatgpt
 
 try:
     from pynput import keyboard, mouse
@@ -164,9 +165,15 @@ class ScreenMonitor:
         block.solution = solution
         self.current_questions = [block]
 
-        # Update overlay with the confirmed bounding box and open solution window
+        # Update overlay with the confirmed bounding box and trigger solution
         desktop_overlay.update_questions([block.to_dict()])
         desktop_overlay.show_solution(solution)
+
+        # Open question in ChatGPT with prompt pre-filled and copy to clipboard
+        if config.open_chatgpt:
+            q_text = solution.get("question_text") or solution.get("question_title") or ""
+            options = solution.get("options", [])
+            open_question_in_chatgpt(question_text=q_text, options=options, title=solution.get("question_title", ""))
 
         self._emit("solved", {
             "question": block.to_dict(),
@@ -332,8 +339,14 @@ class ScreenMonitor:
 
         self.last_solution = solution
 
-        # Update overlay with floating solution card
+        # Update overlay with floating solution/toast
         desktop_overlay.show_solution(solution)
+
+        # Open in ChatGPT if enabled
+        if config.open_chatgpt:
+            target_text = q_text or solution.get("question_text") or solution.get("question_title") or ""
+            target_opts = options or solution.get("options", [])
+            open_question_in_chatgpt(question_text=target_text, options=target_opts, title=question_data.get("title", ""))
 
         # Broadcast solution to web dashboard
         self._emit("solved", {

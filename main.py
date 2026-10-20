@@ -59,13 +59,14 @@ def print_banner(host: str, port: int):
     table.add_row("Scan Interval", f"{config.scan_interval}s")
     table.add_row("Auto-Solve Single", "[bold green]ENABLED[/bold green]" if config.auto_solve_single else "[yellow]DISABLED[/yellow]")
     table.add_row("Desktop Red Box HUD", "[bold green]ENABLED[/bold green]" if config.enable_desktop_overlay else "[yellow]DISABLED[/yellow]")
+    table.add_row("Auto-Open ChatGPT", "[bold green]ENABLED[/bold green]" if config.open_chatgpt else "[yellow]DISABLED[/yellow]")
     
     console.print(table)
     
     hotkey_panel = Panel(
         Text.from_markup(
-            "[bold green][B][/bold green] : [bold]Interactive Snip & Box[/bold] (Drag mouse over any question to solve)\n"
-            "[bold red][Q][/bold red] : Hide active responses & dismiss overlay\n"
+            "[bold green][B][/bold green] : [bold]Interactive Snip & Box[/bold] (Drag red box over question to auto-fill & open in ChatGPT)\n"
+            "[bold red][Q][/bold red] : Hide active badges & dismiss overlay\n"
             "[bold cyan][S][/bold cyan] : Force instant manual screen scan\n"
             "[bold yellow][C][/bold yellow] : Clear highlighted questions & cache\n"
             "[bold green][Click][/bold green] : Click on any Red Bounding Box on screen/dashboard to solve\n"

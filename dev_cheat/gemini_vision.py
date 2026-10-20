@@ -190,7 +190,7 @@ Return strictly a valid JSON object matching this schema:
 
         prompt = """You are a world-class Physics and Mathematics Olympiad / JEE Advanced Master Professor.
 Analyze this cropped question image with absolute mathematical, physical, and conceptual rigor.
-1. Read the exact question statement, diagrams, equations, indices, subscripts, superscripts, and all multiple-choice options carefully.
+1. Transcribe the exact question statement, diagrams, equations, indices, subscripts, superscripts, and all multiple-choice options into "question_text" and "options".
 2. Solve the problem with 100% mathematical correctness. Verify all steps, signs, limits, and units.
 3. Determine the definitive correct answer and matching option (e.g. 'Option (c) v0 + g/2 + f/3' or 'Option (a) t^2' or numerical value).
 4. Provide a systematic, numbered step-by-step derivation:
@@ -202,8 +202,10 @@ Analyze this cropped question image with absolute mathematical, physical, and co
 
 Return STRICTLY a valid JSON object matching this schema:
 {
-  "direct_answer": "Option (c) v0 + g/2 + f/3",
   "question_title": "Velocity and displacement integration",
+  "question_text": "The velocity of a particle is v = v0 + gt + ft^2...",
+  "options": ["(a) ...", "(b) ...", "(c) ...", "(d) ..."],
+  "direct_answer": "Option (c) v0 + g/2 + f/3",
   "key_points": ["Given velocity v(t) = v0 + gt + ft^2", "Displacement x = integral v dt from 0 to 1"],
   "explanation": "Step 1: Identify given quantities...\\nStep 2: Set up integral...\\nStep 3: Calculate...\\nFinal Result: Option (c)"
 }"""
@@ -236,18 +238,22 @@ Return STRICTLY a valid JSON object matching this schema:
                     direct_ans = parsed.get("direct_answer", "Solved")
                     explanation = parsed.get("explanation", "")
                     title = parsed.get("question_title", "Cropped Question")
+                    q_text = parsed.get("question_text", title)
+                    options = parsed.get("options", [])
                     key_points = parsed.get("key_points", [f"Direct: {direct_ans}"])
 
                     return {
                         "question_id": f"snip_{int(time.time())}",
                         "question_title": title,
+                        "question_text": q_text,
+                        "options": options,
                         "direct_answer": direct_ans,
                         "explanation": explanation,
                         "key_points": key_points,
                         "time_complexity": "N/A",
                         "space_complexity": "N/A",
                         "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
-                        "q_type": "mcq" if "option" in direct_ans.lower() else "math"
+                        "q_type": "mcq" if options or "option" in direct_ans.lower() else "math"
                     }
             except Exception as e:
                 print(f"[Gemini Vision] Crop solve with {model} failed: {e}")
